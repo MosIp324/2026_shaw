@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>艾蒂安・吉斯教授</title>
+    <style>
+      * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.5;
+            color: #333;
+            background-color: #0f172a; /* 背景深色襯托 16:9 画框 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* 16:9 画框容器 */
+        #canvas {
+            width: 1920px;
+            height: 1080px;
+            background-color: #f8fafc;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            padding: 40px 60px;
+        }
+
+        /* 主佈局容器：16:9 比例下採用橫向兩欄 */
+        .container {
+            display: flex;
+            gap: 40px;
+            height: 100%;
+            margin-top: 20px;
+        }
+
+        /* 左側導航欄樣式 */
+        .sidebar {
+            width: 280px;
+            flex-shrink: 0;
+            background: #ffffff;
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            height: fit-content;
+        }
+        .nav-group {
+            margin-bottom: 15px;
+        }
+         .nav-item {
+            display: block;
+            padding: 12px 16px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .nav-item:hover {
+            background-color: #f3ecde;
+            color: #c39f5b;
+        }
+        .nav-item.active {
+            background-color: #c39f5b;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .sub-menu {
+            margin-left: 15px;
+            margin-top: 8px;
+            border-left: 3px solid #cbd5e1;
+            padding-left: 12px;
+        }
+        .sub-item {
+            display: block;
+            padding: 8px 12px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .sub-itemAstron{
+            display: block;
+            padding: 8px 12px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .sub-itemComput {
+            display: block;
+            padding: 8px 12px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .sub-itemLife {
+            display: block;
+            padding: 8px 12px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .sub-itemMaths {
+            display: block;
+            padding: 8px 12px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .sub-item:hover {
+            color: #0f172a;
+            background-color: #f1f5f9;
+        }
+        .sub-itemAstron:hover {
+            color: #fafbfb;
+            font-weight: bold;
+            background-color: #919abc;
+        }
+        .sub-itemComput:hover {
+            color: #fafbfb;
+            font-weight: bold;
+            background-color: #b599bf;
+        }
+        .sub-itemLife:hover {
+            color: #fafbfb;
+            font-weight: bold;
+            background-color: #93aca3;
+        }
+        .sub-itemMaths:hover {
+            color: #fafbfb;
+            font-weight: bold;
+            background-color: #bc939b;
+        }
+        .sub-item.active {
+            color: #fafbfb;
+            font-weight: bold;
+            background-color: #802e3e;
+        }
+
+        /* 右側主內容區樣式 */
+        .main-content {
+            flex-grow: 1;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .lang-switch {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            display: flex;
+            gap: 8px;
+        }
+      .profile-navigation {
+          position: absolute;
+          top: 90px;
+          right: 40px;
+          display: flex;
+          gap: 8px;
+      }
+        .lang-btn {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            color: #475569;
+            padding: 6px 14px;
+            font-size: 0.95rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .lang-btn:hover {
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+        .lang-btn.active {
+            background: #1e293b;
+            color: #ffffff;
+            border-color: #1e293b;
+        }
+
+        .breadcrumb {
+            font-size: 1rem;
+            color: #64748b;
+            margin-bottom: 20px;
+        }
+        .role-badge {
+            display: inline-block;
+            background-color: #bc939b;
+            color: #5f222e;
+            font-weight: bold;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+        .header-title {
+            font-size: 2.5rem;
+            color: #0f172a;
+            margin-bottom: 12px;
+        }
+        .profile-subtitle {
+            font-size: 1.25rem;
+            color: #475569;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        /* 16:9 下特有的雙欄內容展示區 */
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 600px 1fr;
+            gap: 35px;
+            margin-top: 10px;
+        }
+
+        .profile-photo {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        .bio-text {
+            color: #334155;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+        .terms {
+            font-size: 0.95rem;
+            color: #64748b;
+            background: #f8fafc;
+            padding: 12px 18px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 20px;
+        }
+        .terms span {
+            display: inline-block;
+            background: #e2e8f0;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-right: 6px;
+            color: #334155;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="canvas">
+    <div class="container">
+        <!-- 左側選單 -->
+       <nav class="sidebar">
+            <div class="nav-group">
+                <a href="https://www.shawprize.org/zh/about/organisation/the-shaw-prize-foundation" class="nav-item">邵逸夫獎基金會</a>
+                <a href="https://www.shawprize.org/zh/about/organisation/council" class="nav-item">理事會</a>
+                <a href="https://www.shawprize.org/zh/about/organisation/board-of-adjudicators" class="nav-item">評審委員會</a>
+                <a href="https://www.shawprize.org/zh/about/organisation/astronomy" class="nav-item active">遴選委員會</a>
+                
+                <!-- 遴選委員會子類別 -->
+                <div class="sub-menu">
+                    <a href="https://www.shawprize.org/zh/about/organisation/astronomy" class="sub-itemAstron">天文學</a>
+                    <a href="https://www.shawprize.org/zh/about/organisation/computer-science" class="sub-itemComput">計算機科學</a>
+                    <a href="https://www.shawprize.org/zh/about/organisation/life-science-medicine" class="sub-itemLife ">生命科學與醫學</a>
+                    <a href="https://www.shawprize.org/zh/about/organisation/mathematical-sciences" class="sub-item active">數學科學</a>
+                </div>
+            </div>
+        </nav>
+
+        <main class="main-content">
+                <div class="lang-switch">
+                    <button type="button" class="lang-btn" data-language="en">ENG</button>
+                    <button type="button" class="lang-btn active" data-language="zh-Hant">繁</button>
+                    <button type="button" class="lang-btn" data-language="cn">简</button>
+                </div>
+            <div class="profile-navigation jsx-caca17b2dbf10bfe flex items-center space-x-2">
+                <button type="button" onclick="window.location.href='./Sun_Yung_Alice_Chang.html'" aria-label="上一個" class="jsx-caca17b2dbf10bfe w-15 h-15 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+                    <svg  width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8">
+                        <path d="M16.0011 24.0436L16.0011 22.2109L31.732 12L32.9102 13.8327L18.5974 23.1273L32.9102 32.4218L31.732 34.2545L16.0011 24.0436Z" fill="#16161C" class="fill-current">
+                        </path>
+                    </svg>
+                </button>
+                <button type="button" onclick="window.location.href='./卡洛斯・科尼格教授2.html'"  aria-label="下一個" class="jsx-caca17b2dbf10bfe w-15 h-15 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+                    <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8">
+                        <path d="M34 22.754L34 24.7304L19.1148 35.7422L18 33.7657L31.5432 23.7422L18 13.7187L19.1148 11.7422L34 22.754Z" fill="#16161C" class="fill-current">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+
+                <div>
+                    <span class="role-badge" data-i18n="role">成員</span>
+                    <h1 class="header-title" data-i18n="name">艾蒂安·吉斯教授</h1>
+                    <div class="profile-subtitle" data-i18n="subtitle">
+                        法國<br>
+                        里昂高等師範學院<br>
+                        法國國家科學研究中心(CNRS)<br>
+                        榮休高級研究員
+                    </div>
+                </div>
+
+                <!-- 16:9 雙欄展示區域 -->
+                <div class="profile-grid">
+                    <div>
+                        <img src="../img/Etienne_Ghys.jpg" alt="Etienne" class="profile-photo">
+                        <div class="terms" style="margin-top: 15px;">
+                            <strong data-i18n="termsLabel">過往任期：</strong><br>
+                            <div style="margin-top: 8px;">                                
+                                <span>2026 年</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="bio-text" data-i18n="bioOne">
+                            艾蒂安·吉斯教授是法國科學院常任秘書長，也是法國里昂高等師範學院法國國家科學研究中心(CNRS)榮休高級研究員。
+                            <br> <br>
+                            他的研究領域涵蓋動力系統、拓樸學和幾何學，並對數學史、數學教育和科學推廣有著濃厚興趣。
+                        </p>
+                        <p class="bio-text" data-i18n="bioTwo">
+                            他曾於1990年和2014年在國際數學家大會(ICM)上發言擔任演講者，並於2014年國際數學家大會及2012年國際數學教育大會(ICME)擔任全體會議特邀演講者。他於1990年榮獲法國國家科學研究中心銀獎，於2015年獲克雷數學知識傳播獎，並於2022年獲法國國家科學研究中心科學推廣獎章。
+                            <br> <br>
+                            吉斯教授是歐洲科學院院士及墨西哥科學院和巴西科學院外籍院士。
+                        </p>
+                        
+                        <p class="bio-text"class="bio-text" data-i18n="note" style="font-size: 0.9em; color: #64748b; margin-top: 20px;">
+                            (註：所有中文譯本，皆以英文本為準)
+                        </p>
+                    </div>
+                </div>
+            </main>
+        </div>
+        
+    </div>
+     <script>
+        // 自動依照視窗大小保持 16:9 比例縮放
+        function resizeCanvas() {
+            const canvas = document.getElementById('canvas');
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+            
+            const scaleX = windowWidth / 1920;
+            const scaleY = windowHeight / 1080;
+            const scale = Math.min(scaleX, scaleY);
+
+            canvas.style.transform = `scale(${scale})`;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        window.addEventListener('DOMContentLoaded', resizeCanvas);
+
+        const translations = {
+            en: {
+                title: 'Professor Étienne Ghys',
+                role: 'Member',
+                name: 'Professor Étienne Ghys',
+                subtitle: 'Emeritus Research Director<br>National Centre for Scientific Research (CNRS)<br>École Normale Supérieure de Lyon<br>France',
+                termsLabel: 'Previous terms:',
+                bioOne: 'Professor Étienne Ghys is the Permanent Secretary of the French Academy of Sciences and an Emeritus Senior Researcher at the National Centre for Scientific Research (CNRS), based at the École Normale Supérieure de Lyon.<br><br>His research spans dynamical systems, topology, and geometry, with a strong interest in the history of mathematics, mathematics education, and scientific outreach.',
+                bioTwo: 'He was an invited speaker at the International Congress of Mathematicians (ICM) in 1990 and 2014, and a plenary speaker at the ICM in 2014 as well as at the International Congress on Mathematical Education (ICME) in 2012. He received the CNRS silver medal in 1990, the Clay Award for the Dissemination of Mathematical Knowledge in 2015, and the CNRS Medal for Scientific Outreach in 2022.<br><br>He is a member of Academia Europaea and a foreign member of the Mexican and Brazilian Academies of Sciences.',
+                note: ''
+            },
+            'zh-Hant': {
+                title: '艾蒂安・吉斯教授',
+                role: '成員',
+                name: '艾蒂安・吉斯教授',
+                subtitle: '法國<br>里昂高等師範學院<br>法國國家科學研究中心(CNRS)<br>榮休高級研究員',
+                termsLabel: '過往任期：',
+                bioOne: '艾蒂安·吉斯教授是法國科學院常任秘書長，也是法國里昂高等師範學院法國國家科學研究中心(CNRS)榮休高級研究員。<br><br>他的研究領域涵蓋動力系統、拓樸學和幾何學，並對數學史、數學教育和科學推廣有著濃厚興趣。',
+                bioTwo: '他曾於1990年和2014年在國際數學家大會(ICM)上發言擔任演講者，並於2014年國際數學家大會及2012年國際數學教育大會(ICME)擔任全體會議特邀演講者。他於1990年榮獲法國國家科學研究中心銀獎，於2015年獲克雷數學知識傳播獎，並於2022年獲法國國家科學研究中心科學推廣獎章。<br><br>吉斯教授是歐洲科學院院士及墨西哥科學院和巴西科學院外籍院士。',
+                note: '(註：所有中文譯本，皆以英文本為準)'
+            },
+            cn: {
+                title: '艾蒂安・吉斯教授',
+                role: '成员',
+                name: '艾蒂安・吉斯教授',
+                subtitle: '法国<br>里昂高等师范学院<br>法国国家科学研究中心(CNRS)<br>荣休高级研究员',
+                termsLabel: '过往任期：',
+                bioOne: '艾蒂安·吉斯教授是法国科学院常任秘书长，也是法国里昂高等师范学院法国国家科学研究中心(CNRS)荣休高级研究员。<br><br>他的研究领域涵盖动力系统、拓朴学和几何学，并对数学史、数学教育和科学推广有着浓厚兴趣。',
+                bioTwo: '他曾于1990年和2014年在国际数学家大会(ICM)上发言担任演讲者，并于2014年国际数学家大会及2012年国际数学教育大会(ICME)担任全体会议特邀演讲者。他于1990年荣获法国国家科学研究中心银奖，于2015年获克雷数学知识传播奖，并于2022年获法国国家科学研究中心科学推广奖章。<br><br>吉斯教授是欧洲科学院院士及墨西哥科学院和巴西科学院外籍院士。',
+                note: '(注：所有中文译本，皆以英文本为准)'
+            }
+        };
+
+        document.querySelectorAll('[data-language]').forEach((button) => {
+            button.addEventListener('click', () => {
+                const language = button.dataset.language;
+                const content = translations[language];
+
+                document.documentElement.lang = language;
+                document.title = content.title;
+                document.querySelectorAll('[data-i18n]').forEach((element) => {
+                    element.innerHTML = content[element.dataset.i18n];
+                });
+                document.querySelectorAll('[data-language]').forEach((item) => {
+                    item.classList.toggle('active', item === button);
+                });
+            });
+        });
+     </script>
+</body>
+</html>

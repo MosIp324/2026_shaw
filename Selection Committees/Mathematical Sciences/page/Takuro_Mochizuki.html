@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>望月拓郎教授</title>
+    <style>
+      * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.5;
+            color: #333;
+            background-color: #0f172a; /* 背景深色襯托 16:9 画框 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* 16:9 画框容器 */
+        #canvas {
+            width: 1920px;
+            height: 1080px;
+            background-color: #f8fafc;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            padding: 40px 60px;
+        }
+
+        /* 主佈局容器：16:9 比例下採用橫向兩欄 */
+        .container {
+            display: flex;
+            gap: 40px;
+            height: 100%;
+            margin-top: 20px;
+        }
+
+        /* 左側導航欄樣式 */
+        .sidebar {
+            width: 280px;
+            flex-shrink: 0;
+            background: #ffffff;
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            height: fit-content;
+        }
+        .nav-group {
+            margin-bottom: 15px;
+        }
+         .nav-item {
+            display: block;
+            padding: 12px 16px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .nav-item:hover {
+            background-color: #f3ecde;
+            color: #c39f5b;
+        }
+        .nav-item.active {
+            background-color: #c39f5b;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .sub-menu {
+            margin-left: 15px;
+            margin-top: 8px;
+            border-left: 3px solid #cbd5e1;
+            padding-left: 12px;
+        }
+        .sub-item {
+            display: block;
+            padding: 8px 12px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .sub-itemAstron{
+            display: block;
+            padding: 8px 12px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .sub-itemComput {
+            display: block;
+            padding: 8px 12px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .sub-itemLife {
+            display: block;
+            padding: 8px 12px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .sub-itemMaths {
+            display: block;
+            padding: 8px 12px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .sub-item:hover {
+            color: #0f172a;
+            background-color: #f1f5f9;
+        }
+        .sub-itemAstron:hover {
+            color: #fafbfb;
+            font-weight: bold;
+            background-color: #919abc;
+        }
+        .sub-itemComput:hover {
+            color: #fafbfb;
+            font-weight: bold;
+            background-color: #b599bf;
+        }
+        .sub-itemLife:hover {
+            color: #fafbfb;
+            font-weight: bold;
+            background-color: #93aca3;
+        }
+        .sub-itemMaths:hover {
+            color: #fafbfb;
+            font-weight: bold;
+            background-color: #bc939b;
+        }
+        .sub-item.active {
+            color: #fafbfb;
+            font-weight: bold;
+            background-color: #802e3e;
+        }
+
+        /* 右側主內容區樣式 */
+        .main-content {
+            flex-grow: 1;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 語言切換按鈕 */
+        .lang-switch {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            display: flex;
+            gap: 8px;
+        }
+            .profile-navigation {
+                position: absolute;
+                top: 90px;
+                right: 40px;
+                display: flex;
+                gap: 8px;
+            }
+        .lang-btn {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            color: #475569;
+            padding: 6px 14px;
+            font-size: 0.95rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .lang-btn:hover {
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+        .lang-btn.active {
+            background: #1e293b;
+            color: #ffffff;
+            border-color: #1e293b;
+        }
+
+        .breadcrumb {
+            font-size: 1rem;
+            color: #64748b;
+            margin-bottom: 20px;
+        }
+        .role-badge {
+            display: inline-block;
+            background-color: #bc939b;
+            color: #5f222e;
+            font-weight: bold;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+        .header-title {
+            font-size: 2.5rem;
+            color: #0f172a;
+            margin-bottom: 12px;
+        }
+        .profile-subtitle {
+            font-size: 1.25rem;
+            color: #475569;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        /* 16:9 下特有的雙欄內容展示區 */
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 600px 1fr;
+            gap: 35px;
+            margin-top: 10px;
+        }
+
+        .profile-photo {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        .bio-text {
+            color: #334155;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+        .terms {
+            font-size: 0.95rem;
+            color: #64748b;
+            background: #f8fafc;
+            padding: 12px 18px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 20px;
+        }
+        .terms span {
+            display: inline-block;
+            background: #e2e8f0;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-right: 6px;
+            color: #334155;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="canvas">
+    <div class="container">
+        <!-- 左側選單 -->
+       <nav class="sidebar">
+            <div class="nav-group">
+                <a href="https://www.shawprize.org/zh/about/organisation/the-shaw-prize-foundation" class="nav-item">邵逸夫獎基金會</a>
+                <a href="https://www.shawprize.org/zh/about/organisation/council" class="nav-item">理事會</a>
+                <a href="https://www.shawprize.org/zh/about/organisation/board-of-adjudicators" class="nav-item">評審委員會</a>
+                <a href="https://www.shawprize.org/zh/about/organisation/astronomy" class="nav-item active">遴選委員會</a>
+                
+                <!-- 遴選委員會子類別 -->
+                <div class="sub-menu">
+                    <a href="https://www.shawprize.org/zh/about/organisation/astronomy" class="sub-itemAstron">天文學</a>
+                    <a href="https://www.shawprize.org/zh/about/organisation/computer-science" class="sub-itemComput">計算機科學</a>
+                    <a href="https://www.shawprize.org/zh/about/organisation/life-science-medicine" class="sub-itemLife ">生命科學與醫學</a>
+                    <a href="https://www.shawprize.org/zh/about/organisation/mathematical-sciences" class="sub-item active">數學科學</a>
+                </div>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <div class="lang-switch">
+                <button type="button" class="lang-btn" data-language="en">ENG</button>
+                <button type="button" class="lang-btn active" data-language="zh-Hant">繁</button>
+                <button type="button" class="lang-btn" data-language="cn">简</button>
+            </div>
+
+            <div class="profile-navigation jsx-caca17b2dbf10bfe flex items-center space-x-2">
+                <button type="button" onclick="window.location.href='./卡洛斯・科尼格教授2.html'" aria-label="上一個" class="jsx-caca17b2dbf10bfe w-15 h-15 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+                    <svg  width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8">
+                        <path d="M16.0011 24.0436L16.0011 22.2109L31.732 12L32.9102 13.8327L18.5974 23.1273L32.9102 32.4218L31.732 34.2545L16.0011 24.0436Z" fill="#16161C" class="fill-current">
+                        </path>
+                    </svg>
+                </button>
+                <button disabled="" aria-label="下一個" class="jsx-caca17b2dbf10bfe w-15 h-15 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+                    <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8">
+                        <path d="M34 22.754L34 24.7304L19.1148 35.7422L18 33.7657L31.5432 23.7422L18 13.7187L19.1148 11.7422L34 22.754Z" fill="#16161C" class="fill-current">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+
+            <div>
+                <span class="role-badge" data-i18n="role">成員</span>
+                <h1 class="header-title" data-i18n="name">卡洛斯・科尼格教授</h1>
+                <div class="profile-subtitle" data-i18n="subtitle">
+                        日本<br>
+                        京都大學<br>
+                        數學科學研究所教授<br>
+                    </div>
+                </div>
+
+                <!-- 16:9 雙欄展示區域 -->
+                <div class="profile-grid">
+                    <div>
+                        <img src="../img/Takuro_Mochizuki.jpg" alt="Takuro_Mochizuki" class="profile-photo">
+                        <div class="terms" style="margin-top: 15px;">
+                            <strong data-i18n="termsLabel">過往任期：</strong><br>
+                            <div style="margin-top: 8px;">                                
+                                <span>2026 年</span>
+                                <span>2025 年</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="bio-text" data-i18n="bioOne">
+                            望月拓郎教授於 1999 年取得日本京都大學理學博士學位。他的職業生涯始於日本大阪市立大學，隨後在京都大學任教。自 2012年起，他擔任京都大學數學科學研究所教授。他曾以訪問學者身分於美國普林斯頓高等研究院(2001–2003)、德國馬克斯普朗克數學研究所(2005–2006)，以及法國高等科學研究所(2006–2007)進行學術研究。
+                            <br> <br>
+                            他致力於複微分幾何學、代數幾何學和代數分析的研究。他的主要研究議題之一是探尋代數幾何和微分幾何對象之間的等價性。
+                        </p>
+                        <p class="bio-text" data-i18n="bioTwo">
+                            望月教授獲頒多項榮譽，包括2006年日本數學會賞春季賞、2010年日本學術振興會獎、2010年日本學士院獎章、2011年日本學士院獎、2012年大阪科學獎、2020年朝日獎、2022年數學突破獎和2024年前沿科學獎。 他是2014年國際數學家大會全體會議特邀演講者。
+                        </p>
+                        
+                        <p class="bio-text"  data-i18n="note" style="font-size: 0.9em; color: #64748b; margin-top: 20px;">
+                            (註：所有中文譯本，皆以英文本為準)
+                        </p>
+                    </div>
+                </div>
+            </main>
+        </div>
+        
+    </div>
+     <script>
+        // 自動依照視窗大小保持 16:9 比例縮放
+        function resizeCanvas() {
+            const canvas = document.getElementById('canvas');
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+            
+            const scaleX = windowWidth / 1920;
+            const scaleY = windowHeight / 1080;
+            const scale = Math.min(scaleX, scaleY);
+
+            canvas.style.transform = `scale(${scale})`;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        window.addEventListener('DOMContentLoaded', resizeCanvas);
+
+        const translations = {
+            en: {
+                title: 'Professor Takuro Mochizuki',
+                role: 'Member',
+                name: 'Professor Takuro Mochizuki',
+                subtitle: 'Professor, Research Institute for Mathematical<br>Sciences<br>Kyoto University<br>Japan',
+                termsLabel: 'Previous terms:',
+                bioOne: 'Professor Takuro Mochizuki obtained his Doctor of Science from Kyoto University in 1999. He started his career at Osaka City University and then taught at Kyoto University. Since 2012, he has been a full professor at the Research Institute for Mathematical Sciences at Kyoto University. He also studied at the Institute for Advanced Study (2001–2003), Max-Planck Institute for Mathematics (2005–2006), and IHES (2006–2007) as a visitor.<br><br>He is working on complex differential geometry, algebraic geometry, and algebraic analysis. One of his main themes is pursuing equivalences between objects in algebraic geometry and differential geometry.',
+                bioTwo: 'Professor Mochizuki received various honors, including the Spring Prize of the Mathematical Society of Japan (2006), the JSPS Prize (2010), the Japan Academy Medal (2010), the Japan Academy Prize (2011), the Osaka Science Prize (2012), the Asahi Prize (2020), the Breakthrough Prize in Mathematics (2022), and the Frontiers of Science Awards (2024). He was a plenary speaker at the 2014 International Congress of Mathematicians.',
+                note: ''
+            },
+            'zh-Hant': {
+                title: '望月拓郎教授',
+                role: '成員',
+                name: '望月拓郎教授',
+                subtitle: '日本<br>京都大學<br>數學科學研究所教授',
+                termsLabel: '過往任期：',
+                bioOne: '望月拓郎教授於 1999 年取得日本京都大學理學博士學位。他的職業生涯始於日本大阪市立大學，隨後在京都大學任教。自 2012年起，他擔任京都大學數學科學研究所教授。他曾以訪問學者身分於美國普林斯頓高等研究院(2001–2003)、德國馬克斯普朗克數學研究所(2005–2006)，以及法國高等科學研究所(2006–2007)進行學術研究。<br><br>他致力於複微分幾何學、代數幾何學和代數分析的研究。他的主要研究議題之一是探尋代數幾何和微分幾何對象之間的等價性。',
+                bioTwo: '望月教授獲頒多項榮譽，包括2006年日本數學會賞春季賞、2010年日本學術振興會獎、2010年日本學士院獎章、2011年日本學士院獎、2012年大阪科學獎、2020年朝日獎、2022年數學突破獎和2024年前沿科學獎。他是2014年國際數學家大會全體會議特邀演講者。',
+                note: '(註：所有中文譯本，皆以英文本為準)'
+            },
+            cn: {
+                title: '望月拓郎教授',
+                role: '成员',
+                name: '望月拓郎教授',
+                subtitle: '日本<br>京都大学<br>数学科学研究所教授',
+                termsLabel: '过往任期：',
+                bioOne: '望月拓郎教授于 1999 年取得日本京都大学理学博士学位。他的职业生涯始于日本大阪市立大学，随后在京都大学任教。自 2012年起，他担任京都大学数学科学研究所教授。他曾以访问学者身分于美国普林斯顿高等研究院(2001–2003)、德国马克斯普朗克数学研究所(2005–2006)，以及法国高等科学研究所(2006–2007)进行学术研究。<br><br>他致力于复微分几何学、代数几何学和代数分析的研究。他的主要研究议题之一是探寻代数几何和微分几何对象之间的等价性。',
+                bioTwo: '望月教授获颁多项荣誉，包括2006年日本数学会赏春季赏、2010年日本学术振兴会奖、2010年日本学士院奖章、2011年日本学士院奖、2012年大阪科学奖、2020年朝日奖、2022年数学突破奖和2024年前沿科学奖。 他是2014年国际数学家大会全体会议特邀演讲者。',
+                note: '(注：所有中文译本，皆以英文本为准)'
+            }
+        };
+
+        document.querySelectorAll('[data-language]').forEach((button) => {
+            button.addEventListener('click', () => {
+                const language = button.dataset.language;
+                const content = translations[language];
+
+                document.documentElement.lang = language;
+                document.title = content.title;
+                document.querySelectorAll('[data-i18n]').forEach((element) => {
+                    element.innerHTML = content[element.dataset.i18n];
+                });
+                document.querySelectorAll('[data-language]').forEach((item) => {
+                    item.classList.toggle('active', item === button);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
