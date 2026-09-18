@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>盧煜明教授 - 邵逸夫獎</title>
+    <style>
+  * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.5;
+            color: #333;
+            background-color: #0f172a; /* 背景深色襯托 16:9 画框 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* 16:9 画框容器 */
+        #canvas {
+            width: 1920px;
+            height: 1080px;
+            background-color: #f8fafc;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            padding: 40px 60px;
+        }
+
+        /* 主佈局容器：16:9 比例下採用橫向兩欄 */
+        .container {
+            display: flex;
+            gap: 40px;
+            height: 100%;
+            margin-top: 20px;
+        }
+
+        /* 左側導航欄樣式 */
+        .sidebar {
+            width: 280px;
+            flex-shrink: 0;
+            background: #ffffff;
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            height: fit-content;
+        }
+        .nav-group {
+            margin-bottom: 15px;
+        }
+         .nav-item {
+            display: block;
+            padding: 12px 16px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .nav-item:hover {
+            background-color: #f3ecde;
+            color: #c39f5b;
+        }
+        .nav-item.active {
+            background-color: #c39f5b;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .sub-menu {
+            margin-left: 15px;
+            margin-top: 8px;
+            border-left: 3px solid #cbd5e1;
+            padding-left: 12px;
+        }
+        .sub-item {
+            display: block;
+            padding: 8px 12px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .sub-itemAstron{
+            display: block;
+            padding: 8px 12px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .sub-itemComput {
+            display: block;
+            padding: 8px 12px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .sub-itemLife {
+            display: block;
+            padding: 8px 12px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .sub-itemMaths {
+            display: block;
+            padding: 8px 12px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .sub-item:hover {
+            color: #0f172a;
+            background-color: #f1f5f9;
+        }
+        .sub-itemAstron:hover {
+            color: #fafbfb;
+            font-weight: bold;
+            background-color: #919abc;
+        }
+        .sub-itemComput:hover {
+            color: #fafbfb;
+            font-weight: bold;
+            background-color: #b599bf;
+        }
+        .sub-itemLife:hover {
+            color: #fafbfb;
+            font-weight: bold;
+            background-color: #93aca3;
+        }
+        .sub-itemMaths:hover {
+            color: #fafbfb;
+            font-weight: bold;
+            background-color: #bc939b;
+        }
+        .sub-item.active {
+            color: #fafbfb;
+            font-weight: bold;
+            background-color: #2e5f4d;
+        }
+
+        /* 右側主內容區樣式 */
+        .main-content {
+            flex-grow: 1;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 語言切換按鈕 */
+        .lang-switch {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            display: flex;
+            gap: 8px;
+        }
+        .lang-btn {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            color: #475569;
+            padding: 6px 14px;
+            font-size: 0.95rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .lang-btn:hover {
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+        .lang-btn.active {
+            background: #1e293b;
+            color: #ffffff;
+            border-color: #1e293b;
+        }
+
+        .breadcrumb {
+            font-size: 1rem;
+            color: #64748b;
+            margin-bottom: 20px;
+        }
+        .role-badge {
+            display: inline-block;
+            background-color: #93aca3;
+            color: #475569;
+            font-weight: bold;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+        .header-title {
+            font-size: 2.5rem;
+            color: #0f172a;
+            margin-bottom: 12px;
+        }
+        .profile-subtitle {
+            font-size: 1.25rem;
+            color: #475569;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        /* 16:9 下特有的雙欄內容展示區 */
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 600px 1fr;
+            gap: 35px;
+            margin-top: 10px;
+        }
+
+        .profile-photo {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        .bio-text {
+            color: #334155;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+        .terms {
+            font-size: 0.95rem;
+            color: #64748b;
+            background: #f8fafc;
+            padding: 12px 18px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 20px;
+        }
+        .terms span {
+            display: inline-block;
+            background: #e2e8f0;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-right: 6px;
+            color: #334155;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="canvas">
+        <div class="container">
+            <!-- 左側選單 -->
+             <nav class="sidebar">
+            <div class="nav-group">
+                <a href="https://www.shawprize.org/zh/about/organisation/the-shaw-prize-foundation" class="nav-item">邵逸夫獎基金會</a>
+                <a href="https://www.shawprize.org/zh/about/organisation/council" class="nav-item">理事會</a>
+                <a href="https://www.shawprize.org/zh/about/organisation/board-of-adjudicators" class="nav-item">評審委員會</a>
+                <a href="https://www.shawprize.org/zh/about/organisation/astronomy" class="nav-item active">遴選委員會</a>
+                
+                <!-- 遴選委員會子類別 -->
+                <div class="sub-menu">
+                    <a href="https://www.shawprize.org/zh/about/organisation/astronomy" class="sub-itemAstron">天文學</a>
+                    <a href="https://www.shawprize.org/zh/about/organisation/computer-science" class="sub-itemComput">計算機科學</a>
+                    <a href="https://www.shawprize.org/zh/about/organisation/life-science-medicine" class="sub-item active">生命科學與醫學</a>
+                    <a href="https://www.shawprize.org/zh/about/organisation/mathematical-sciences" class="sub-itemMaths">數學科學</a>
+                </div>
+            </div>
+        </nav>
+
+            <!-- 右側焦點內容 -->
+            <main class="main-content">
+                <!-- 語言切換按鈕 -->
+                <div class="lang-switch">
+                    <button class="lang-btn">ENG</button>
+                    <button class="lang-btn active">繁</button>
+                    <button class="lang-btn">简</button>
+                </div>                
+                
+                <div>
+                    <span class="role-badge">成員</span>
+                    <h1 class="header-title">盧煜明教授</h1>
+                    <div class="profile-subtitle">
+                        香港中文大學校長<br>
+                        李嘉誠醫學講座教授及<br>  
+                        化學病理學講座教授<br>                      
+                    </div>
+                </div>
+
+                <!-- 16:9 雙欄展示區域 -->
+                <div class="profile-grid">
+                    <div>
+                        <img src="Dennis YM Lo.jpg" alt="盧煜明教授" class="profile-photo">
+                        <div class="terms" style="margin-top: 15px;">
+                            <strong>過往任期：</strong><br>
+                            <div style="margin-top: 8px;">
+                                <span>2027 年</span>                          
+                                <span>2026 年</span>
+                                <span>2025 年</span>
+                                <span>2024 年</span>                               
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="bio-text">
+                            盧煜明教授是香港中文大學第九任校長、李嘉誠醫學講座教授及香港科學院院長。他的研究興趣主要集中在血漿中游離核酸的生物學和診斷應用。特別是他於1997年發現母體血漿中存在胎兒的游離脫氧核糖核酸，從而利用該技術開創了無創產前檢測。這項技術已在全球廣泛採用，並為產前醫學帶來了根本性的轉變。他還在利用循環核酸進行癌症檢測，包括篩查早期鼻咽癌，並取得許多創新成果。
+                        <p class="bio-text">
+                            為表彰其研究成果，盧教授獲選為中國科學院院士、香港科學院創院院士、英國皇家學會院士及美國國家科學院外籍院士。他榮獲多個獎項，包括2014年度費薩爾國王國際醫學獎、2016年度未來科學大獎生命科學獎、2019年度復旦–中植科學獎、2021年度科學突破獎—生命科學獎、2021年度英國皇家獎章、2021年度歐洲人類遺傳學學會(ESHG)孟德爾獎、2022年度國際產前診斷學會(ISPD)先鋒獎、2022年度拉斯克獎—臨床醫學研究、2023年度首屆騰衝科學大獎、2024年度希門尼斯‧迪亞斯講座獎、2025年度Richard B. Johnston, Jr.醫學博士獎⸺發育生物學及2026年度美國癌症研究協會歐文·溫斯坦基金會傑出講座獎。
+                        </p>                         
+                        <p class="bio-text" style="font-size: 0.9em; color: #64748b; margin-top: 20px;">
+                            (註：所有中文譯本，皆以英文本為準)
+                        </p>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // 自動依照視窗大小保持 16:9 比例縮放
+        function resizeCanvas() {
+            const canvas = document.getElementById('canvas');
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+            
+            const scaleX = windowWidth / 1920;
+            const scaleY = windowHeight / 1080;
+            const scale = Math.min(scaleX, scaleY);
+
+            canvas.style.transform = `scale(${scale})`;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        window.addEventListener('DOMContentLoaded', resizeCanvas);
+    </script>
+</body>
+</html>

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>卡洛斯・科尼格教授</title>
+    <style>
+      * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, Microsoft YaHei, PingFang SC;
+            line-height: 1.5;
+            color: #333;
+            background-color: #0f172a; /* 背景深色襯托 16:9 画框 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* 16:9 画框容器 */
+        #canvas {
+            width: 1920px;
+            height: 1080px;
+            background-color: #f8fafc;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            padding: 40px 60px;
+        }
+
+        /* 主佈局容器：16:9 比例下採用橫向兩欄 */
+        .container {
+            display: flex;
+            gap: 40px;
+            height: 100%;
+            margin-top: 20px;
+        }
+
+        /* 左側導航欄樣式 */
+        .sidebar {
+            width: 280px;
+            flex-shrink: 0;
+            background: #ffffff;
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            height: fit-content;
+        }
+        .nav-group {
+            margin-bottom: 15px;
+        }
+         .nav-item {
+            display: block;
+            padding: 12px 16px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .nav-item:hover {
+            background-color: #f3ecde;
+            color: #c39f5b;
+        }
+        .nav-item.active {
+            background-color: #c39f5b;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .sub-menu {
+            margin-left: 15px;
+            margin-top: 8px;
+            border-left: 3px solid #cbd5e1;
+            padding-left: 12px;
+        }
+        .sub-item {
+            display: block;
+            padding: 8px 12px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .sub-itemAstron{
+            display: block;
+            padding: 8px 12px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .sub-itemComput {
+            display: block;
+            padding: 8px 12px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .sub-itemLife {
+            display: block;
+            padding: 8px 12px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .sub-itemMaths {
+            display: block;
+            padding: 8px 12px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .sub-item:hover {
+            color: #0f172a;
+            background-color: #f1f5f9;
+        }
+        .sub-itemAstron:hover {
+            color: #fafbfb;
+            font-weight: bold;
+            background-color: #919abc;
+        }
+        .sub-itemComput:hover {
+            color: #fafbfb;
+            font-weight: bold;
+            background-color: #b599bf;
+        }
+        .sub-itemLife:hover {
+            color: #fafbfb;
+            font-weight: bold;
+            background-color: #93aca3;
+        }
+        .sub-itemMaths:hover {
+            color: #fafbfb;
+            font-weight: bold;
+            background-color: #bc939b;
+        }
+        .sub-item.active {
+            color: #fafbfb;
+            font-weight: bold;
+            background-color: #802e3e;
+        }
+
+        /* 右側主內容區樣式 */
+        .main-content {
+            flex-grow: 1;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        .lang-switch {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            display: flex;
+            gap: 8px;
+        }
+      .profile-navigation {
+          position: absolute;
+          top: 90px;
+          right: 40px;
+          display: flex;
+          gap: 8px;
+      }
+        .lang-btn {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            color: #475569;
+            padding: 6px 14px;
+            font-size: 0.95rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .lang-btn:hover {
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+        .lang-btn.active {
+            background: #1e293b;
+            color: #ffffff;
+            border-color: #1e293b;
+        }
+
+        .breadcrumb {
+            font-size: 1rem;
+            color: #64748b;
+            margin-bottom: 20px;
+        }
+        .role-badge {
+            display: inline-block;
+            background-color: #bc939b;
+            color: #5f222e;
+            font-weight: bold;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+        .header-title {
+            font-size: 2.5rem;
+            color: #0f172a;
+            margin-bottom: 12px;
+        }
+        .profile-subtitle {
+            font-size: 1.25rem;
+            color: #475569;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        /* 16:9 下特有的雙欄內容展示區 */
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 600px 1fr;
+            gap: 35px;
+            margin-top: 10px;
+        }
+
+        .profile-photo {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        .bio-text {
+            color: #334155;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+        .terms {
+            font-size: 0.95rem;
+            color: #64748b;
+            background: #f8fafc;
+            padding: 12px 18px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 20px;
+        }
+        .terms span {
+            display: inline-block;
+            background: #e2e8f0;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-right: 6px;
+            color: #334155;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="canvas">
+    <div class="container">
+        <!-- 左側選單 -->
+       <nav class="sidebar">
+            <div class="nav-group">
+                <a href="https://www.shawprize.org/zh/about/organisation/the-shaw-prize-foundation" class="nav-item">邵逸夫獎基金會</a>
+                <a href="https://www.shawprize.org/zh/about/organisation/council" class="nav-item">理事會</a>
+                <a href="https://www.shawprize.org/zh/about/organisation/board-of-adjudicators" class="nav-item">評審委員會</a>
+                <a href="https://www.shawprize.org/zh/about/organisation/astronomy" class="nav-item active">遴選委員會</a>
+                
+                <!-- 遴選委員會子類別 -->
+                <div class="sub-menu">
+                    <a href="https://www.shawprize.org/zh/about/organisation/astronomy" class="sub-itemAstron">天文學</a>
+                    <a href="https://www.shawprize.org/zh/about/organisation/computer-science" class="sub-itemComput">計算機科學</a>
+                    <a href="https://www.shawprize.org/zh/about/organisation/life-science-medicine" class="sub-itemLife ">生命科學與醫學</a>
+                    <a href="https://www.shawprize.org/zh/about/organisation/mathematical-sciences" class="sub-item active">數學科學</a>
+                </div>
+            </div>
+        </nav>
+
+        <main class="main-content">
+                <div class="lang-switch">
+                    <button type="button" class="lang-btn" data-language="en">ENG</button>
+                    <button type="button" class="lang-btn active" data-language="zh-Hant">繁</button>
+                    <button type="button" class="lang-btn" data-language="cn">简</button>
+                </div>
+            <div class="profile-navigation jsx-caca17b2dbf10bfe flex items-center space-x-2">
+                <button type="button" onclick="window.location.href='./Étienne_Ghys.html'" aria-label="上一個" class="jsx-caca17b2dbf10bfe w-15 h-15 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+                    <svg  width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8">
+                        <path d="M16.0011 24.0436L16.0011 22.2109L31.732 12L32.9102 13.8327L18.5974 23.1273L32.9102 32.4218L31.732 34.2545L16.0011 24.0436Z" fill="#16161C" class="fill-current">
+                        </path>
+                    </svg>
+                </button>
+                <button type="button" onclick="window.location.href='./Takuro_Mochizuki.html'"  aria-label="下一個" class="jsx-caca17b2dbf10bfe w-15 h-15 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+                    <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8">
+                        <path d="M34 22.754L34 24.7304L19.1148 35.7422L18 33.7657L31.5432 23.7422L18 13.7187L19.1148 11.7422L34 22.754Z" fill="#16161C" class="fill-current">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+                <div>
+                    <span class="role-badge" data-i18n="role">成員</span>
+                    <h1 class="header-title" data-i18n="name">卡洛斯・科尼格教授</h1>
+                    <div class="profile-subtitle" data-i18n="subtitle">
+                        美國<br>
+                        芝加哥大學<br>
+                        數學系<br>
+                        路易斯・布洛克傑出服務教授
+                    </div>
+                </div>
+
+                <!-- 16:9 雙欄展示區域 -->
+                <div class="profile-grid">
+                    <div>
+                        <img src="../img/carlos_kenig.jpg" alt="卡洛斯・科尼格教授" class="profile-photo">
+                        <div class="terms" style="margin-top: 15px;">
+                            <strong data-i18n="termsLabel">過往任期：</strong><br>
+                            <div style="margin-top: 8px;">                                
+                                <span>2026 年</span>
+                                <span>2025 年</span>                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="bio-text" data-i18n="bioOne">
+                            卡洛斯・科尼格教授是美國芝加哥大學數學系路易斯・布洛克傑出服務教授。1978年於芝加哥大學取得博士學位。科尼格教授的研究興趣主要是調和分析和偏微分方程。
+                        </p>
+                        <p class="bio-text" data-i18n="bioTwo">
+                            科尼格教授分別於1984年及2008年獲得塞勒勒姆獎和美國數學學會博赫獎，並於2021年獲得美洲數學委員會頒發的羅門・萊夫謝茨獎及於2026年獲得費薩爾國王科學獎（數學類）。他是1986年和2002年國際數學家大會的特邀演講者，以及於2010年擔任大會的全體會議演講者。科尼格教授是美國人文與科學院、美國數學學會和美國國家科學院院士。他曾任美國數學學會副主席，並在2019至2022年擔任國際數學聯盟主席。
+                        </p>
+                        
+                        <p class="bio-text" data-i18n="note" style="font-size: 0.9em; color: #64748b; margin-top: 20px;">
+                            (註：所有中文譯本，皆以英文本為準)
+                        </p>
+                    </div>
+                </div>
+            </main>
+        </div>
+        
+    </div>
+     <script>
+        // 自動依照視窗大小保持 16:9 比例縮放
+        function resizeCanvas() {
+            const canvas = document.getElementById('canvas');
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+            
+            const scaleX = windowWidth / 1920;
+            const scaleY = windowHeight / 1080;
+            const scale = Math.min(scaleX, scaleY);
+
+            canvas.style.transform = `scale(${scale})`;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        window.addEventListener('DOMContentLoaded', resizeCanvas);
+
+        const translations = {
+            en: {
+                title: 'Professor Carlos E. Kenig',
+                role: 'Member',
+                name: 'Professor Carlos E. Kenig',
+                subtitle: 'Louis Block Distinguished Service Professor<br>Department of Mathematics<br>University of Chicago<br>USA',
+                termsLabel: 'Previous terms:',
+                bioOne: 'Professor Carlos E. Kenig is the Louis Block Distinguished Service Professor in the Department of Mathematics at the University of Chicago. He received his PhD from the University of Chicago in 19Professor Carlos E Kenig is the Louis Block Distinguished Service Professor in the Department of Mathematics at the University of Chicago. He obtained his PhD at Chicago in 1978. Kenig’s research interests are in harmonic analysis and partial differential equations.',
+                bioTwo: 'Kenig was awarded the Salem Prize in 1984 and the Bocher Prize of the American Mathematical Society in 2008. Kenig received the Solomon Lefschetz medal of the Mathematics Council of the Americas in 2021 and the King Faisal Prize in Science (Mathematics) in 2026. He was an invited speaker at the International Congress of Mathematicians in 1986 and 2002 and a plenary speaker in 2010. Kenig is a Fellow of the American Academy of Arts and Sciences and of the American Mathematical Society. He is a member of the National Academy of Sciences of the US. Kenig is a past vice-president of the AMS. He served as the President of the International Mathematical Union for the period 2019–2022.',
+                note: ''
+            },
+            'zh-Hant': {
+                title: '卡洛斯・科尼格教授',
+                role: '成員',
+                name: '卡洛斯・科尼格教授',
+                subtitle: '美國<br>芝加哥大學<br>數學系<br>路易斯・布洛克傑出服務教授',
+                termsLabel: '過往任期：',
+                bioOne: '卡洛斯・科尼格教授是美國芝加哥大學數學系路易斯・布洛克傑出服務教授。1978年於芝加哥大學取得博士學位。科尼格教授的研究興趣主要是調和分析和偏微分方程。',
+                bioTwo: '科尼格教授分別於1984年及2008年獲得塞勒勒姆獎和美國數學學會博赫獎，並於2021年獲得美洲數學委員會頒發的羅門・萊夫謝茨獎及於2026年獲得費薩爾國王科學獎（數學類）。他是1986年和2002年國際數學家大會的特邀演講者，以及於2010年擔任大會的全體會議演講者。科尼格教授是美國人文與科學院、美國數學學會和美國國家科學院院士。他曾任美國數學學會副主席，並在2019至2022年擔任國際數學聯盟主席。',
+                note: '(註：所有中文譯本，皆以英文本為準)'
+            },
+            cn: {
+                title: '卡洛斯・科尼格教授',
+                role: '成员',
+                name: '卡洛斯・科尼格教授',
+                subtitle: '美国<br>芝加哥大学<br>数学系<br>路易斯・布洛克杰出服务教授',
+                termsLabel: '过往任期：',
+                bioOne: '卡洛斯・科尼格教授是美国芝加哥大学数学系路易斯・布洛克杰出服务教授。1978年于芝加哥大学取得博士学位。科尼格教授的研究兴趣主要是调和分析和偏微分方程。',
+                bioTwo: '科尼格教授分别于1984年及2008年获颁塞勒姆奖和美国数学学会博赫奖，并于2021年获得美洲数学委员会颁发的所罗门・莱夫谢茨奖章及于2026年获得费萨尔国王科学奖（数学类)。他是1986年和2002年国际数学家大会的特邀演讲者，以及于2010 年担任大会的全体会议演讲者。科尼格教授是美国人文与科学院、美国数学学会和美国国家科学院院士。他曾任美国数学学会副主席，并在 2019至2022 年担任国际数学联盟主席。',
+                note: '(注：所有中文译本，皆以英文本为准)'
+            }
+        };
+
+        document.querySelectorAll('[data-language]').forEach((button) => {
+            button.addEventListener('click', () => {
+                const language = button.dataset.language;
+                const content = translations[language];
+
+                document.documentElement.lang = language;
+                document.title = content.title;
+                document.querySelectorAll('[data-i18n]').forEach((element) => {
+                    element.innerHTML = content[element.dataset.i18n];
+                });
+                document.querySelectorAll('[data-language]').forEach((item) => {
+                    item.classList.toggle('active', item === button);
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

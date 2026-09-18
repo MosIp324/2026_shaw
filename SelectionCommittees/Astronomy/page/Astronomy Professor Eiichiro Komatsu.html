@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professor Eiichiro Komatsu - The Shaw Prize</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.5;
+            color: #333;
+            background-color: #0f172a; /* 背景深色襯托 16:9 画框 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* 16:9 画框容器 */
+        #canvas {
+            width: 1920px;
+            height: 1080px;
+            background-color: #f8fafc;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            padding: 40px 60px;
+        }
+
+        /* 主佈局容器：16:9 比例下採用橫向兩欄 */
+        .container {
+            display: flex;
+            gap: 40px;
+            height: 100%;
+            margin-top: 20px;
+        }
+
+        /* 左側導航欄樣式 */
+        .sidebar {
+            width: 300px;
+            flex-shrink: 0;
+            background: #ffffff;
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            height: fit-content;
+        }
+        .nav-group {
+            margin-bottom: 15px;
+        }
+        .nav-item {
+            display: block;
+            padding: 12px 16px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .nav-item:hover {
+            background-color: #f3ecde;
+            color: #c39f5b;
+        }
+        .nav-item.active {
+            background-color: #c39f5b;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .sub-menu {
+            margin-left: 15px;
+            margin-top: 8px;
+            border-left: 3px solid #cbd5e1;
+            padding-left: 12px;
+        }
+        .sub-item {
+            display: block;
+            padding: 8px 12px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .sub-itemAstron{
+            display: block;
+            padding: 8px 12px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .sub-itemComput {
+            display: block;
+            padding: 8px 12px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .sub-itemLife {
+            display: block;
+            padding: 8px 12px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .sub-itemMaths {
+            display: block;
+            padding: 8px 12px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .sub-item:hover {
+            color: #0f172a;
+            background-color: #f1f5f9;
+        }
+        .sub-itemAstron:hover {
+            color: #fafbfb;
+            font-weight: bold;
+            background-color: #919abc;
+        }
+        .sub-itemComput:hover {
+            color: #fafbfb;
+            font-weight: bold;
+            background-color: #b599bf;
+        }
+        .sub-itemLife:hover {
+            color: #fafbfb;
+            font-weight: bold;
+            background-color: #93aca3;
+        }
+        .sub-itemMaths:hover {
+            color: #fafbfb;
+            font-weight: bold;
+            background-color: #bc939b;
+        }
+        .sub-item.active {
+            color: #fafbfb;
+            font-weight: bold;
+            background-color: #254a7b;
+        }
+
+        /* 右側主內容區樣式 */
+        .main-content {
+            flex-grow: 1;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 語言切換按鈕 */
+        .lang-switch {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            display: flex;
+            gap: 8px;
+        }
+        .lang-btn {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            color: #475569;
+            padding: 6px 14px;
+            font-size: 0.95rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .lang-btn:hover {
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+        .lang-btn.active {
+            background: #1e293b;
+            color: #ffffff;
+            border-color: #1e293b;
+        }
+
+        .breadcrumb {
+            font-size: 1rem;
+            color: #64748b;
+            margin-bottom: 20px;
+        }
+        .role-badge {
+            display: inline-block;
+            background-color: #dbeafe;
+            color: #1e40af;
+            font-weight: bold;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+        .header-title {
+            font-size: 2.5rem;
+            color: #0f172a;
+            margin-bottom: 12px;
+        }
+        .profile-subtitle {
+            font-size: 1.25rem;
+            color: #475569;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        /* 16:9 下特有的雙欄內容展示區 */
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 600px 1fr;
+            gap: 35px;
+            margin-top: 10px;
+        }
+
+        .profile-photo {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        .bio-text {
+            color: #334155;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+        .terms {
+            font-size: 0.95rem;
+            color: #64748b;
+            background: #f8fafc;
+            padding: 12px 18px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 20px;
+        }
+        .terms span {
+            display: inline-block;
+            background: #e2e8f0;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-right: 6px;
+            color: #334155;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="canvas">
+        <div class="container">
+            <!-- 左側選單 -->
+            <nav class="sidebar">
+            <div class="nav-group">
+                <a href="https://www.shawprize.org/zh/about/organisation/the-shaw-prize-foundation" class="nav-item">The Shaw Prize Foundation</a>
+                <a href="https://www.shawprize.org/zh/about/organisation/council" class="nav-item">Council</a>
+                <a href="https://www.shawprize.org/zh/about/organisation/board-of-adjudicators" class="nav-item">Board of Adjudicators</a>
+                <a href="https://www.shawprize.org/zh/about/organisation/astronomy" class="nav-item active">Selection Committees</a>
+                
+                <!-- 遴選委員會子類別 -->
+                <div class="sub-menu">
+                    <a href="https://www.shawprize.org/zh/about/organisation/astronomy" class="sub-item active">Astronomy</a>
+                    <a href="https://www.shawprize.org/zh/about/organisation/computer-science" class="sub-itemComput">Computer Science</a>
+                    <a href="https://www.shawprize.org/zh/about/organisation/life-science-medicine" class="sub-itemLife">Life Science & Medicine</a>
+                    <a href="https://www.shawprize.org/zh/about/organisation/mathematical-sciences" class="sub-itemMaths">Mathematical Sciences</a>
+                </div>
+            </div>
+        </nav>
+
+            <!-- 右側焦點內容 -->
+            <main class="main-content">
+                <!-- 語言切換按鈕 -->
+                <div class="lang-switch">
+                    <button class="lang-btn active">ENG</button>
+                    <button class="lang-btn">繁</button>
+                    <button class="lang-btn">简</button>
+                </div>
+
+               
+                
+                <div>
+                    <span class="role-badge">Member</span>
+                    <h1 class="header-title">Professor Eiichiro Komatsu</h1>
+                    <div class="profile-subtitle">
+                        Director, Department of Physical Cosmology<br>
+                        Max Planck Institute for Astrophysics<br>
+                        Germany
+                    </div>
+                </div>
+
+                <!-- 16:9 雙欄展示區域 -->
+                <div class="profile-grid">
+                    <div>
+                        <img src="komatsu.jpg" alt="Professor Eiichiro Komatsu" class="profile-photo">
+                        <div class="terms" style="margin-top: 15px;">
+                            <strong>Previous Terms：</strong><br>
+                            <div style="margin-top: 8px;">                                
+                                <span>YEAR 2026 </span>
+                                <span>YEAR 2025 </span>
+                                <span>YEAR 2024 </span>
+                                <span>YEAR 2023</span>                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="bio-text">
+                            Professor Eiichiro Komatsu uses theoretical physics and observational data to study the origin, evolution, and constituents of our Universe. He has been Director of the Department of Physical Cosmology at the Max Planck Institute for Astrophysics in Garching, Germany, since 2012. Prior to this he was a postdoctoral fellow at Princeton University and a professor in the Department of Astronomy and Director of Texas Cosmology Center at the University of Texas at Austin. He obtained his PhD from Tohoku University in Sendai, Japan, in 2001.
+                        </p>
+                        <p class="bio-text">
+                            He is a Fellow of American Physical Society. He received awards for his work including Alfred P Sloan Fellow, the Nishinomiya-Yukawa Memorial Prize, the Gruber Cosmology Prize, the Lancelot M Berkeley Prize of the American Astronomical Society, the Chushiro Hayashi Prize of the Astronomical Society of Japan, the Breakthrough Prize in Fundamental Physics, the Inoue Prize for Science and the Nishina Memorial Prize.
+                        </p>
+                        <p class="bio-text">
+                            His scientific achievements include the most stringent test of the physics of the very early Universe known as “cosmic inflation”, innovative explorations of dark matter, dark energy and neutrinos in cosmology, and astrophysics of galaxy clusters.
+                        </p>                        
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // 自動依照視窗大小保持 16:9 比例縮放
+        function resizeCanvas() {
+            const canvas = document.getElementById('canvas');
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+            
+            const scaleX = windowWidth / 1920;
+            const scaleY = windowHeight / 1080;
+            const scale = Math.min(scaleX, scaleY);
+
+            canvas.style.transform = `scale(${scale})`;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        window.addEventListener('DOMContentLoaded', resizeCanvas);
+    </script>
+</body>
+</html>

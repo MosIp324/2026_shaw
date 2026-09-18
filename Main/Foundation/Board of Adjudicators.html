@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>邵逸夫獎</title>
+    <style>
+      * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, Microsoft YaHei, PingFang SC, NotoSansTC;
+            line-height: 1.5;
+            color: #333;
+            background-color: #0f172a; /* 背景深色襯托 16:9 画框 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* 16:9 画框容器 */
+        #canvas {
+            width: 1920px;
+            height: 1080px;
+            background-color: #f8fafc;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            padding: 40px 60px;
+        }
+
+        /* 主佈局容器：16:9 比例下採用橫向兩欄 */
+        .container {
+            display: flex;
+            gap: 40px;
+            height: 100%;
+            margin-top: 20px;
+        }
+
+        /* 左側導航欄樣式 */
+        .sidebar {
+            width: 280px;
+            flex-shrink: 0;
+            background: #ffffff;
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            height: fit-content;
+        }
+        .nav-group {
+            margin-bottom: 15px;
+        }
+         .nav-item {
+            display: block;
+            padding: 12px 16px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .nav-item:hover {
+            background-color: #f3ecde;
+            color: #c39f5b;
+        }
+        .nav-item.active {
+            background-color: #c39f5b;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .sub-menu {
+            margin-left: 15px;
+            margin-top: 8px;
+            border-left: 3px solid #cbd5e1;
+            padding-left: 12px;
+        }
+        .sub-item {
+            display: block;
+            padding: 8px 12px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .sub-itemAstron{
+            display: block;
+            padding: 8px 12px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .sub-itemComput {
+            display: block;
+            padding: 8px 12px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .sub-itemLife {
+            display: block;
+            padding: 8px 12px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .sub-itemMaths {
+            display: block;
+            padding: 8px 12px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .sub-item:hover {
+            color: #0f172a;
+            background-color: #f1f5f9;
+        }
+        .sub-itemAstron:hover {
+            color: #fafbfb;
+            font-weight: bold;
+            background-color: #919abc;
+        }
+        .sub-itemComput:hover {
+            color: #fafbfb;
+            font-weight: bold;
+            background-color: #b599bf;
+        }
+        .sub-itemLife:hover {
+            color: #fafbfb;
+            font-weight: bold;
+            background-color: #93aca3;
+        }
+        .sub-itemMaths:hover {
+            color: #fafbfb;
+            font-weight: bold;
+            background-color: #bc939b;
+        }
+        .sub-item.active {
+            color: #fafbfb;
+            font-weight: bold;
+            background-color: #802e3e;
+        }
+
+        /* 右側主內容區樣式 */
+        .main-content {
+            flex-grow: 1;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+
+            /* 新增以下這行以啟用垂直捲動 */
+            /*overflow-y: auto;    */
+        }
+
+        /* 語言切換按鈕 */
+        .lang-switch {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            display: flex;
+            gap: 8px;
+        }
+        .lang-btn {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            color: #475569;
+            padding: 6px 14px;
+            font-size: 0.95rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .lang-btn:hover {
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+        .lang-btn.active {
+            background: #1e293b;
+            color: #ffffff;
+            border-color: #1e293b;
+        }
+
+        .breadcrumb {
+            font-size: 1rem;
+            color: #64748b;
+            margin-bottom: 20px;
+        }
+        .role-badge {
+            display: inline-block;
+            background-color: #bc939b;
+            color: #5f222e;
+            font-weight: bold;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+        .header-title {
+            font-size: 2.5rem;
+            color: #0f172a;
+            margin-bottom: 12px;
+        }
+        .profile-subtitle {
+            font-size: 1.25rem;
+            color: #475569;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        /* 16:9 下特有的雙欄內容展示區 */
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 1300px 1fr;
+            gap: 35px;
+            margin-top: 10px;
+        }
+
+        .profile-photo {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        .bio-text {
+            color: #334155;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+        .terms {
+            font-size: 0.95rem;
+            color: #64748b;
+            background: #f8fafc;
+            padding: 12px 18px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 20px;
+        }
+        .terms span {
+            display: inline-block;
+            background: #e2e8f0;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-right: 6px;
+            color: #334155;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="canvas">
+    <div class="container">
+        <!-- 左側選單 -->
+       <nav class="sidebar">
+            <div class="nav-group">
+                <a href="./index.html" class="nav-item" data-i18n="navFoundation">The Shaw Prize Foundation</a>
+                <a href="./Council.html" class="nav-item" data-i18n="navCouncil">Council</a>
+                <a href="./Board%20of%20Adjudicators.html" class="nav-item" data-i18n="navBoardOfAdjudicators">Board of Adjudicators</a>
+                <a href="https://www.shawprize.org/zh/about/organisation/astronomy" class="nav-item active" data-i18n="navSelectionCommittees">Selection Committees</a>
+
+                <div class="sub-menu">
+                    <a href="../Selection Committees/Astronomy/page/小松 英一郎教6.html" class="sub-itemAstron" data-i18n="navAstronomy">Astronomy</a>
+                    <a href="../Selection Committees/Computer Science/page/計算機科學 珍妮弗・蔡司教授.html" class="sub-itemComput" data-i18n="navComputerScience">Computer Science</a>
+                    <a href="../Selection Committees/Life Science &amp; Medicine/page/大衛・朱利雅斯教授3.html" class="sub-itemLife" data-i18n="navLifeScienceMedicine">Life Science &amp; Medicine</a>
+                    <a href="../Selection Committees/Mathematical Sciences/page/卡洛斯・科尼格教授2.html" class="sub-itemMaths" data-i18n="navMathematicalSciences">Mathematical Sciences</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- 右側焦點內容 -->
+          <main class="main-content">
+                <!-- 語言切換按鈕 -->                
+                <div class="lang-switch">
+                    <button type="button" class="lang-btn" data-language="en">ENG</button>
+                    <button type="button" class="lang-btn active" data-language="zh-Hant">繁</button>
+                    <button type="button" class="lang-btn" data-language="cn">简</button>
+                </div>                
+                
+                <div>                    
+                    <h1 class="header-title" data-i18n="name">評審委員會</h1>
+                    <div class="profile-subtitle" data-i18n="subtitle">
+                        評審委員會負責監督邵逸夫獎得獎者的遴選過程，職責包括審議並通過各遴選委員會推薦的獲獎人選，並將最終名單呈報理事會核准確認；組建遴選委員會並提供專業指導，確保遴選工作有效運行；同時制定提名與評審相關規章制度。評審會的運作獨立於理事會。
+                        <br>
+                    </div>
+                </div>
+
+                <div class="profile-grid">
+                    <div>
+                        <img id="adjudicators-image" src="Board of Adjudicators T.jpg" alt="理事會" class="profile-photo">
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+     <script>
+        // 自動依照視窗大小保持 16:9 比例縮放
+        function resizeCanvas() {
+            const canvas = document.getElementById('canvas');
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+            
+            const scaleX = windowWidth / 1920;
+            const scaleY = windowHeight / 1080;
+            const scale = Math.min(scaleX, scaleY);
+
+            canvas.style.transform = `scale(${scale})`;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        window.addEventListener('DOMContentLoaded', resizeCanvas);
+
+        const translations = {
+            en: {
+                title: 'Board of Adjudicators',
+                name: 'Board of Adjudicators',
+                subtitle: 'The Board of Adjudicators oversees The Shaw Prize awardee selection process. It reviews and approves the awardees recommendations proposed by the Selection Committees, and forwards the final list to the Council for confirmation. The Board is also responsible for establishing and guiding the Selection Committees, ensuring their effective operation. Additionally, it formulates the regulations that govern the nomination and adjudication process. The Board operates independently from the Council.'
+            },
+            'zh-Hant': {
+                title: '評審委員會',
+                name: '評審委員會',
+                subtitle: '評審委員會負責監督邵逸夫獎得獎者的遴選過程，職責包括審議並通過各遴選委員會推薦的獲獎人選，並將最終名單呈報理事會核准確認；組建遴選委員會並提供專業指導，確保遴選工作有效運行；同時制定提名與評審相關規章制度。評審會的運作獨立於理事會。'
+            },
+            cn: {
+                title: '评审委员会',
+                name: '评审委员会',
+                subtitle: '评审委员会负责监督邵逸夫奖得奖者的遴选过程，职责包括审议并通过各遴选委员会推荐的获奖人选，并将最终名单呈报理事会核准确认；组建遴选委员会并提供专业指导，确保遴选工作有效运行；同时制定提名与评审相关规章制度。评审会的运作独立于理事会。'
+            }
+        };
+
+        const imageMap = {
+            en: 'Board of Adjudicators.jpg',
+            'zh-Hant': 'Board of Adjudicators T.jpg',
+            cn: 'Board of Adjudicators T.jpg'
+        };
+
+        function updateLanguage(language) {
+            const content = translations[language];
+            const image = document.getElementById('adjudicators-image');
+
+            document.documentElement.lang = language;
+            document.title = content.title;
+
+            document.querySelectorAll('[data-i18n]').forEach((element) => {
+                if (content[element.dataset.i18n]) {
+                    element.innerHTML = content[element.dataset.i18n];
+                }
+            });
+
+            if (image && imageMap[language]) {
+                image.src = imageMap[language];
+                image.alt = content.name;
+            }
+
+            document.querySelectorAll('[data-language]').forEach((item) => {
+                item.classList.toggle('active', item === document.querySelector(`[data-language="${language}"]`));
+            });
+        }
+
+        document.querySelectorAll('[data-language]').forEach((button) => {
+            button.addEventListener('click', () => {
+                updateLanguage(button.dataset.language);
+            });
+        });
+     </script>
+</body>
+</html>

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professor Conny Aerts - The Shaw Prize</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, Microsoft YaHei, PingFang SC, NotoSansTC;
+            line-height: 1.5;
+            color: #333;
+            background-color: #0f172a; /* 背景深色襯托 16:9 画框 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* 16:9 画框容器 */
+        #canvas {
+            width: 1920px;
+            height: 1080px;
+            background-color: #f8fafc;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            padding: 40px 60px;
+        }
+
+        /* 主佈局容器：16:9 比例下採用橫向兩欄 */
+        .container {
+            display: flex;
+            gap: 40px;
+            height: 100%;
+            margin-top: 20px;
+        }
+
+        /* 左側導航欄樣式 */
+        .sidebar {
+            width: 300px;
+            flex-shrink: 0;
+            background: #ffffff;
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            height: fit-content;
+        }
+        .nav-group {
+            margin-bottom: 15px;
+        }
+        .nav-item {
+            display: block;
+            padding: 12px 16px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .nav-item:hover {
+            background-color: #f3ecde;
+            color: #c39f5b;
+        }
+        .nav-item.active {
+            background-color: #c39f5b;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .sub-menu {
+            margin-left: 15px;
+            margin-top: 8px;
+            border-left: 3px solid #cbd5e1;
+            padding-left: 12px;
+        }
+        .sub-item {
+            display: block;
+            padding: 8px 12px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .sub-itemAstron{
+            display: block;
+            padding: 8px 12px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .sub-itemComput {
+            display: block;
+            padding: 8px 12px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .sub-itemLife {
+            display: block;
+            padding: 8px 12px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .sub-itemMaths {
+            display: block;
+            padding: 8px 12px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .sub-item:hover {
+            color: #0f172a;
+            background-color: #f1f5f9;
+        }
+        .sub-itemAstron:hover {
+            color: #fafbfb;
+            font-weight: bold;
+            background-color: #919abc;
+        }
+        .sub-itemComput:hover {
+            color: #fafbfb;
+            font-weight: bold;
+            background-color: #b599bf;
+        }
+        .sub-itemLife:hover {
+            color: #fafbfb;
+            font-weight: bold;
+            background-color: #93aca3;
+        }
+        .sub-itemMaths:hover {
+            color: #fafbfb;
+            font-weight: bold;
+            background-color: #bc939b;
+        }
+        .sub-item.active {
+            color: #fafbfb;
+            font-weight: bold;
+            background-color: #254a7b;
+        }
+
+        /* 右側主內容區樣式 */
+        .main-content {
+            flex-grow: 1;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 語言切換按鈕 */
+        .lang-switch {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            display: flex;
+            gap: 8px;
+        }
+        .profile-navigation {
+            position: absolute;
+            top: 90px;
+            right: 40px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .lang-btn {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            color: #475569;
+            padding: 6px 14px;
+            font-size: 0.95rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .lang-btn:hover {
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+        .lang-btn.active {
+            background: #1e293b;
+            color: #ffffff;
+            border-color: #1e293b;
+        }
+
+        .breadcrumb {
+            font-size: 1rem;
+            color: #64748b;
+            margin-bottom: 20px;
+        }
+        .role-badge {
+            display: inline-block;
+            background-color: #dbeafe;
+            color: #1e40af;
+            font-weight: bold;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+        .header-title {
+            font-size: 2.5rem;
+            color: #0f172a;
+            margin-bottom: 12px;
+        }
+        .profile-subtitle {
+            font-size: 1.25rem;
+            color: #475569;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        /* 16:9 下特有的雙欄內容展示區 */
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 600px 1fr;
+            gap: 35px;
+            margin-top: 10px;
+        }
+
+        .profile-photo {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        .bio-text {
+            color: #334155;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+        .terms {
+            font-size: 0.95rem;
+            color: #64748b;
+            background: #f8fafc;
+            padding: 12px 18px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 20px;
+        }
+        .terms span {
+            display: inline-block;
+            background: #e2e8f0;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-right: 6px;
+            color: #334155;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="canvas">
+        <div class="container">
+            <nav class="sidebar">
+            <div class="nav-group">
+                <a href="../../../Main/Foundation/index.html" class="nav-item" data-i18n="navFoundation">The Shaw Prize Foundation</a>
+                <a href="../../../Main/Foundation/Council.html" class="nav-item" data-i18n="navCouncil">Council</a>
+                <a href="../../../Main/Foundation/Board%20of%20Adjudicators.html" class="nav-item" data-i18n="navBoardOfAdjudicators">Board of Adjudicators</a>
+                <a href="" class="nav-item active" data-i18n="navSelectionCommittees">Selection Committees</a>
+
+                <div class="sub-menu">
+                    <a href="../.././SelectionCommittees/Astronomy/page/Astronomy.html" class="sub-item active" data-i18n="navAstronomy">Astronomy</a>
+                    <a href="https://www.shawprize.org/zh/about/organisation/computer-science" class="sub-itemComput" data-i18n="navComputerScience">Computer Science</a>
+                    <a href="https://www.shawprize.org/zh/about/organisation/life-science-medicine" class="sub-itemLife" data-i18n="navLifeScienceMedicine">Life Science & Medicine</a>
+                    <a href="https://www.shawprize.org/zh/about/organisation/mathematical-sciences" class="sub-itemMaths" data-i18n="navMathematicalSciences">Mathematical Sciences</a>
+                </div>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <div class="lang-switch">
+                    <button type="button" class="lang-btn" data-language="en">ENG</button>
+                    <button type="button" class="lang-btn active" data-language="zh-Hant">繁</button>
+                    <button type="button" class="lang-btn" data-language="cn">简</button>
+             </div>
+            <div class="profile-navigation jsx-caca17b2dbf10bfe flex items-center space-x-2">
+                <button type="button" onclick="window.location.href='./Astronomy Professor Scott Tremaine.html'" aria-label="上一個" class="jsx-caca17b2dbf10bfe w-15 h-15 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+                    <svg  width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8">
+                        <path d="M16.0011 24.0436L16.0011 22.2109L31.732 12L32.9102 13.8327L18.5974 23.1273L32.9102 32.4218L31.732 34.2545L16.0011 24.0436Z" fill="#16161C" class="fill-current">
+                        </path>
+                    </svg>
+                </button>
+                <button type="button" onclick="window.location.href='Astronomy Professor Roger Blandford.html'"  aria-label="下一個" class="jsx-caca17b2dbf10bfe w-15 h-15 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+                    <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8">
+                        <path d="M34 22.754L34 24.7304L19.1148 35.7422L18 33.7657L31.5432 23.7422L18 13.7187L19.1148 11.7422L34 22.754Z" fill="#16161C" class="fill-current">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+                <div>
+                    <span class="role-badge" data-i18n="role">成員</span>
+                    <h1 class="header-title" data-i18n="name">康妮・艾爾茨教授</h1>
+                    <div class="profile-subtitle" data-i18n="subtitle">
+                        比利時<br>
+                        魯汶天主教大學<br>
+                        天文學研究所教授
+                    </div>
+                </div>
+
+                <!-- 16:9 雙欄展示區域 -->
+                <div class="profile-grid">
+                    <div>
+                        <img src="../img/Conny_Aerts.jpg" alt="Professor Conny Aerts" class="profile-photo">
+                        <div class="terms" style="margin-top: 15px;">
+                            <strong data-i18n="termsLabel">過往任期：</strong><br>
+                            <div style="margin-top: 8px;">                                
+                                <span>2027 年 </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="bio-text" data-i18n="bioOne">
+                            康妮・艾爾茨教授於1988年在比利時安特衛普大學數學系畢業，並於1993年在比利時魯汶天主教大學取得天體物理學博士學位。其後，她以法蘭德斯研究基金會獨立博士後研究員身份多次赴海外進行研究。之後於2001年加入魯汶天主教大學，先後擔任講師(2001 ̶ 2004)、副教授(2004 ̶ 2007)及教授(2007 ̶ )。自2004年起，她還兼任荷蘭奈梅亨拉德堡德大學星震學講座教授，並於2021年獲得丹麥奧胡斯大學頒授自然科學榮譽博士學位。此外，艾爾茨教授曾獲得多項國內外大獎，包括2012年法朗基獎、2020年法蘭德斯研究基金會五年卓越獎、2022年科維理天體物理學獎，以及2024年克拉福德天文學獎。
+                        </p>
+                        <p class="bio-text" data-i18n="bioTwo">
+                            她的研究主要集中於恒星結構和演化以及變星。她是星震學領域的先驅之一，通過研究恒星振盪來探索恒星內部結構。
+                        </p>
+                        <p class="bio-text" data-i18n="note" style="font-size: 0.9em; color: #64748b; margin-top: 20px;">
+                            (註：所有中文譯本，皆以英文本為準)
+                        </p>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        function resizeCanvas() {
+            const canvas = document.getElementById('canvas');
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+            
+            const scaleX = windowWidth / 1920;
+            const scaleY = windowHeight / 1080;
+            const scale = Math.min(scaleX, scaleY);
+
+            canvas.style.transform = `scale(${scale})`;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        window.addEventListener('DOMContentLoaded', resizeCanvas);
+
+        const translations = {
+            en: {
+                title: 'Professor Conny Aerts',
+                navFoundation: 'The Shaw Prize Foundation',
+                navCouncil: 'Council',
+                navBoardOfAdjudicators: 'Board of Adjudicators',
+                navSelectionCommittees: 'Selection Committees',
+                navAstronomy: 'Astronomy',
+                navComputerScience: 'Computer Science',
+                navLifeScienceMedicine: 'Life Science & Medicine',
+                navMathematicalSciences: 'Mathematical Sciences',
+                role: 'Member',
+                name: 'Professor Conny Aerts',
+                subtitle: 'Professor, Institute of Astronomy<br>Department of Physics & Astronomy, KU Leuven<br>Belgium',
+                termsLabel: 'Previous terms:',
+                bioOne: 'Professor Conny Aerts graduated as a mathematician from the University of Antwerp in 1988 and defended her PhD in astrophysics at KU Leuven in 1993. She continued as Independent Postdoctoral Fellow of the Research Foundation Flanders (FWO), doing numerous research stays abroad, before being appointed Lecturer (2001 ̶ 2004), Associate Professor (2004 ̶ 2007) and Full Professor (2007 ̶ ) at KU Leuven. Since 2004 she also leads the Chair in Asteroseismology at Radboud University Nijmegen and in 2021 she became Honorary Doctor in the Natural Sciences of Aarhus University. In addition, Professor Aerts received many national and international awards, including the Francqui Prize (2012), the 5-year FWO Excellence Prize (2020), the Kavli Prize in Astrophysics (2022) and the Crafoord Prize in Astronomy (2024).',
+                bioTwo: 'Her research centres on stellar structure and evolution and variable stars. She is a pioneer of asteroseismology, using stellar oscillations to probe stellar interiors.',
+                note: ''
+            },
+            'zh-Hant': {
+                title: '康妮・艾爾茨教授',
+                navFoundation: '邵逸夫獎基金會',
+                navCouncil: '理事會',
+                navBoardOfAdjudicators: '評審會',
+                navSelectionCommittees: '遴選委員會',
+                navAstronomy: '天文學',
+                navComputerScience: '電腦科學',
+                navLifeScienceMedicine: '生命科學與醫學',
+                navMathematicalSciences: '數學科學',
+                role: '成員',
+                name: '康妮・艾爾茨教授',
+                subtitle: '比利時<br>魯汶天主教大學<br>天文學研究所教授',
+                termsLabel: '過往任期：',
+                bioOne: '康妮・艾爾茨教授於1988年在比利時安特衛普大學數學系畢業，並於1993年在比利時魯汶天主教大學取得天體物理學博士學位。其後，她以法蘭德斯研究基金會獨立博士後研究員身份多次赴海外進行研究。之後於2001年加入魯汶天主教大學，先後擔任講師(2001 ̶ 2004)、副教授(2004 ̶ 2007)及教授(2007 ̶ )。自2004年起，她還兼任荷蘭奈梅亨拉德堡德大學星震學講座教授，並於2021年獲得丹麥奧胡斯大學頒授自然科學榮譽博士學位。此外，艾爾茨教授曾獲得多項國內外大獎，包括2012年法朗基獎、2020年法蘭德斯研究基金會五年卓越獎、2022年科維理天體物理學獎，以及2024年克拉福德天文學獎。',
+                bioTwo: '她的研究主要集中於恒星結構和演化以及變星。她是星震學領域的先驅之一，通過研究恒星振盪來探索恒星內部結構。',
+                note: '(註：所有中文譯本，皆以英文本為準)'
+            },
+            cn: {
+                title: '康妮・艾尔茨教授',
+                navFoundation: '邵逸夫奖基金会',
+                navCouncil: '理事会',
+                navBoardOfAdjudicators: '评审会',
+                navSelectionCommittees: '遴选委员会',
+                navAstronomy: '天文学',
+                navComputerScience: '计算机科学',
+                navLifeScienceMedicine: '生命科学与医学',
+                navMathematicalSciences: '数学科学',
+                role: '成员',
+                name: '康妮・艾尔茨教授',
+                subtitle: '比利时<br>鲁汶天主教大学<br>天文学研究所教授',
+                termsLabel: '过往任期：',
+                bioOne: '康妮・艾尔茨教授于1988年在比利时安特卫普大学数学系毕业，并于1993年在比利时鲁汶天主教大学取得天体物理学博士学位。其后，她以法兰德斯研究基金会独立博士后研究员身份多次赴海外进行研究。之后于2001年加入鲁汶天主教大学，先后担任讲师(2001 ̶ 2004)、副教授(2004 ̶ 2007)及教授(2007 ̶ )。自2004年起，她还兼任荷兰奈梅亨拉德堡德大学星震学讲座教授，并于2021年获得丹麦奥胡斯大学颁授自然科学荣誉博士学位。此外，艾尔茨教授曾获得多项国内外大奖，包括2012年法朗基奖、2020年法兰德斯研究基金会五年卓越奖、2022年科维理天体物理学奖，以及2024年克拉福德天文学奖。',
+                bioTwo: '她的研究主要集中于恒星结构和演化以及变星。她是星震学领域的先驱之一，通过研究恒星振荡来探索恒星内部结构。',
+                note: '(注：所有中文译本，皆以英文本为准)'
+            }
+        };
+
+        document.querySelectorAll('[data-language]').forEach((button) => {
+            button.addEventListener('click', () => {
+                const language = button.dataset.language;
+                const content = translations[language];
+
+                document.documentElement.lang = language;
+                document.title = content.title;
+                document.querySelectorAll('[data-i18n]').forEach((element) => {
+                    element.innerHTML = content[element.dataset.i18n];
+                });
+                document.querySelectorAll('[data-language]').forEach((item) => {
+                    item.classList.toggle('active', item === button);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
