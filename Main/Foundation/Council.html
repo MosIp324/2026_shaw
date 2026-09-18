@@ -271,15 +271,16 @@
         <!-- 左側選單 -->
        <nav class="sidebar">
             <div class="nav-group">
-                <a href="./index.html" class="nav-item active" data-i18n="navFoundation">The Shaw Prize Foundation</a>
-                <a href="./Council.html" class="nav-item" data-i18n="navCouncil">Council</a>
+                <a href="./index.html" class="nav-item" data-i18n="navFoundation">The Shaw Prize Foundation</a>
+                <a href="./Council.html" class="nav-item active" data-i18n="navCouncil">Council</a>
                 <a href="./Board%20of%20Adjudicators.html" class="nav-item" data-i18n="navBoardOfAdjudicators">Board of Adjudicators</a>
                 <a href="https://www.shawprize.org/zh/about/organisation/astronomy" class="nav-item active" data-i18n="navSelectionCommittees">Selection Committees</a>
 
+                
                 <!-- 遴選委員會子類別 -->
                 <div class="sub-menu">
-                    <a href="../.././SelectionCommittees/Astronomy/page/Astronomy.html" class="sub-itemAstron" data-i18n="navAstronomy">Astronomy</a>
-                    <a href="../.././SelectionCommittees/ComputerScience/page/" class="sub-itemComput" data-i18n="navComputerScience">Computer Science</a>
+                    <a href="../.././SelectionCommittees/Astronomy/page/Astronomy.html" class="sub-item active" data-i18n="navAstronomy">Astronomy</a>
+                    <a href="https://www.shawprize.org/zh/about/organisation/computer-science" class="sub-itemComput" data-i18n="navComputerScience">Computer Science</a>
                     <a href="https://www.shawprize.org/zh/about/organisation/life-science-medicine" class="sub-itemLife" data-i18n="navLifeScienceMedicine">Life Science & Medicine</a>
                     <a href="https://www.shawprize.org/zh/about/organisation/mathematical-sciences" class="sub-itemMaths" data-i18n="navMathematicalSciences">Mathematical Sciences</a>
                 </div>
@@ -288,7 +289,6 @@
 
         <!-- 右側焦點內容 -->
           <main class="main-content">
-                <!-- 語言切換按鈕 -->                
                 <div class="lang-switch">
                     <button type="button" class="lang-btn" data-language="en">ENG</button>
                     <button type="button" class="lang-btn active" data-language="zh-Hant">繁</button>
@@ -296,17 +296,15 @@
                 </div>                
                 
                 <div>                    
-                    <h1 class="header-title" data-i18n="name">邵逸夫獎基金會</h1>
+                    <h1 class="header-title" data-i18n="name">理事會</h1>
                     <div class="profile-subtitle" data-i18n="subtitle">
-                        邵逸夫獎基金會成立於2002年11月，旨在表彰在學術與科學研究或應用領域作出卓越貢獻，或其成就對增進人類福祉有重大進展的傑出人士。基金會於2003年5月獲香港稅務局認可為慈善機構。
-                        <br>
+                        邵逸夫獎理事會是獎項運作的核心行政機構，在邵逸夫獎秘書處的協助下，擔負著獎項有效管理與暢順運作的基石職責。作為邵逸夫獎的官方代表，理事會除了每年在新聞發佈會上公佈得獎者名單，並確保獎項的所有重要活動順利進行外，亦會在得獎者的遴選過程中提供規範指引。此外，理事會在引領獎項發展方面扮演著重要角色，提供指導以確保獎項持續遵循其創立原則和願景。<br>
                     </div>
                 </div>
 
-
               <div class="profile-grid">
                   <div>
-                      <img id="adjudicators-image" src="./main.jpg" alt="理事會" class="profile-photo">
+                      <img id="adjudicators-image" src="" alt="理事會" class="profile-photo">
                   </div>
               </div>
           </main>
@@ -332,26 +330,20 @@
 
         const translations = {
             en: {
-                title: 'The Shaw Prize Foundation',
-                name: 'The Shaw Prize Foundation',
-                subtitle: 'The Shaw Prize Foundation, established in November 2002, aims to honour individuals who have made distinguished contributions in academic and scientific research, applications, or advancements that profoundly benefit humankind. The Foundation was granted charitable status by the Hong Kong Inland Revenue Department in May 2003.'
+                title: 'Council',
+                name: 'Council',
+                subtitle: 'The Shaw Prize Council is an administrative body that serves as the cornerstone of effective management and smooth operation of the Prize, assisted by The Shaw Prize Secretariat. As the official representative of the Prize, the Council assumes the responsibility of announcing the recipients of the awards at the annual press conference, and ensures the seamless execution of the Prize’s key events. It also provides procedural guidelines on the selection process of the awardees. In addition to its operational responsibilities, the Council plays a significant role in shaping the strategic development of the Prize, providing guidance to maintain its alignment with its founding principles and vision.'
             },
             'zh-Hant': {
-                title: '邵逸夫獎基金會',
-                name: '邵逸夫獎基金會',
-                subtitle: '邵逸夫獎基金會成立於2002年11月，旨在表彰在學術與科學研究或應用領域作出卓越貢獻，或其成就對增進人類福祉有重大進展的傑出人士。基金會於2003年5月獲香港稅務局認可為慈善機構。'
+                title: '理事會',
+                name: '理事會',
+                subtitle: '邵逸夫獎理事會是獎項運作的核心行政機構，在邵逸夫獎秘書處的協助下，擔負著獎項有效管理與暢順運作的基石職責。作為邵逸夫獎的官方代表，理事會除了每年在新聞發佈會上公佈得獎者名單，並確保獎項的所有重要活動順利進行外，亦會在得獎者的遴選過程中提供規範指引。此外，理事會在引領獎項發展方面扮演著重要角色，提供指導以確保獎項持續遵循其創立原則和願景。'
             },
             cn: {
-                title: '邵逸夫奖基金会',
-                name: '邵逸夫奖基金会',
-                subtitle: '邵逸夫奖基金会成立于2002年11月，旨在表彰在学术与科学研究或应用领域作出卓越贡献，或其成就对增进人类福祉有重大进展的杰出人士。基金会于2003年5月获香港税务局认可为慈善机构。'
+                title: '理事会',
+                name: '理事会',
+                subtitle: '邵逸夫奖理事会是奖项运作的核心行政机构，在邵逸夫奖秘书处的协助下，担负著奖项有效管理与畅顺运作的基石职责。作为邵逸夫奖的官方代表，理事会除了每年在新闻发布会上公布得奖者名单，并确保奖项的所有重要活动顺利进行外，亦会在得奖者的遴选过程中提供规范指引。此外，理事会在引领奖项发展方面扮演著重要角色，提供指导以确保奖项持续遵循其创立原则和愿景。'
             }
-        };
-
-        const imageMap = {
-            en: 'main.jpg',
-            'zh-Hant': '',
-            cn: ''
         };
 
         function updateLanguage(language) {
@@ -383,5 +375,6 @@
             });
         });
      </script>
+
 </body>
 </html>
