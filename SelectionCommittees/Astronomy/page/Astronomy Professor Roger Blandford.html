@@ -11,7 +11,7 @@
             padding: 0;
         }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, Microsoft YaHei, PingFang SC, NotoSansTC;
             line-height: 1.5;
             color: #333;
             background-color: #0f172a; /* 背景深色襯托 16:9 画框 */
@@ -173,6 +173,13 @@
             display: flex;
             gap: 8px;
         }
+        .profile-navigation {
+            position: absolute;
+            top: 90px;
+            right: 40px;
+            display: flex;
+            gap: 8px;
+        }
         .lang-btn {
             background: #ffffff;
             border: 1px solid #cbd5e1;
@@ -265,39 +272,47 @@
 
     <div id="canvas">
         <div class="container">
-            <!-- 左側選單 -->
             <nav class="sidebar">
-            <div class="nav-group">
-                <a href="https://www.shawprize.org/zh/about/organisation/the-shaw-prize-foundation" class="nav-item">The Shaw Prize Foundation</a>
-                <a href="https://www.shawprize.org/zh/about/organisation/council" class="nav-item">Council</a>
-                <a href="https://www.shawprize.org/zh/about/organisation/board-of-adjudicators" class="nav-item">Board of Adjudicators</a>
-                <a href="https://www.shawprize.org/zh/about/organisation/astronomy" class="nav-item active">Selection Committees</a>
-                
-                <!-- 遴選委員會子類別 -->
-                <div class="sub-menu">
-                    <a href="https://www.shawprize.org/zh/about/organisation/astronomy" class="sub-item active">Astronomy</a>
-                    <a href="https://www.shawprize.org/zh/about/organisation/computer-science" class="sub-itemComput">Computer Science</a>
-                    <a href="https://www.shawprize.org/zh/about/organisation/life-science-medicine" class="sub-itemLife">Life Science & Medicine</a>
-                    <a href="https://www.shawprize.org/zh/about/organisation/mathematical-sciences" class="sub-itemMaths">Mathematical Sciences</a>
-                </div>
-            </div>
-        </nav>
+                <div class="nav-group">
+                    <a href="../../../Main/Foundation/index.html" class="nav-item" data-i18n="navFoundation">The Shaw Prize Foundation</a>
+                    <a href="../../../Main/Foundation/Council.html" class="nav-item" data-i18n="navCouncil">Council</a>
+                    <a href="../../../Main/Foundation/Board%20of%20Adjudicators.html" class="nav-item" data-i18n="navBoardOfAdjudicators">Board of Adjudicators</a>
+                    <a href="" class="nav-item active" data-i18n="navSelectionCommittees">Selection Committees</a>
 
-            <!-- 右側焦點內容 -->
+                    <div class="sub-menu">
+                        <a href="../.././SelectionCommittees/Astronomy/page/Astronomy.html" class="sub-item active" data-i18n="navAstronomy">Astronomy</a>
+                        <a href="https://www.shawprize.org/zh/about/organisation/computer-science" class="sub-itemComput" data-i18n="navComputerScience">Computer Science</a>
+                        <a href="https://www.shawprize.org/zh/about/organisation/life-science-medicine" class="sub-itemLife" data-i18n="navLifeScienceMedicine">Life Science & Medicine</a>
+                        <a href="https://www.shawprize.org/zh/about/organisation/mathematical-sciences" class="sub-itemMaths" data-i18n="navMathematicalSciences">Mathematical Sciences</a>
+                    </div>
+                </div>
+            </nav>
+
             <main class="main-content">
-                <!-- 語言切換按鈕 -->
                 <div class="lang-switch">
-                    <button class="lang-btn active">ENG</button>
-                    <button class="lang-btn">繁</button>
-                    <button class="lang-btn">简</button>
+                    <button type="button" class="lang-btn" data-language="en">ENG</button>
+                    <button type="button" class="lang-btn active" data-language="zh-Hant">繁</button>
+                    <button type="button" class="lang-btn" data-language="cn">简</button>
                 </div>
-
-               
+                <div class="profile-navigation jsx-caca17b2dbf10bfe flex items-center space-x-2">
+                    <button type="button" onclick="window.location.href='./Astronomy Professor Conny Aerts.html'" aria-label="上一個" class="jsx-caca17b2dbf10bfe w-15 h-15 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <svg  width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8">
+                            <path d="M16.0011 24.0436L16.0011 22.2109L31.732 12L32.9102 13.8327L18.5974 23.1273L32.9102 32.4218L31.732 34.2545L16.0011 24.0436Z" fill="#16161C" class="fill-current">
+                            </path>
+                        </svg>
+                    </button>
+                    <button type="button" onclick="window.location.href='Astronomy Professor You-Hua Chu.html'"  aria-label="下一個" class="jsx-caca17b2dbf10bfe w-15 h-15 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8">
+                            <path d="M34 22.754L34 24.7304L19.1148 35.7422L18 33.7657L31.5432 23.7422L18 13.7187L19.1148 11.7422L34 22.754Z" fill="#16161C" class="fill-current">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
                 
                 <div>
-                    <span class="role-badge">Member</span>
-                    <h1 class="header-title">Professor Roger Blandford</h1>
-                    <div class="profile-subtitle">
+                    <span class="role-badge" data-i18n="role">Member</span>
+                    <h1 class="header-title" data-i18n="name">Professor Roger Blandford</h1>
+                    <div class="profile-subtitle" data-i18n="subtitle">
                         Luke Blossom Professor, School of Humanities and Sciences and<br>
                         Professor of Physics and of Particle Physics and Astrophysics<br>
                         Stanford University<br>
@@ -308,20 +323,22 @@
                 <!-- 16:9 雙欄展示區域 -->
                 <div class="profile-grid">
                     <div>
-                        <img src="Roger Blandford.jpg" alt="Professor Roger Blandford" class="profile-photo">
+                        <img src="../img/Roger_Blandford.jpg" alt="Professor Roger Blandford" class="profile-photo">
                         <div class="terms" style="margin-top: 15px;">
-                            <strong>Previous Terms：</strong><br>
+                            <strong data-i18n="termsLabel">Previous Terms：</strong><br>
                             <div style="margin-top: 8px;">                                
-                                <span>YEAR 2026 </span>
-                                <span>YEAR 2025 </span>                                                                
+                                <span> 2026 年</span>
+                                <span> 2025 年</span>
                             </div>
                         </div>
                     </div>
 
                     <div>
-                        <p class="bio-text">
+                        <p class="bio-text" data-i18n="bioOne">
                             Professor Roger Blandford took his BA, MA and PhD degrees at Cambridge University. Following postdoctoral research at Cambridge, Princeton and Berkeley he took up a faculty position at Caltech in 1976 becoming the Tolman Professor in 1989. In 2003, he became the first Director of the Kavli Institute for Particle Astrophysics and Cosmology at Stanford and is currently the Director of the Simons Collaboration on Extreme Electrodynamics of Compact Sources. With Kip Thorne he co-authored Modern Classical Physics. His research interests include compact sources, cosmic rays, cosmology, and astrobiology. He is a Fellow of the Royal Society, the American Academy of Arts and Sciences, the American Physical Society and a Member of the National Academy of Sciences. He chaired the 2010 Decadal Survey of Astronomy and Astrophysics. He was awarded the 1998 AAS Heineman Prize, the 2013 RAS Gold Medal, the 2016 Crafoord Prize for Astronomy and the 2020 Shaw Prize for Astronomy.
-                        </p>                                     
+                        </p>
+                        <p class="bio-text" data-i18n="note" style="font-size: 0.9em; color: #64748b; margin-top: 20px;">
+                            (註：所有中文譯本，皆以英文本為準)
                     </div>
                 </div>
             </main>
@@ -344,6 +361,79 @@
 
         window.addEventListener('resize', resizeCanvas);
         window.addEventListener('DOMContentLoaded', resizeCanvas);
+
+        const translations = {
+            en: {
+                title: 'Professor Roger Blandford',
+                navFoundation: 'The Shaw Prize Foundation',
+                navCouncil: 'Council',
+                navBoardOfAdjudicators: 'Board of Adjudicators',
+                navSelectionCommittees: 'Selection Committees',
+                navAstronomy: 'Astronomy',
+                navComputerScience: 'Computer Science',
+                navLifeScienceMedicine: 'Life Science & Medicine',
+                navMathematicalSciences: 'Mathematical Sciences',
+                role: 'Member',
+                name: 'Professor Roger Blandford',
+                subtitle: 'Luke Blossom Professor, School of Humanities and Sciences and<br>Sciences and<br>Professor of Physics and of Particle Physics and<br>Astrophysics<br>Stanford University<br>USA',
+                termsLabel: 'Previous terms:',
+                bioOne: 'Professor Roger Blandford took his BA, MA and PhD degrees at Cambridge University. Following postdoctoral research at Cambridge, Princeton and Berkeley he took up a faculty position at Caltech in 1976 becoming the Tolman Professor in 1989. In 2003, he became the first Director of the Kavli Institute for Particle Astrophysics and Cosmology at Stanford and is currently the Director of the Simons Collaboration on Extreme Electrodynamics of Compact Sources. With Kip Thorne he co-authored Modern Classical Physics. His research interests include compact sources, cosmic rays, cosmology, and astrobiology. He is a Fellow of the Royal Society, the American Academy of Arts and Sciences, the American Physical Society and a Member of the National Academy of Sciences. He chaired the 2010 Decadal Survey of Astronomy and Astrophysics. He was awarded the 1998 AAS Heineman Prize, the 2013 RAS Gold Medal, the 2016 Crafoord Prize for Astronomy and the 2020 Shaw Prize for Astronomy.',
+                bioTwo: '',
+                note: ''
+            },
+            'zh-Hant': {
+                title: '羅傑・布蘭福德教授',
+                navFoundation: '邵逸夫獎基金會',
+                navCouncil: '理事會',
+                navBoardOfAdjudicators: '評審會',
+                navSelectionCommittees: '遴選委員會',
+                navAstronomy: '天文學',
+                navComputerScience: '電腦科學',
+                navLifeScienceMedicine: '生命科學與醫學',
+                navMathematicalSciences: '數學科學',
+                role: '成員',
+                name: '羅傑・布蘭福德教授',
+                subtitle: '美國<br>史丹福大學<br>文理學院盧克・布魯森講座教授及<br>物理學教授暨粒子物理學及天體物理學教授',
+                termsLabel: '過往任期：',
+                bioOne: '羅傑・布蘭福德教授於英國劍橋大學取得學士、碩士和博士學位。他在劍橋大學、美國普林斯頓大學和加州大學柏克萊分校完成博士後研究後，於1976 年加入美國加州理工學院擔任教職，並於1989 年成為理查德・切斯・托爾曼理論天文物理學教授。他在2003年於美國史丹福大學出任科維理粒子天體物理學與宇宙學研究所首任所長，現為西蒙斯基金會緻密源極端電動力學合作組織主任。他與基普・索恩共同撰寫《現代經典物理學》。他的研究興趣包括緻密源、宇宙射線、宇宙學和天體生物學。他是英國倫敦皇家學會、美國人文與科學院、美國物理學會和美國國家科學院院士。他於2010 年擔任美國天文及天體物理學十年調查主席，獲頒的獎項包括1998年美國天文學會海涅曼獎、2013年英國皇家天文學會金章、2016年克拉福德天文學獎及2020年邵逸夫天文學獎。',
+                bioTwo: '',
+                note: '(註：所有中文譯本，皆以英文本為準)'
+            },
+            cn: {
+                title: '罗杰・布兰福德教授',
+                navFoundation: '邵逸夫奖基金会',
+                navCouncil: '理事会',
+                navBoardOfAdjudicators: '评审会',
+                navSelectionCommittees: '遴选委员会',
+                navAstronomy: '天文学',
+                navComputerScience: '计算机科学',
+                navLifeScienceMedicine: '生命科学与医学',
+                navMathematicalSciences: '数学科学',
+                role: '成员',
+                name: '罗杰・布兰福德教授',
+                subtitle: '美国<br>史丹福大学<br>文理学院卢克・布鲁森讲座教授及<br>物理学教授暨粒子物理学及天体物理学教授',
+                termsLabel: '过往任期：',
+                bioOne: '罗杰・布兰福德教授于英国剑桥大学取得学士、硕士和博士学位。他在剑桥大学、美国普林斯顿大学和加州大学柏克莱分校完成博士后研究后，于1976 年加入美国加州理工学院担任教职，并于1989 年成为理查德・切斯・托尔曼理论天文物理学教授。他在2003年于美国史丹福大学出任科维理粒子天体物理学与宇宙学研究所首任所长，现为西蒙斯基金会緻密源极端电动力学合作组织主任。他与基普・索恩共同撰写《现代经典物理学》。他的研究兴趣包括緻密源、宇宙射线、宇宙学和天体生物学。他是英国伦敦皇家学会、美国人文与科学院、美国物理学会和美国国家科学院院士。他于2010 年担任美国天文及天体物理学十年调查主席，获颁的奖项包括1998年美国天文学会海涅曼奖、2013年英国皇家天文学会金章、2016年克拉福德天文学奖及2020年邵逸夫天文学奖。',
+                bioTwo: '',
+                note: '(注：所有中文译本，皆以英文本为准)'
+            }
+        };
+
+        document.querySelectorAll('[data-language]').forEach((button) => {
+            button.addEventListener('click', () => {
+                const language = button.dataset.language;
+                const content = translations[language];
+
+                document.documentElement.lang = language;
+                document.title = content.title;
+                document.querySelectorAll('[data-i18n]').forEach((element) => {
+                    element.innerHTML = content[element.dataset.i18n];
+                });
+                document.querySelectorAll('[data-language]').forEach((item) => {
+                    item.classList.toggle('active', item === button);
+                });
+            });
+        });
     </script>
 </body>
 </html>
