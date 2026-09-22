@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Shaw Prize</title>
     <style>
-      * {
+  * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -149,7 +149,7 @@
         .sub-item.active {
             color: #fafbfb;
             font-weight: bold;
-            background-color: #254a7b;
+            background-color: #2e5f4d;
         }
 
         /* 右側主內容區樣式 */
@@ -163,9 +163,6 @@
             position: relative;
             display: flex;
             flex-direction: column;
-
-            /* 新增以下這行以啟用垂直捲動 */
-            /*overflow-y: auto;    */
         }
 
         /* 語言切換按鈕 */
@@ -201,10 +198,10 @@
             color: #64748b;
             margin-bottom: 20px;
         }
-        .role-badge {
+         .role-badge {
             display: inline-block;
-            background-color: #bc939b;
-            color: #5f222e;
+            background-color: #93aca3;
+            color: #475569;
             font-weight: bold;
             padding: 6px 14px;
             border-radius: 6px;
@@ -221,7 +218,7 @@
             color: #0f172a;            
         }
         .profile-subtitle {
-            font-size: 1.1em;
+            font-size: 1.1rem;
             color: #475569;
             margin-bottom: 25px;
             font-weight: 500;
@@ -271,34 +268,34 @@
 <body>
 
     <div id="canvas">
-    <div class="container">
-        <!-- 左側選單 -->
-       <nav class="sidebar">
-            <div class="nav-group">
-                <a href="../../../Main/Foundation/index.html" class="nav-item" data-i18n="navFoundation">The Shaw Prize Foundation</a>
-                <a href="../../../Main/Foundation/Council.html" class="nav-item" data-i18n="navCouncil">Council</a>
-                <a href="../../../Main/Foundation/Board%20of%20Adjudicators.html" class="nav-item" data-i18n="navBoardOfAdjudicators">Board of Adjudicators</a>
-                <a href="" class="nav-item active" data-i18n="navSelectionCommittees">Selection Committees</a>
+        <div class="container">
+            <nav class="sidebar">
+                <div class="nav-group">
+                    <a href="./index.html" class="nav-item" data-i18n="navFoundation">The Shaw Prize Foundation</a>
+                    <a href="./Council.html" class="nav-item" data-i18n="navCouncil">Council</a>
+                    <a href="./Board%20of%20Adjudicators.html" class="nav-item" data-i18n="navBoardOfAdjudicators">Board of Adjudicators</a>
+                    <a href="" class="nav-item active" data-i18n="navSelectionCommittees">Selection Committees</a>
 
-                <div class="sub-menu">
-                    <a href="../../Astronomy/page/Astronomy.html" class="sub-item active" data-i18n="navAstronomy">Astronomy</a>
-                    <a href="../../ComputerScience/page/CS.html" class="sub-itemComput" data-i18n="navComputerScience">Computer Science</a>
-                    <a href="../../LifeScienceMedicine/page/LM.html" class="sub-itemLife " data-i18n="navLifeScienceMedicine">Life Science & Medicine</a>
-                    <a href="../../MathematicalSciences/page/MS.html" class="sub-itemMaths" data-i18n="navMathematicalSciences">Mathematical Sciences</a>
-                </div>
+                    <div class="sub-menu">
+                        <a href="../../Astronomy/page/Astronomy.html" class="sub-itemAstron" data-i18n="navAstronomy">Astronomy</a>
+                        <a href="../../ComputerScience/page/CS.html" class="sub-itemComput" data-i18n="navComputerScience">Computer Science</a>
+                        <a href="../../LifeScienceMedicine/page/LM.html" class="sub-item active" data-i18n="navLifeScienceMedicine">Life Science & Medicine</a>
+                        <a href="../../MathematicalSciences/page/MS.html" class="sub-itemMaths" data-i18n="navMathematicalSciences">Mathematical Sciences</a>
+                    </div>
             </div>
         </nav>
 
-          <main class="main-content">
+            <!-- 右側焦點內容 -->
+            <main class="main-content">
                 <div class="lang-switch">
                     <button type="button" class="lang-btn" data-language="en">ENG</button>
                     <button type="button" class="lang-btn active" data-language="zh-Hant">繁</button>
                     <button type="button" class="lang-btn" data-language="cn">简</button>
-                </div>                
+                </div>
                 
                 <div>
-                    <h1 class="header-title2"data-i18n="title">Selection Committees</h1>
-                    <h1 class="header-title" data-i18n="name">2026 - 2027 Astronomy</h1>
+                    <h1 class="header-title2" data-i18n="name2">Selection Committees</h1>
+                    <h1 class="header-title" data-i18n="name">2026 - 2027 Life Science & Medicine</h1>
                     <div class="profile-subtitle" data-i18n="subtitle">
                         The Shaw Prize Selection Committees, one for each of the prize categories, evaluate nominations submitted by invited nominators worldwide. They carefully review nominations, propose awardees to the Board of Adjudicators for approval, and the Council for final confirmation. Additionally, the Selection Committees advise on the selection of qualified nominators to maintain a diverse and high-calibre nomination pool.
                     </div>
@@ -307,13 +304,14 @@
                 <!-- 16:9 雙欄展示區域 -->
                 <div class="profile-grid">
                     <div>
-                        <img  id="adjudicators-image" src="./Astronomy.jpg" alt="Astronomy" class="profile-photo">
+                        <img id="adjudicators-image" src="../img/LMT.jpg" alt="Life" class="profile-photo">
                     </div>
                 </div>
             </main>
         </div>
     </div>
-     <script>
+
+    <script>
         // 自動依照視窗大小保持 16:9 比例縮放
         function resizeCanvas() {
             const canvas = document.getElementById('canvas');
@@ -328,11 +326,16 @@
         }
 
         window.addEventListener('resize', resizeCanvas);
-        window.addEventListener('DOMContentLoaded', resizeCanvas);
+        window.addEventListener('DOMContentLoaded', () => {
+            resizeCanvas();
+            updateLanguage('zh-Hant');
+        });
 
         const translations = {
             en: {
-                title: 'Selection Committees',
+                name2: 'Selection Committees',
+                name: '2026 - 2027 Life Science & Medicine',
+                subtitle: 'The Shaw Prize Selection Committees, one for each of the prize categories, evaluate nominations submitted by invited nominators worldwide. They carefully review nominations, propose awardees to the Board of Adjudicators for approval, and the Council for final confirmation. Additionally, the Selection Committees advise on the selection of qualified nominators to maintain a diverse and high-calibre nomination pool.',
                 navFoundation: 'The Shaw Prize Foundation',
                 navCouncil: 'Council',
                 navBoardOfAdjudicators: 'Board of Adjudicators',
@@ -340,13 +343,12 @@
                 navAstronomy: 'Astronomy',
                 navComputerScience: 'Computer Science',
                 navLifeScienceMedicine: 'Life Science & Medicine',
-                navMathematicalSciences: 'Mathematical Sciences',
-                name: '2026 - 2027 Astronomy',
-                subtitle: 'The Shaw Prize Selection Committees, one for each of the prize categories, evaluate nominations submitted by invited nominators worldwide. They carefully review nominations, propose awardees to the Board of Adjudicators for approval, and the Council for final confirmation. Additionally, the Selection Committees advise on the selection of qualified nominators to maintain a diverse and high-calibre nomination pool.',
-
+                navMathematicalSciences: 'Mathematical Sciences'
             },
             'zh-Hant': {
-                title: '遴選委員會',
+                name2: '遴選委員會',
+                name: '2026 - 2027 生命科學與醫學',
+                subtitle: '邵逸夫獎每個獎項類別設有獨立遴選委員會，負責評審全球受邀提名人提交的提名名單。遴選委員會嚴格審核提名材料，向評審會推薦獲獎人選以供審議，並由理事會作最終確認。此外，遴選委員會亦負責推薦合資格提名人，以確保提名庫的多元性與高水平。',
                 navFoundation: '邵逸夫獎基金會',
                 navCouncil: '理事會',
                 navBoardOfAdjudicators: '評審會',
@@ -355,12 +357,11 @@
                 navComputerScience: '電腦科學',
                 navLifeScienceMedicine: '生命科學與醫學',
                 navMathematicalSciences: '數學科學',
-                name: '2026 - 2027 天文學',
-                subtitle: '邵逸夫獎每個獎項類別設有獨立遴選委員會，負責評審全球受邀提名人提交的提名名單。遴選委員會嚴格審核提名材料，向評審會推薦獲獎人選以供審議，並由理事會作最終確認。此外，遴選委員會亦負責推薦合資格提名人，以確保提名庫的多元性與高水平。',
-
             },
             cn: {
-                title: '遴选委员会',
+                name2: '遴选委员会',
+                name: '2026 - 2027 生命科学与医学',
+                subtitle: '邵逸夫奖每个奖项类别设有独立遴选委员会，负责评审全球受邀提名人提交的提名名单。遴选委员会严格审核提名材料，向评审会推荐获奖人选以供审议，并由理事会作最终确认。此外，遴选委员会亦负责推荐合资格提名人，以确保提名库的多元性与高水平',
                 navFoundation: '邵逸夫奖基金会',
                 navCouncil: '理事会',
                 navBoardOfAdjudicators: '评审会',
@@ -369,15 +370,13 @@
                 navComputerScience: '计算机科学',
                 navLifeScienceMedicine: '生命科学与医学',
                 navMathematicalSciences: '数学科学',
-                name: '2026 - 2027 天文学',
-                subtitle: '邵逸夫奖每个奖项类别设有独立遴选委员会，负责评审全球受邀提名人提交的提名名单。遴选委员会严格审核提名材料，向评审会推荐获奖人选以供审议，并由理事会作最终确认。此外，遴选委员会亦负责推荐合资格提名人，以确保提名库的多元性与高水平。',
             }
         };
 
         const imageMap = {
-            en: 'Astronomy.jpg',
-            'zh-Hant': 'Astronomy T.jpg',
-            cn: 'Astronomy S.jpg',
+            en: '../img/LM.jpg',
+            'zh-Hant': '../img/LMT.jpg',
+            cn: '../img/LMS.jpg'
         };
 
         function updateLanguage(language) {
@@ -388,7 +387,9 @@
             document.title = content.title;
 
             document.querySelectorAll('[data-i18n]').forEach((element) => {
-                element.innerHTML = content[element.dataset.i18n];
+                if (content[element.dataset.i18n]) {
+                    element.innerHTML = content[element.dataset.i18n];
+                }
             });
 
             if (image && imageMap[language]) {
@@ -396,8 +397,8 @@
                 image.alt = content.name;
             }
 
-            document.querySelectorAll('[data-language]').forEach((button) => {
-                button.classList.toggle('active', button.dataset.language === language);
+            document.querySelectorAll('[data-language]').forEach((item) => {
+                item.classList.toggle('active', item === document.querySelector(`[data-language="${language}"]`));
             });
         }
 
@@ -406,9 +407,6 @@
                 updateLanguage(button.dataset.language);
             });
         });
-
-        updateLanguage('zh-Hant');
-     </script>
-
+    </script>
 </body>
 </html>

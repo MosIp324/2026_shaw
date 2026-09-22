@@ -11,7 +11,7 @@
             padding: 0;
         }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, Microsoft YaHei, PingFang SC, NotoSansTC;
             line-height: 1.5;
             color: #333;
             background-color: #0f172a; /* 背景深色襯托 16:9 画框 */
@@ -173,6 +173,13 @@
             display: flex;
             gap: 8px;
         }
+      .profile-navigation {
+          position: absolute;
+          top: 90px;
+          right: 40px;
+          display: flex;
+          gap: 8px;
+      }
         .lang-btn {
             background: #ffffff;
             border: 1px solid #cbd5e1;
@@ -265,33 +272,43 @@
 
     <div id="canvas">
         <div class="container">
-            <!-- 左側選單 -->
-             <nav class="sidebar">
-            <div class="nav-group">
-                <a href="https://www.shawprize.org/zh/about/organisation/the-shaw-prize-foundation" class="nav-item">邵逸夫獎基金會</a>
-                <a href="https://www.shawprize.org/zh/about/organisation/council" class="nav-item">理事會</a>
-                <a href="https://www.shawprize.org/zh/about/organisation/board-of-adjudicators" class="nav-item">評審委員會</a>
-                <a href="https://www.shawprize.org/zh/about/organisation/astronomy" class="nav-item active">遴選委員會</a>
-                
-                <!-- 遴選委員會子類別 -->
-                <div class="sub-menu">
-                    <a href="https://www.shawprize.org/zh/about/organisation/astronomy" class="sub-itemAstron">天文學</a>
-                    <a href="https://www.shawprize.org/zh/about/organisation/computer-science" class="sub-itemComput">計算機科學</a>
-                    <a href="https://www.shawprize.org/zh/about/organisation/life-science-medicine" class="sub-item active">生命科學與醫學</a>
-                    <a href="https://www.shawprize.org/zh/about/organisation/mathematical-sciences" class="sub-itemMaths">數學科學</a>
+            <nav class="sidebar">
+                <div class="nav-group">
+                    <a href="./index.html" class="nav-item" data-i18n="navFoundation">邵逸夫獎基金會</a>
+                    <a href="./Council.html" class="nav-item" data-i18n="navCouncil">理事會</a>
+                    <a href="./Board%20of%20Adjudicators.html" class="nav-item" data-i18n="navBoardOfAdjudicators">評審委員會</a>
+                    <a href="" class="nav-item active" data-i18n="navSelectionCommittees">遴選委員會</a>
+
+                    <div class="sub-menu">
+                        <a href="../../Astronomy/page/Astronomy.html" class="sub-itemAstron" data-i18n="navAstronomy">天文學</a>
+                        <a href="../../ComputerScience/page/CS.html" class="sub-itemComput" data-i18n="navComputerScience">計算機科學</a>
+                        <a href="../page/LM.html" class="sub-item active" data-i18n="navLifeScienceMedicine">生命科學與醫學</a>
+                        <a href="../../MathematicalSciences/page/MS.html" class="sub-itemMaths" data-i18n="navMathematicalSciences">數學科學</a>
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
 
             <!-- 右側焦點內容 -->
             <main class="main-content">
-                <!-- 語言切換按鈕 -->
                 <div class="lang-switch">
-                    <button class="lang-btn">ENG</button>
-                    <button class="lang-btn active">繁</button>
-                    <button class="lang-btn">简</button>
-                </div>                
-                
+                    <button type="button" class="lang-btn" data-language="en">ENG</button>
+                    <button type="button" class="lang-btn active" data-language="zh-Hant">繁</button>
+                    <button type="button" class="lang-btn" data-language="cn">简</button>
+                </div>
+                <div class="profile-navigation jsx-caca17b2dbf10bfe flex items-center space-x-2">
+                    <button type="button" onclick="window.location.href='./生命科學與醫學 海倫・霍布斯教授.html'" aria-label="上一個" class="jsx-caca17b2dbf10bfe w-15 h-15 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <svg  width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8">
+                            <path d="M16.0011 24.0436L16.0011 22.2109L31.732 12L32.9102 13.8327L18.5974 23.1273L32.9102 32.4218L31.732 34.2545L16.0011 24.0436Z" fill="#16161C" class="fill-current">
+                            </path>
+                        </svg>
+                    </button>
+                    <button type="button" onclick="window.location.href='./生命科學與醫學 盧煜明教授.html'"  aria-label="下一個" class="jsx-caca17b2dbf10bfe w-15 h-15 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8">
+                            <path d="M34 22.754L34 24.7304L19.1148 35.7422L18 33.7657L31.5432 23.7422L18 13.7187L19.1148 11.7422L34 22.754Z" fill="#16161C" class="fill-current">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
                 <div>
                     <span class="role-badge">成員</span>
                     <h1 class="header-title">海倫・霍布斯教授</h1>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Shaw Prize</title>
+    <title>邵逸夫獎</title>
     <style>
       * {
             box-sizing: border-box;
@@ -11,7 +11,7 @@
             padding: 0;
         }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, Microsoft YaHei, PingFang SC, NotoSansTC;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             line-height: 1.5;
             color: #333;
             background-color: #0f172a; /* 背景深色襯托 16:9 画框 */
@@ -56,7 +56,7 @@
         .nav-group {
             margin-bottom: 15px;
         }
-         .nav-item {
+        .nav-item {
             display: block;
             padding: 12px 16px;
             color: #c39f5b;
@@ -149,7 +149,7 @@
         .sub-item.active {
             color: #fafbfb;
             font-weight: bold;
-            background-color: #254a7b;
+            background-color: #723a85;
         }
 
         /* 右側主內容區樣式 */
@@ -163,9 +163,6 @@
             position: relative;
             display: flex;
             flex-direction: column;
-
-            /* 新增以下這行以啟用垂直捲動 */
-            /*overflow-y: auto;    */
         }
 
         /* 語言切換按鈕 */
@@ -203,8 +200,8 @@
         }
         .role-badge {
             display: inline-block;
-            background-color: #bc939b;
-            color: #5f222e;
+            background-color: #b599bf;
+            color: #411452;
             font-weight: bold;
             padding: 6px 14px;
             border-radius: 6px;
@@ -221,7 +218,7 @@
             color: #0f172a;            
         }
         .profile-subtitle {
-            font-size: 1.1em;
+            font-size: 1.1rem;
             color: #475569;
             margin-bottom: 25px;
             font-weight: 500;
@@ -269,49 +266,55 @@
     </style>
 </head>
 <body>
-
     <div id="canvas">
     <div class="container">
         <!-- 左側選單 -->
        <nav class="sidebar">
             <div class="nav-group">
-                <a href="../../../Main/Foundation/index.html" class="nav-item" data-i18n="navFoundation">The Shaw Prize Foundation</a>
-                <a href="../../../Main/Foundation/Council.html" class="nav-item" data-i18n="navCouncil">Council</a>
-                <a href="../../../Main/Foundation/Board%20of%20Adjudicators.html" class="nav-item" data-i18n="navBoardOfAdjudicators">Board of Adjudicators</a>
-                <a href="" class="nav-item active" data-i18n="navSelectionCommittees">Selection Committees</a>
-
+                <a href="https://www.shawprize.org/zh/about/organisation/the-shaw-prize-foundation" class="nav-item">邵逸夫獎基金會</a>
+                <a href="https://www.shawprize.org/zh/about/organisation/council" class="nav-item">理事會</a>
+                <a href="https://www.shawprize.org/zh/about/organisation/board-of-adjudicators" class="nav-item">評審委員會</a>
+                <a href="https://www.shawprize.org/zh/about/organisation/astronomy" class="nav-item active">遴選委員會</a>
+                
+                <!-- 遴選委員會子類別 -->
                 <div class="sub-menu">
-                    <a href="../../Astronomy/page/Astronomy.html" class="sub-item active" data-i18n="navAstronomy">Astronomy</a>
-                    <a href="../../ComputerScience/page/CS.html" class="sub-itemComput" data-i18n="navComputerScience">Computer Science</a>
-                    <a href="../../LifeScienceMedicine/page/LM.html" class="sub-itemLife " data-i18n="navLifeScienceMedicine">Life Science & Medicine</a>
-                    <a href="../../MathematicalSciences/page/MS.html" class="sub-itemMaths" data-i18n="navMathematicalSciences">Mathematical Sciences</a>
+                    <a href="https://www.shawprize.org/zh/about/organisation/astronomy" class="sub-itemAstron">天文學</a>
+                    <a href="https://www.shawprize.org/zh/about/organisation/computer-science" class="sub-item active">計算機科學</a>
+                    <a href="https://www.shawprize.org/zh/about/organisation/life-science-medicine" class="sub-itemLife ">生命科學與醫學</a>
+                    <a href="https://www.shawprize.org/zh/about/organisation/mathematical-sciences" class="sub-itemMaths">數學科學</a>
                 </div>
             </div>
         </nav>
 
-          <main class="main-content">
+        <!-- 右側焦點內容 -->
+
+        <main class="main-content">
+                <!-- 語言切換按鈕 -->
                 <div class="lang-switch">
-                    <button type="button" class="lang-btn" data-language="en">ENG</button>
-                    <button type="button" class="lang-btn active" data-language="zh-Hant">繁</button>
-                    <button type="button" class="lang-btn" data-language="cn">简</button>
+                    <button class="lang-btn">ENG</button>
+                    <button class="lang-btn active">繁</button>
+                    <button class="lang-btn">简</button>
                 </div>                
                 
-                <div>
-                    <h1 class="header-title2"data-i18n="title">Selection Committees</h1>
-                    <h1 class="header-title" data-i18n="name">2026 - 2027 Astronomy</h1>
-                    <div class="profile-subtitle" data-i18n="subtitle">
-                        The Shaw Prize Selection Committees, one for each of the prize categories, evaluate nominations submitted by invited nominators worldwide. They carefully review nominations, propose awardees to the Board of Adjudicators for approval, and the Council for final confirmation. Additionally, the Selection Committees advise on the selection of qualified nominators to maintain a diverse and high-calibre nomination pool.
+                <div>                    
+                    <h1 class="header-title2">遴選委員會</h1>                 
+                    <h1 class="header-title">2026 - 2027 計算機科學</h1>
+                    <div class="profile-subtitle">
+                        計算機科學在過去數十年經歷了一場翻天覆地的變革，重塑了現代社會根基。從互聯網的興起到人工智能的普及，計算機科學已成為科技創新和社會進步的關鍵。算法、機器學習、網絡安全及計算理論等領域的突破性發展，徹底改變人類與科技互動的模式，並推動通訊、金融及醫療等諸多領域的空前發展。計算機科學的深層次智識問題， 不斷挑戰並拓展人類思維的極限，同時構成其廣泛應用的基礎。隨著計算機科學的發展及演變，這門學科將成為重要的推動力量，建立一套人類認知及進步的新模式，引領下一階段科學與社會的發展方向。<br>
+                        邵逸夫獎每個獎項類別設有獨立遴選委員會，負責評審全球受邀提名人提交的提名名單。遴選委員會嚴格審核提名材料，向評審會推薦獲獎人選以供審議，並由理事會作最終確認。此外，遴選委員會亦負責推薦合資格提名人，以確保提名庫的多元性與高水平。
                     </div>
                 </div>
 
                 <!-- 16:9 雙欄展示區域 -->
                 <div class="profile-grid">
                     <div>
-                        <img  id="adjudicators-image" src="./Astronomy.jpg" alt="Astronomy" class="profile-photo">
-                    </div>
+                        <img src="Computer Science T.jpg" alt="計算機科學" class="profile-photo">
+                       
+                    </div>                   
                 </div>
             </main>
         </div>
+        
     </div>
      <script>
         // 自動依照視窗大小保持 16:9 比例縮放
@@ -329,86 +332,10 @@
 
         window.addEventListener('resize', resizeCanvas);
         window.addEventListener('DOMContentLoaded', resizeCanvas);
-
-        const translations = {
-            en: {
-                title: 'Selection Committees',
-                navFoundation: 'The Shaw Prize Foundation',
-                navCouncil: 'Council',
-                navBoardOfAdjudicators: 'Board of Adjudicators',
-                navSelectionCommittees: 'Selection Committees',
-                navAstronomy: 'Astronomy',
-                navComputerScience: 'Computer Science',
-                navLifeScienceMedicine: 'Life Science & Medicine',
-                navMathematicalSciences: 'Mathematical Sciences',
-                name: '2026 - 2027 Astronomy',
-                subtitle: 'The Shaw Prize Selection Committees, one for each of the prize categories, evaluate nominations submitted by invited nominators worldwide. They carefully review nominations, propose awardees to the Board of Adjudicators for approval, and the Council for final confirmation. Additionally, the Selection Committees advise on the selection of qualified nominators to maintain a diverse and high-calibre nomination pool.',
-
-            },
-            'zh-Hant': {
-                title: '遴選委員會',
-                navFoundation: '邵逸夫獎基金會',
-                navCouncil: '理事會',
-                navBoardOfAdjudicators: '評審會',
-                navSelectionCommittees: '遴選委員會',
-                navAstronomy: '天文學',
-                navComputerScience: '電腦科學',
-                navLifeScienceMedicine: '生命科學與醫學',
-                navMathematicalSciences: '數學科學',
-                name: '2026 - 2027 天文學',
-                subtitle: '邵逸夫獎每個獎項類別設有獨立遴選委員會，負責評審全球受邀提名人提交的提名名單。遴選委員會嚴格審核提名材料，向評審會推薦獲獎人選以供審議，並由理事會作最終確認。此外，遴選委員會亦負責推薦合資格提名人，以確保提名庫的多元性與高水平。',
-
-            },
-            cn: {
-                title: '遴选委员会',
-                navFoundation: '邵逸夫奖基金会',
-                navCouncil: '理事会',
-                navBoardOfAdjudicators: '评审会',
-                navSelectionCommittees: '遴选委员会',
-                navAstronomy: '天文学',
-                navComputerScience: '计算机科学',
-                navLifeScienceMedicine: '生命科学与医学',
-                navMathematicalSciences: '数学科学',
-                name: '2026 - 2027 天文学',
-                subtitle: '邵逸夫奖每个奖项类别设有独立遴选委员会，负责评审全球受邀提名人提交的提名名单。遴选委员会严格审核提名材料，向评审会推荐获奖人选以供审议，并由理事会作最终确认。此外，遴选委员会亦负责推荐合资格提名人，以确保提名库的多元性与高水平。',
-            }
-        };
-
-        const imageMap = {
-            en: 'Astronomy.jpg',
-            'zh-Hant': 'Astronomy T.jpg',
-            cn: 'Astronomy S.jpg',
-        };
-
-        function updateLanguage(language) {
-            const content = translations[language];
-            const image = document.getElementById('adjudicators-image');
-
-            document.documentElement.lang = language;
-            document.title = content.title;
-
-            document.querySelectorAll('[data-i18n]').forEach((element) => {
-                element.innerHTML = content[element.dataset.i18n];
-            });
-
-            if (image && imageMap[language]) {
-                image.src = imageMap[language];
-                image.alt = content.name;
-            }
-
-            document.querySelectorAll('[data-language]').forEach((button) => {
-                button.classList.toggle('active', button.dataset.language === language);
-            });
-        }
-
-        document.querySelectorAll('[data-language]').forEach((button) => {
-            button.addEventListener('click', () => {
-                updateLanguage(button.dataset.language);
-            });
-        });
-
-        updateLanguage('zh-Hant');
-     </script>
+    </script>
 
 </body>
 </html>
+
+
+   

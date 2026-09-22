@@ -345,6 +345,78 @@
 
         window.addEventListener('resize', resizeCanvas);
         window.addEventListener('DOMContentLoaded', resizeCanvas);
+        const translations = {
+            en: {
+                navFoundation: 'The Shaw Prize Foundation',
+                navCouncil: 'Council',
+                navBoardOfAdjudicators: 'Board of Adjudicators',
+                navSelectionCommittees: 'Selection Committees',
+                navAstronomy: 'Astronomy',
+                navComputerScience: 'Computer Science',
+                navLifeScienceMedicine: 'Life Science & Medicine',
+                navMathematicalSciences: 'Mathematical Sciences',
+                title: 'Professor Diane J Mathis',
+                role: 'Member',
+                name: 'Professor Diane J Mathis',
+                subtitle: 'Morton Grove-Rasmussen Professof of<br>Immunohematology<br>Department of Immunology<br>Harvard Medical School<br>USA',
+                termsLabel: 'Previous terms:',
+                bioOne: 'Dr Mathis is a Professor of Immunology at Harvard Medical School and holder of the Morton Grove-Rasmussen Chair. She is also a Principal Member at the Harvard Stem Cell Institute and an Associate Member of the Broad Institute. She presently serves on advisory boards of the Howard Hughes Medical Institute, Genentech, Pfizer, Amgen, Janssen, Xaira Therapeutics and Goldman Sachs Life Sciences (amongst others). She is a member of the US National Academy of Sciences, the German Academy and the American Academy of Arts and Sciences. Dr Mathis has received the Excellence in Science Award from FASEB, the inaugural Menarini Prize for Outstanding Woman Immunologist from the International Union of Immunological Societies, the William B Coley Award for Distinguished Research in Basic Immunology from the Cancer Research Institute and the William E Paul Award for Excellence in Immunology and Cell Biology; and was named a Distinguished Fellow of the American Association of Immunologists. Her lab focusses on T cell differentiation, immunological tolerance, autoimmunity and inflammation. She has trained close to 200 graduate students and postdoctoral fellows.',
+                bioTwo: '',
+                note: ''
+            },
+            'zh-Hant': {
+                navFoundation: '邵逸夫獎基金會',
+                navCouncil: '理事會',
+                navBoardOfAdjudicators: '評審會',
+                navSelectionCommittees: '遴選委員會',
+                navAstronomy: '天文學',
+                navComputerScience: '電腦科學',
+                navLifeScienceMedicine: '生命科學與醫學',
+                navMathematicalSciences: '數學科學',
+                title: '黛安・馬西斯教授',
+                role: '成員',
+                name: '黛安・馬西斯教授',
+                subtitle: '美國<br>哈佛醫學院<br>醫學院免疫學教授暨<br>莫頓・格羅夫-拉斯穆森免疫學講座教授',
+                termsLabel: '過往任期：',
+                bioOne: '馬西斯博士是美國哈佛醫學院免疫學教授暨莫頓・格羅夫-拉斯穆森免疫學講座教授。她也是哈佛幹細胞研究所核心成員和美國博德研究所協作成員。她現時擔任多個機構的顧問委員會成員，包括美國霍華德休斯醫學研究所、基因泰克、輝瑞、安進、比利時楊森、賽拉製藥和高盛生命科學組等。她是美國國家科學院、德國國家科學院和美國人文與科學院院士。馬西斯博士曾獲頒美國實驗生物學會聯合會(FASEB) 科學卓越獎、國際免疫學會聯合會首屆梅納里尼傑出女性免疫學家獎、癌症研究中心威廉・科利基礎免疫學傑出研究獎和威廉·保羅免疫學與細胞生物學卓越獎，以及被美國免疫學家協會授予傑出會士稱號。她的實驗室專注於T細胞分化、免疫耐受、自身免疫和炎症方面的研究。她已培養接近200名研究生和博士後研究員。',
+                bioTwo: '',
+                note: '(註：所有中文譯本，皆以英文本為準)'
+            },
+            cn: {
+                navFoundation: '邵逸夫奖基金会',
+                navCouncil: '理事会',
+                navBoardOfAdjudicators: '评审会',
+                navSelectionCommittees: '遴选委员会',
+                navAstronomy: '天文学',
+                navComputerScience: '计算机科学',
+                navLifeScienceMedicine: '生命科学与医学',
+                navMathematicalSciences: '数学科学',
+                title: '黛安・马西斯教授',
+                role: '成员',
+                name: '黛安・马西斯教授',
+                subtitle: '美国<br>哈佛医学院<br>医学院免疫学教授暨<br>莫顿・格罗夫-拉斯穆森免疫学讲座教授',
+                termsLabel: '过往任期：',
+                bioOne: '马西斯博士是美国哈佛医学院免疫学教授暨莫顿・格罗夫-拉斯穆森免疫学讲座教授。她也是哈佛干细胞研究所核心成员和美国博德研究所协作成员。她现时担任多个机构的顾问委员会成员，包括美国霍华德休斯医学研究所、基因泰克、辉瑞、安进、比利时杨森、赛拉制药和高盛生命科学组等。她是美国国家科学院、德国国家科学院和美国人文与科学院院士。马西斯博士曾获颁美国实验生物学会联合会(FASEB) 科学卓越奖、国际免疫学会联合会首届梅纳里尼杰出女性免疫学家奖、癌症研究中心威廉・科利基础免疫学杰出研究奖和威廉·保罗免疫学与细胞生物学卓越奖，以及被美国免疫学家协会授予杰出会士称号。她的实验室专注于T细胞分化、免疫耐受、自身免疫和炎症方面的研究。她已培养接近200名研究生和博士后研究员。',
+                bioTwo: '',
+                note: '(注：所有中文译本，皆以英文本为准)'
+            }
+        };
+
+        document.querySelectorAll('[data-language]').forEach((button) => {
+            button.addEventListener('click', () => {
+                const language = button.dataset.language;
+                const content = translations[language];
+
+                document.documentElement.lang = language;
+                document.title = content.title;
+                document.querySelectorAll('[data-i18n]').forEach((element) => {
+                    element.innerHTML = content[element.dataset.i18n];
+                });
+                document.querySelectorAll('[data-language]').forEach((item) => {
+                    item.classList.toggle('active', item === button);
+                });
+            });
+        });
     </script>
 </body>
 </html>

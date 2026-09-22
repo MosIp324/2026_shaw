@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>大衛・朱利雅斯教授 - 邵逸夫獎</title>
+    <title>大衛・朱利雅斯教授</title>
     <style>
   * {
             box-sizing: border-box;
@@ -11,7 +11,7 @@
             padding: 0;
         }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, Microsoft YaHei, PingFang SC, NotoSansTC;
             line-height: 1.5;
             color: #333;
             background-color: #0f172a; /* 背景深色襯托 16:9 画框 */
@@ -164,8 +164,6 @@
             display: flex;
             flex-direction: column;
         }
-
-        /* 語言切換按鈕 */
         .lang-switch {
             position: absolute;
             top: 30px;
@@ -173,6 +171,13 @@
             display: flex;
             gap: 8px;
         }
+      .profile-navigation {
+          position: absolute;
+          top: 90px;
+          right: 40px;
+          display: flex;
+          gap: 8px;
+      }
         .lang-btn {
             background: #ffffff;
             border: 1px solid #cbd5e1;
@@ -265,49 +270,58 @@
 
     <div id="canvas">
         <div class="container">
-            <!-- 左側選單 -->
-             <nav class="sidebar">
-            <div class="nav-group">
-                <a href="https://www.shawprize.org/zh/about/organisation/the-shaw-prize-foundation" class="nav-item">邵逸夫獎基金會</a>
-                <a href="https://www.shawprize.org/zh/about/organisation/council" class="nav-item">理事會</a>
-                <a href="https://www.shawprize.org/zh/about/organisation/board-of-adjudicators" class="nav-item">評審委員會</a>
-                <a href="https://www.shawprize.org/zh/about/organisation/astronomy" class="nav-item active">遴選委員會</a>
-                
-                <!-- 遴選委員會子類別 -->
-                <div class="sub-menu">
-                    <a href="https://www.shawprize.org/zh/about/organisation/astronomy" class="sub-itemAstron">天文學</a>
-                    <a href="https://www.shawprize.org/zh/about/organisation/computer-science" class="sub-itemComput">計算機科學</a>
-                    <a href="https://www.shawprize.org/zh/about/organisation/life-science-medicine" class="sub-item active">生命科學與醫學</a>
-                    <a href="https://www.shawprize.org/zh/about/organisation/mathematical-sciences" class="sub-itemMaths">數學科學</a>
-                </div>
-            </div>
-        </nav>
+            <nav class="sidebar">
+                <div class="nav-group">
+                    <a href="./index.html" class="nav-item" data-i18n="navFoundation">邵逸夫獎基金會</a>
+                    <a href="./Council.html" class="nav-item" data-i18n="navCouncil">理事會</a>
+                    <a href="./Board%20of%20Adjudicators.html" class="nav-item" data-i18n="navBoardOfAdjudicators">評審委員會</a>
+                    <a href="" class="nav-item active" data-i18n="navSelectionCommittees">遴選委員會</a>
 
-            <!-- 右側焦點內容 -->
+                    <div class="sub-menu">
+                        <a href="../../Astronomy/page/Astronomy.html" class="sub-itemAstron" data-i18n="navAstronomy">天文學</a>
+                        <a href="../../ComputerScience/page/CS.html" class="sub-itemComput" data-i18n="navComputerScience">計算機科學</a>
+                        <a href="../page/LM.html" class="sub-item active" data-i18n="navLifeScienceMedicine">生命科學與醫學</a>
+                        <a href="../../MathematicalSciences/page/MS.html" class="sub-itemMaths" data-i18n="navMathematicalSciences">數學科學</a>
+                    </div>
+                </div>
+            </nav>
+
             <main class="main-content">
-                <!-- 語言切換按鈕 -->
                 <div class="lang-switch">
-                    <button class="lang-btn">ENG</button>
-                    <button class="lang-btn active">繁</button>
-                    <button class="lang-btn">简</button>
-                </div>                
-                
+                    <button type="button" class="lang-btn" data-language="en">ENG</button>
+                    <button type="button" class="lang-btn active" data-language="zh-Hant">繁</button>
+                    <button type="button" class="lang-btn" data-language="cn">简</button>
+                </div>
+                <div class="profile-navigation jsx-caca17b2dbf10bfe flex items-center space-x-2">
+                    <button type="button" onclick="window.location.href='./生命科學與醫學 海倫・霍布斯教授.html'" aria-label="上一個" class="jsx-caca17b2dbf10bfe w-15 h-15 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <svg  width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8">
+                            <path d="M16.0011 24.0436L16.0011 22.2109L31.732 12L32.9102 13.8327L18.5974 23.1273L32.9102 32.4218L31.732 34.2545L16.0011 24.0436Z" fill="#16161C" class="fill-current">
+                            </path>
+                        </svg>
+                    </button>
+                    <button type="button" onclick="window.location.href='./生命科學與醫學 盧煜明教授.html'"  aria-label="下一個" class="jsx-caca17b2dbf10bfe w-15 h-15 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8">
+                            <path d="M34 22.754L34 24.7304L19.1148 35.7422L18 33.7657L31.5432 23.7422L18 13.7187L19.1148 11.7422L34 22.754Z" fill="#16161C" class="fill-current">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
                 <div>
-                    <span class="role-badge">主席</span>
-                    <h1 class="header-title">大衛・朱利雅斯教授</h1>
-                    <div class="profile-subtitle">
+                    <span class="role-badge" data-i18n="role">成員</span>
+                    <h1 class="header-title" data-i18n="name">大衛・朱利雅斯教授</h1>
+                    <div class="profile-subtitle" data-i18n="subtitle">
                         美國<br>
-                加州大學三藩市分校<br>
-                醫學院生理學系主任及教授
+                        加州大學三藩市分校<br>
+                        醫學院生理學系主任及教授
                     </div>
                 </div>
 
                 <!-- 16:9 雙欄展示區域 -->
                 <div class="profile-grid">
                     <div>
-                        <img src="david_julius.jpg" alt="大衛・朱利雅斯教授" class="profile-photo">
+                        <img src="../img/david_julius.jpg" alt="大衛・朱利雅斯教授" class="profile-photo">
                         <div class="terms" style="margin-top: 15px;">
-                            <strong>過往任期：</strong><br>
+                            <strong data-i18n="termsLabel">過往任期：</strong><br>
                             <div style="margin-top: 8px;">                                
                                 <span>2026 年</span>
                                 <span>2025 年</span>                                
@@ -316,16 +330,13 @@
                     </div>
 
                     <div>
-                        <p class="bio-text">
+                        <p class="bio-text" data-i18n="bioOne">
                             大衛・朱利雅斯教授於美國麻省理工學院取得學士學位，當時他與亞歷山大・里奇一起研究轉運核糖核酸的氨基酰化機制。隨後他前往美國加州大學柏克萊分校攻讀研究生學位，師從傑里米・索納和蘭迪・舒卡文，闡明了肽類激素的加工和分泌機制。之後，他轉到美國哥倫比亞大學，師從理查德・阿克塞爾進行博士後研究，識別出編碼血清素受體家族成員的基因。朱利雅斯教授後來加入了美國加州大學舊金山分校，他的研究專注於理解痛覺和感知適應的分子機制。
                         </p>
-                        <p class="bio-text">
+                        <p class="bio-text" data-i18n="bioTwo">
                             朱利雅斯教授是美國國家科學院、美國國家醫學院和美國人文與科學院院士。他獲頒多個獎項，包括邵逸夫生命科學與醫學獎、加拿大蓋爾德納國際獎、生命科學突破獎及諾貝爾生理學或醫學獎。
                         </p>
-                        <p class="bio-text">
-                            他的科學成就包括對被稱為「宇宙暴脹」的早期宇宙進行最嚴格的物理學測試、以創新方法探索宇宙學中的暗物質、暗能量和中微子，以及星系團的天體物理學。
-                        </p>
-                        <p class="bio-text" style="font-size: 0.9em; color: #64748b; margin-top: 20px;">
+                        <p class="bio-text" data-i18n="note" style="font-size: 0.9em; color: #64748b; margin-top: 20px;">
                             (註：所有中文譯本，皆以英文本為準)
                         </p>
                     </div>
@@ -350,6 +361,79 @@
 
         window.addEventListener('resize', resizeCanvas);
         window.addEventListener('DOMContentLoaded', resizeCanvas);
+
+        const translations = {
+            en: {
+                navFoundation: 'The Shaw Prize Foundation',
+                navCouncil: 'Council',
+                navBoardOfAdjudicators: 'Board of Adjudicators',
+                navSelectionCommittees: 'Selection Committees',
+                navAstronomy: 'Astronomy',
+                navComputerScience: 'Computer Science',
+                navLifeScienceMedicine: 'Life Science & Medicine',
+                navMathematicalSciences: 'Mathematical Sciences',
+                title: 'Professor David Julius',
+                role: 'Member',
+                name: 'Professor David Julius',
+                subtitle: 'Chair and Professor<br>Department of Physiology, School of Medicine<br>University of California San Francisco<br>USA',
+                termsLabel: 'Previous terms:',
+                bioOne: 'David Julius received his undergraduate degree from MIT, where he worked with Alexander Rich studying mechanisms of tRNA aminoacylation. He then moved to UC Berkeley for graduate studies with Jeremy Thorner and Randy Schekman, elucidating mechanisms of peptide hormone processing and secretion, followed by postdoctoral studies with Richard Axel at Columbia University, where he identified genes encoding members of the serotonin receptor family. David then joined the faculty at UC San Francisco, where his research is focused on understanding molecular mechanisms of pain and sensory adaptation.',
+                bioTwo: 'David is a member of the US National Academies of Science and Medicine and the American Academy of Arts and Sciences. He has received numerous awards, including the Shaw Prize in Life Science and Medicine, the Canada Gairdner International Award, the Breakthrough Prize in Life Sciences, and the Nobel Prize in Physiology or Medicine.',
+                note: ''
+            },
+            'zh-Hant': {
+                navFoundation: '邵逸夫獎基金會',
+                navCouncil: '理事會',
+                navBoardOfAdjudicators: '評審會',
+                navSelectionCommittees: '遴選委員會',
+                navAstronomy: '天文學',
+                navComputerScience: '電腦科學',
+                navLifeScienceMedicine: '生命科學與醫學',
+                navMathematicalSciences: '數學科學',
+                title: '大衛・朱利雅斯教授',
+                role: '成員',
+                name: '大衛・朱利雅斯教授',
+                subtitle: '美國<br>加州大學三藩市分校<br>醫學院生理學系<br>主任及教授',
+                termsLabel: '過往任期：',
+                bioOne: '大衛・朱利雅斯教授於美國麻省理工學院取得學士學位，當時他與亞歷山大・里奇一起研究轉運核糖核酸的氨基酰化機制。隨後他前往美國加州大學柏克萊分校攻讀研究生學位，師從傑里米・索納和蘭迪・舒卡文，闡明了肽類激素的加工和分泌機制。之後，他轉到美國哥倫比亞大學，師從理查德・阿克塞爾進行博士後研究，識別出編碼血清素受體家族成員的基因。朱利雅斯教授後來加入了美國加州大學舊金山分校，他的研究專注於理解痛覺和感知適應的分子機制。',
+                bioTwo: '朱利雅斯教授是美國國家科學院、美國國家醫學院和美國人文與科學院院士。他獲頒多個獎項，包括邵逸夫生命科學與醫學獎、加拿大蓋爾德納國際獎、生命科學突破獎及諾貝爾生理學或醫學獎。',
+                note: '(註：所有中文譯本，皆以英文本為準)'
+            },
+            cn: {
+                navFoundation: '邵逸夫奖基金会',
+                navCouncil: '理事会',
+                navBoardOfAdjudicators: '评审会',
+                navSelectionCommittees: '遴选委员会',
+                navAstronomy: '天文学',
+                navComputerScience: '计算机科学',
+                navLifeScienceMedicine: '生命科学与医学',
+                navMathematicalSciences: '数学科学',
+                title: '大卫・朱利雅斯教授',
+                role: '成员',
+                name: '大卫・朱利雅斯教授',
+                subtitle: '美国<br>加州大学三藩市分校<br>医学院生理学系<br>主任及教授',
+                termsLabel: '过往任期：',
+                bioOne: '大卫・朱利雅斯教授于美国麻省理工学院取得学士学位，当时他与亚歷山大・里奇一起研究转运核糖核酸的氨基酰化机制。随后他前往美国加州大学柏克莱分校攻读研究生学位，师从杰里米・索纳和兰迪・舒卡文，阐明了肽类激素的加工和分泌机制。之后，他转到美国哥伦比亚大学，师从理查德・阿克塞尔进行博士后研究，识别出编码血清素受体家族成员的基因。朱利雅斯教授后来加入了美国加州大学旧金山分校，他的研究专注于理解痛觉和感知适应的分子机制。',
+                bioTwo: '朱利雅斯教授是美国国家科学院、美国国家医学院和美国人文与科学院院士。他获颁多个奖项，包括邵逸夫生命科学与医学奖、加拿大盖尔德纳国际奖、生命科学突破奖及诺贝尔生理学或医学奖。',
+                note: '(注：所有中文译本，皆以英文本为准)'
+            }
+        };
+
+        document.querySelectorAll('[data-language]').forEach((button) => {
+            button.addEventListener('click', () => {
+                const language = button.dataset.language;
+                const content = translations[language];
+
+                document.documentElement.lang = language;
+                document.title = content.title;
+                document.querySelectorAll('[data-i18n]').forEach((element) => {
+                    element.innerHTML = content[element.dataset.i18n];
+                });
+                document.querySelectorAll('[data-language]').forEach((item) => {
+                    item.classList.toggle('active', item === button);
+                });
+            });
+        });
     </script>
 </body>
 </html>

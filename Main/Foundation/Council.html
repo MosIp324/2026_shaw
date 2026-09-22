@@ -274,12 +274,12 @@
                 <a href="./index.html" class="nav-item" data-i18n="navFoundation">The Shaw Prize Foundation</a>
                 <a href="./Council.html" class="nav-item active" data-i18n="navCouncil">Council</a>
                 <a href="./Board%20of%20Adjudicators.html" class="nav-item" data-i18n="navBoardOfAdjudicators">Board of Adjudicators</a>
-                <a href="https://www.shawprize.org/zh/about/organisation/astronomy" class="nav-item active" data-i18n="navSelectionCommittees">Selection Committees</a>
+                <a href="" class="nav-item active" data-i18n="navSelectionCommittees">Selection Committees</a>
 
                 
                 <!-- 遴選委員會子類別 -->
                 <div class="sub-menu">
-                    <a href="../.././SelectionCommittees/Astronomy/page/Astronomy.html" class="sub-item active" data-i18n="navAstronomy">Astronomy</a>
+                    <a href="../.././SelectionCommittees/Astronomy/page/Astronomy.html" class="sub-item" data-i18n="navAstronomy">Astronomy</a>
                     <a href="https://www.shawprize.org/zh/about/organisation/computer-science" class="sub-itemComput" data-i18n="navComputerScience">Computer Science</a>
                     <a href="https://www.shawprize.org/zh/about/organisation/life-science-medicine" class="sub-itemLife" data-i18n="navLifeScienceMedicine">Life Science & Medicine</a>
                     <a href="https://www.shawprize.org/zh/about/organisation/mathematical-sciences" class="sub-itemMaths" data-i18n="navMathematicalSciences">Mathematical Sciences</a>
@@ -304,7 +304,7 @@
 
               <div class="profile-grid">
                   <div>
-                      <img id="adjudicators-image" src="" alt="理事會" class="profile-photo">
+                      <img id="adjudicators-image" src="./CouncilT.jpg" alt="理事會" class="profile-photo">
                   </div>
               </div>
           </main>
@@ -326,24 +326,57 @@
         }
 
         window.addEventListener('resize', resizeCanvas);
-        window.addEventListener('DOMContentLoaded', resizeCanvas);
+        window.addEventListener('DOMContentLoaded', () => {
+            resizeCanvas();
+            updateLanguage('zh-Hant');
+        });
 
         const translations = {
             en: {
                 title: 'Council',
                 name: 'Council',
-                subtitle: 'The Shaw Prize Council is an administrative body that serves as the cornerstone of effective management and smooth operation of the Prize, assisted by The Shaw Prize Secretariat. As the official representative of the Prize, the Council assumes the responsibility of announcing the recipients of the awards at the annual press conference, and ensures the seamless execution of the Prize’s key events. It also provides procedural guidelines on the selection process of the awardees. In addition to its operational responsibilities, the Council plays a significant role in shaping the strategic development of the Prize, providing guidance to maintain its alignment with its founding principles and vision.'
+                subtitle: 'The Shaw Prize Council is an administrative body that serves as the cornerstone of effective management and smooth operation of the Prize, assisted by The Shaw Prize Secretariat. As the official representative of the Prize, the Council assumes the responsibility of announcing the recipients of the awards at the annual press conference, and ensures the seamless execution of the Prize’s key events. It also provides procedural guidelines on the selection process of the awardees. In addition to its operational responsibilities, the Council plays a significant role in shaping the strategic development of the Prize, providing guidance to maintain its alignment with its founding principles and vision.',
+                navFoundation: 'The Shaw Prize Foundation',
+                navCouncil: 'Council',
+                navBoardOfAdjudicators: 'Board of Adjudicators',
+                navSelectionCommittees: 'Selection Committees',
+                navAstronomy: 'Astronomy',
+                navComputerScience: 'Computer Science',
+                navLifeScienceMedicine: 'Life Science & Medicine',
+                navMathematicalSciences: 'Mathematical Sciences',
             },
             'zh-Hant': {
                 title: '理事會',
                 name: '理事會',
-                subtitle: '邵逸夫獎理事會是獎項運作的核心行政機構，在邵逸夫獎秘書處的協助下，擔負著獎項有效管理與暢順運作的基石職責。作為邵逸夫獎的官方代表，理事會除了每年在新聞發佈會上公佈得獎者名單，並確保獎項的所有重要活動順利進行外，亦會在得獎者的遴選過程中提供規範指引。此外，理事會在引領獎項發展方面扮演著重要角色，提供指導以確保獎項持續遵循其創立原則和願景。'
+                subtitle: '邵逸夫獎理事會是獎項運作的核心行政機構，在邵逸夫獎秘書處的協助下，擔負著獎項有效管理與暢順運作的基石職責。作為邵逸夫獎的官方代表，理事會除了每年在新聞發佈會上公佈得獎者名單，並確保獎項的所有重要活動順利進行外，亦會在得獎者的遴選過程中提供規範指引。此外，理事會在引領獎項發展方面扮演著重要角色，提供指導以確保獎項持續遵循其創立原則和願景。',
+                navFoundation: '邵逸夫獎基金會',
+                navCouncil: '理事會',
+                navBoardOfAdjudicators: '評審會',
+                navSelectionCommittees: '遴選委員會',
+                navAstronomy: '天文學',
+                navComputerScience: '電腦科學',
+                navLifeScienceMedicine: '生命科學與醫學',
+                navMathematicalSciences: '數學科學',
             },
             cn: {
                 title: '理事会',
                 name: '理事会',
-                subtitle: '邵逸夫奖理事会是奖项运作的核心行政机构，在邵逸夫奖秘书处的协助下，担负著奖项有效管理与畅顺运作的基石职责。作为邵逸夫奖的官方代表，理事会除了每年在新闻发布会上公布得奖者名单，并确保奖项的所有重要活动顺利进行外，亦会在得奖者的遴选过程中提供规范指引。此外，理事会在引领奖项发展方面扮演著重要角色，提供指导以确保奖项持续遵循其创立原则和愿景。'
+                subtitle: '邵逸夫奖理事会是奖项运作的核心行政机构，在邵逸夫奖秘书处的协助下，担负著奖项有效管理与畅顺运作的基石职责。作为邵逸夫奖的官方代表，理事会除了每年在新闻发布会上公布得奖者名单，并确保奖项的所有重要活动顺利进行外，亦会在得奖者的遴选过程中提供规范指引。此外，理事会在引领奖项发展方面扮演著重要角色，提供指导以确保奖项持续遵循其创立原则和愿景。',
+                navFoundation: '邵逸夫奖基金会',
+                navCouncil: '理事会',
+                navBoardOfAdjudicators: '评审会',
+                navSelectionCommittees: '遴选委员会',
+                navAstronomy: '天文学',
+                navComputerScience: '计算机科学',
+                navLifeScienceMedicine: '生命科学与医学',
+                navMathematicalSciences: '数学科学',
             }
+        };
+
+        const imageMap = {
+            en: 'Council.jpg',
+            'zh-Hant': 'CouncilT.jpg',
+            cn: 'CouncilS.jpg'
         };
 
         function updateLanguage(language) {

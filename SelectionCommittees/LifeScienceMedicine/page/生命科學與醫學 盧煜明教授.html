@@ -11,7 +11,7 @@
             padding: 0;
         }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, Microsoft YaHei, PingFang SC, NotoSansTC;
             line-height: 1.5;
             color: #333;
             background-color: #0f172a; /* 背景深色襯托 16:9 画框 */
@@ -173,6 +173,13 @@
             display: flex;
             gap: 8px;
         }
+      .profile-navigation {
+          position: absolute;
+          top: 90px;
+          right: 40px;
+          display: flex;
+          gap: 8px;
+      }
         .lang-btn {
             background: #ffffff;
             border: 1px solid #cbd5e1;
@@ -265,65 +272,72 @@
 
     <div id="canvas">
         <div class="container">
-            <!-- 左側選單 -->
-             <nav class="sidebar">
-            <div class="nav-group">
-                <a href="https://www.shawprize.org/zh/about/organisation/the-shaw-prize-foundation" class="nav-item">邵逸夫獎基金會</a>
-                <a href="https://www.shawprize.org/zh/about/organisation/council" class="nav-item">理事會</a>
-                <a href="https://www.shawprize.org/zh/about/organisation/board-of-adjudicators" class="nav-item">評審委員會</a>
-                <a href="https://www.shawprize.org/zh/about/organisation/astronomy" class="nav-item active">遴選委員會</a>
-                
-                <!-- 遴選委員會子類別 -->
-                <div class="sub-menu">
-                    <a href="https://www.shawprize.org/zh/about/organisation/astronomy" class="sub-itemAstron">天文學</a>
-                    <a href="https://www.shawprize.org/zh/about/organisation/computer-science" class="sub-itemComput">計算機科學</a>
-                    <a href="https://www.shawprize.org/zh/about/organisation/life-science-medicine" class="sub-item active">生命科學與醫學</a>
-                    <a href="https://www.shawprize.org/zh/about/organisation/mathematical-sciences" class="sub-itemMaths">數學科學</a>
-                </div>
-            </div>
-        </nav>
+            <nav class="sidebar">
+                <div class="nav-group">
+                    <a href="./index.html" class="nav-item" data-i18n="navFoundation">邵逸夫獎基金會</a>
+                    <a href="./Council.html" class="nav-item" data-i18n="navCouncil">理事會</a>
+                    <a href="./Board%20of%20Adjudicators.html" class="nav-item" data-i18n="navBoardOfAdjudicators">評審委員會</a>
+                    <a href="" class="nav-item active" data-i18n="navSelectionCommittees">遴選委員會</a>
 
-            <!-- 右側焦點內容 -->
+                    <div class="sub-menu">
+                        <a href="../../Astronomy/page/Astronomy.html" class="sub-itemAstron" data-i18n="navAstronomy">天文學</a>
+                        <a href="../../ComputerScience/page/CS.html" class="sub-itemComput" data-i18n="navComputerScience">計算機科學</a>
+                        <a href="../page/LM.html" class="sub-item active" data-i18n="navLifeScienceMedicine">生命科學與醫學</a>
+                        <a href="../../MathematicalSciences/page/MS.html" class="sub-itemMaths" data-i18n="navMathematicalSciences">數學科學</a>
+                    </div>
+                </div>
+            </nav>
+
             <main class="main-content">
-                <!-- 語言切換按鈕 -->
                 <div class="lang-switch">
-                    <button class="lang-btn">ENG</button>
-                    <button class="lang-btn active">繁</button>
-                    <button class="lang-btn">简</button>
-                </div>                
-                
+                    <button type="button" class="lang-btn" data-language="en">ENG</button>
+                    <button type="button" class="lang-btn active" data-language="zh-Hant">繁</button>
+                    <button type="button" class="lang-btn" data-language="cn">简</button>
+                </div>
+                <div class="profile-navigation jsx-caca17b2dbf10bfe flex items-center space-x-2">
+                    <button type="button" onclick="window.location.href='./生命科學與醫學 大衛・朱利雅斯教授.html'" aria-label="上一個" class="jsx-caca17b2dbf10bfe w-15 h-15 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <svg  width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8">
+                            <path d="M16.0011 24.0436L16.0011 22.2109L31.732 12L32.9102 13.8327L18.5974 23.1273L32.9102 32.4218L31.732 34.2545L16.0011 24.0436Z" fill="#16161C" class="fill-current">
+                            </path>
+                        </svg>
+                    </button>
+                    <button type="button" onclick="window.location.href='./生命科學與醫學 黛安・馬西斯教授.html'"  aria-label="下一個" class="jsx-caca17b2dbf10bfe w-15 h-15 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8">
+                            <path d="M34 22.754L34 24.7304L19.1148 35.7422L18 33.7657L31.5432 23.7422L18 13.7187L19.1148 11.7422L34 22.754Z" fill="#16161C" class="fill-current">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
                 <div>
-                    <span class="role-badge">成員</span>
-                    <h1 class="header-title">盧煜明教授</h1>
-                    <div class="profile-subtitle">
+                    <span class="role-badge" data-i18n="role">成員</span>
+                    <h1 class="header-title" data-i18n="name">盧煜明教授</h1>
+                    <div class="profile-subtitle" data-i18n="subtitle">
                         香港中文大學校長<br>
-                        李嘉誠醫學講座教授及<br>  
-                        化學病理學講座教授<br>                      
+                        李嘉誠醫學講座教授及<br>
+                        化學病理學講座教授<br>
                     </div>
                 </div>
 
                 <!-- 16:9 雙欄展示區域 -->
                 <div class="profile-grid">
                     <div>
-                        <img src="Dennis YM Lo.jpg" alt="盧煜明教授" class="profile-photo">
+                        <img src="../img/Dennis%20YM%20Lo.jpg" alt="Dennis" class="profile-photo">
                         <div class="terms" style="margin-top: 15px;">
-                            <strong>過往任期：</strong><br>
+                            <strong data-i18n="termsLabel">過往任期：</strong><br>
                             <div style="margin-top: 8px;">
                                 <span>2027 年</span>                          
                                 <span>2026 年</span>
-                                <span>2025 年</span>
-                                <span>2024 年</span>                               
                             </div>
                         </div>
                     </div>
 
                     <div>
-                        <p class="bio-text">
+                        <p class="bio-text" data-i18n="bioOne">
                             盧煜明教授是香港中文大學第九任校長、李嘉誠醫學講座教授及香港科學院院長。他的研究興趣主要集中在血漿中游離核酸的生物學和診斷應用。特別是他於1997年發現母體血漿中存在胎兒的游離脫氧核糖核酸，從而利用該技術開創了無創產前檢測。這項技術已在全球廣泛採用，並為產前醫學帶來了根本性的轉變。他還在利用循環核酸進行癌症檢測，包括篩查早期鼻咽癌，並取得許多創新成果。
-                        <p class="bio-text">
+                        <p class="bio-text" data-i18n="bioTwo">
                             為表彰其研究成果，盧教授獲選為中國科學院院士、香港科學院創院院士、英國皇家學會院士及美國國家科學院外籍院士。他榮獲多個獎項，包括2014年度費薩爾國王國際醫學獎、2016年度未來科學大獎生命科學獎、2019年度復旦–中植科學獎、2021年度科學突破獎—生命科學獎、2021年度英國皇家獎章、2021年度歐洲人類遺傳學學會(ESHG)孟德爾獎、2022年度國際產前診斷學會(ISPD)先鋒獎、2022年度拉斯克獎—臨床醫學研究、2023年度首屆騰衝科學大獎、2024年度希門尼斯‧迪亞斯講座獎、2025年度Richard B. Johnston, Jr.醫學博士獎⸺發育生物學及2026年度美國癌症研究協會歐文·溫斯坦基金會傑出講座獎。
                         </p>                         
-                        <p class="bio-text" style="font-size: 0.9em; color: #64748b; margin-top: 20px;">
+                        <p class="bio-text" data-i18n="note" style="font-size: 0.9em; color: #64748b; margin-top: 20px;">
                             (註：所有中文譯本，皆以英文本為準)
                         </p>
                     </div>
@@ -348,6 +362,79 @@
 
         window.addEventListener('resize', resizeCanvas);
         window.addEventListener('DOMContentLoaded', resizeCanvas);
+
+        const translations = {
+            en: {
+                navFoundation: 'The Shaw Prize Foundation',
+                navCouncil: 'Council',
+                navBoardOfAdjudicators: 'Board of Adjudicators',
+                navSelectionCommittees: 'Selection Committees',
+                navAstronomy: 'Astronomy',
+                navComputerScience: 'Computer Science',
+                navLifeScienceMedicine: 'Life Science & Medicine',
+                navMathematicalSciences: 'Mathematical Sciences',
+                title: 'Professor Dennis YM Lo',
+                role: 'Member',
+                name: 'Professor Dennis YM Lo',
+                subtitle: 'Vice-Chancellor and President<br>Li Ka Shing Professor of Medicine and<br>Professor of Chemical Pathology<br>The Chinese University of Hong Kong',
+                termsLabel: 'Previous terms:',
+                bioOne: 'Professor Dennis Lo is the ninth Vice-Chancellor and President and the Li Ka Shing Professor of Medicine of The Chinese University of Hong Kong (CUHK). He is also the President of the Hong Kong Academy of Sciences. His research interests focus on the biology and diagnostic applications of cell-free nucleic acids in plasma. In particular, he discovered the presence of cell-free fetal DNA in maternal plasma in 1997 and has since then been pioneering non-invasive prenatal diagnosis using this technology. This technology has been adopted globally and has created a paradigm shift in prenatal medicine. He has also made many innovations using circulating nucleic acids for cancer detection, including the screening of early stage nasopharyngeal cancer.',
+                bioTwo: 'In recognition of his research, Professor Lo has been elected as Member of the Chinese Academy of Sciences (CAS), Founding Member of the Hong Kong Academy of Sciences, Fellow of the Royal Society, Foreign Associate of the US National Academy of Sciences and Foreign member of the Academia Europaea. Professor Lo has won numerous awards, including the 2014 King Faisal International Prize in Medicine, the 2016 Future Science Prize in Life Science, the 2019 Fudan-Zhongzhi Science Award, the 2021 Breakthrough Prize in Life Sciences, the 2021 Royal Medal, the 2021 ESHG Mendel Award, the 2022 ISPD Pioneer Award, the 2022 Lasker~DeBakey Clinical Medical Research Award, the 2023 inaugural Tengchong Science Prize, the 2024 Jiménez Díaz Lecture Award, the 2025 Richard B. Johnston, Jr., MD Prize in Developmental Biology by March of Dimes and the 2026 AACR-Irving Weinstein Foundation Distinguished Lectureship.',
+                note: ''
+            },
+            'zh-Hant': {
+                navFoundation: '邵逸夫獎基金會',
+                navCouncil: '理事會',
+                navBoardOfAdjudicators: '評審會',
+                navSelectionCommittees: '遴選委員會',
+                navAstronomy: '天文學',
+                navComputerScience: '電腦科學',
+                navLifeScienceMedicine: '生命科學與醫學',
+                navMathematicalSciences: '數學科學',
+                title: '黛安・馬西斯教授',
+                role: '成員',
+                name: '黛安・馬西斯教授',
+                subtitle: '美國<br>哈佛醫學院<br>醫學院免疫學教授暨<br>莫頓・格羅夫-拉斯穆森免疫學講座教授',
+                termsLabel: '過往任期：',
+                bioOne: '馬西斯博士是美國哈佛醫學院免疫學教授暨莫頓・格羅夫-拉斯穆森免疫學講座教授。她也是哈佛幹細胞研究所核心成員和美國博德研究所協作成員。她現時擔任多個機構的顧問委員會成員，包括美國霍華德休斯醫學研究所、基因泰克、輝瑞、安進、比利時楊森、賽拉製藥和高盛生命科學組等。她是美國國家科學院、德國國家科學院和美國人文與科學院院士。馬西斯博士曾獲頒美國實驗生物學會聯合會(FASEB) 科學卓越獎、國際免疫學會聯合會首屆梅納里尼傑出女性免疫學家獎、癌症研究中心威廉・科利基礎免疫學傑出研究獎和威廉·保羅免疫學與細胞生物學卓越獎，以及被美國免疫學家協會授予傑出會士稱號。她的實驗室專注於T細胞分化、免疫耐受、自身免疫和炎症方面的研究。她已培養接近200名研究生和博士後研究員。',
+                bioTwo: '',
+                note: '(註：所有中文譯本，皆以英文本為準)'
+            },
+            cn: {
+                navFoundation: '邵逸夫奖基金会',
+                navCouncil: '理事会',
+                navBoardOfAdjudicators: '评审会',
+                navSelectionCommittees: '遴选委员会',
+                navAstronomy: '天文学',
+                navComputerScience: '计算机科学',
+                navLifeScienceMedicine: '生命科学与医学',
+                navMathematicalSciences: '数学科学',
+                title: '黛安・马西斯教授',
+                role: '成员',
+                name: '黛安・马西斯教授',
+                subtitle: '美国<br>哈佛医学院<br>医学院免疫学教授暨<br>莫顿・格罗夫-拉斯穆森免疫学讲座教授',
+                termsLabel: '过往任期：',
+                bioOne: '马西斯博士是美国哈佛医学院免疫学教授暨莫顿・格罗夫-拉斯穆森免疫学讲座教授。她也是哈佛干细胞研究所核心成员和美国博德研究所协作成员。她现时担任多个机构的顾问委员会成员，包括美国霍华德休斯医学研究所、基因泰克、辉瑞、安进、比利时杨森、赛拉制药和高盛生命科学组等。她是美国国家科学院、德国国家科学院和美国人文与科学院院士。马西斯博士曾获颁美国实验生物学会联合会(FASEB) 科学卓越奖、国际免疫学会联合会首届梅纳里尼杰出女性免疫学家奖、癌症研究中心威廉・科利基础免疫学杰出研究奖和威廉·保罗免疫学与细胞生物学卓越奖，以及被美国免疫学家协会授予杰出会士称号。她的实验室专注于T细胞分化、免疫耐受、自身免疫和炎症方面的研究。她已培养接近200名研究生和博士后研究员。',
+                bioTwo: '',
+                note: '(注：所有中文译本，皆以英文本为准)'
+            }
+        };
+
+        document.querySelectorAll('[data-language]').forEach((button) => {
+            button.addEventListener('click', () => {
+                const language = button.dataset.language;
+                const content = translations[language];
+
+                document.documentElement.lang = language;
+                document.title = content.title;
+                document.querySelectorAll('[data-i18n]').forEach((element) => {
+                    element.innerHTML = content[element.dataset.i18n];
+                });
+                document.querySelectorAll('[data-language]').forEach((item) => {
+                    item.classList.toggle('active', item === button);
+                });
+            });
+        });
     </script>
 </body>
 </html>

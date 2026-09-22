@@ -274,7 +274,7 @@
                 <a href="./index.html" class="nav-item" data-i18n="navFoundation">The Shaw Prize Foundation</a>
                 <a href="./Council.html" class="nav-item" data-i18n="navCouncil">Council</a>
                 <a href="./Board%20of%20Adjudicators.html" class="nav-item active" data-i18n="navBoardOfAdjudicators">Board of Adjudicators</a>
-                <a href="https://www.shawprize.org/zh/about/organisation/astronomy" class="nav-item active" data-i18n="navSelectionCommittees">Selection Committees</a>
+                <a href="" class="nav-item active" data-i18n="navSelectionCommittees">Selection Committees</a>
 
                 <div class="sub-menu">
                     <a href="../Selection Committees/Astronomy/page/小松 英一郎教6.html" class="sub-itemAstron" data-i18n="navAstronomy">Astronomy</a>
@@ -325,30 +325,57 @@
         }
 
         window.addEventListener('resize', resizeCanvas);
-        window.addEventListener('DOMContentLoaded', resizeCanvas);
+        window.addEventListener('DOMContentLoaded', () => {
+            resizeCanvas();
+            updateLanguage('zh-Hant');
+        });
 
         const translations = {
             en: {
                 title: 'Board of Adjudicators',
                 name: 'Board of Adjudicators',
-                subtitle: 'The Board of Adjudicators oversees The Shaw Prize awardee selection process. It reviews and approves the awardees recommendations proposed by the Selection Committees, and forwards the final list to the Council for confirmation. The Board is also responsible for establishing and guiding the Selection Committees, ensuring their effective operation. Additionally, it formulates the regulations that govern the nomination and adjudication process. The Board operates independently from the Council.'
+                subtitle: 'The Board of Adjudicators oversees The Shaw Prize awardee selection process. It reviews and approves the awardees recommendations proposed by the Selection Committees, and forwards the final list to the Council for confirmation. The Board is also responsible for establishing and guiding the Selection Committees, ensuring their effective operation. Additionally, it formulates the regulations that govern the nomination and adjudication process. The Board operates independently from the Council.',
+                navFoundation: 'The Shaw Prize Foundation',
+                navCouncil: 'Council',
+                navBoardOfAdjudicators: 'Board of Adjudicators',
+                navSelectionCommittees: 'Selection Committees',
+                navAstronomy: 'Astronomy',
+                navComputerScience: 'Computer Science',
+                navLifeScienceMedicine: 'Life Science & Medicine',
+                navMathematicalSciences: 'Mathematical Sciences'
             },
             'zh-Hant': {
                 title: '評審委員會',
                 name: '評審委員會',
-                subtitle: '評審委員會負責監督邵逸夫獎得獎者的遴選過程，職責包括審議並通過各遴選委員會推薦的獲獎人選，並將最終名單呈報理事會核准確認；組建遴選委員會並提供專業指導，確保遴選工作有效運行；同時制定提名與評審相關規章制度。評審會的運作獨立於理事會。'
+                subtitle: '評審委員會負責監督邵逸夫獎得獎者的遴選過程，職責包括審議並通過各遴選委員會推薦的獲獎人選，並將最終名單呈報理事會核准確認；組建遴選委員會並提供專業指導，確保遴選工作有效運行；同時制定提名與評審相關規章制度。評審會的運作獨立於理事會。',
+                navFoundation: '邵逸夫獎基金會',
+                navCouncil: '理事會',
+                navBoardOfAdjudicators: '評審會',
+                navSelectionCommittees: '遴選委員會',
+                navAstronomy: '天文學',
+                navComputerScience: '電腦科學',
+                navLifeScienceMedicine: '生命科學與醫學',
+                navMathematicalSciences: '數學科學'
             },
             cn: {
                 title: '评审委员会',
                 name: '评审委员会',
-                subtitle: '评审委员会负责监督邵逸夫奖得奖者的遴选过程，职责包括审议并通过各遴选委员会推荐的获奖人选，并将最终名单呈报理事会核准确认；组建遴选委员会并提供专业指导，确保遴选工作有效运行；同时制定提名与评审相关规章制度。评审会的运作独立于理事会。'
+                subtitle: '评审委员会负责监督邵逸夫奖得奖者的遴选过程，职责包括审议并通过各遴选委员会推荐的获奖人选，并将最终名单呈报理事会核准确认；组建遴选委员会并提供专业指导，确保遴选工作有效运行；同时制定提名与评审相关规章制度。评审会的运作独立于理事会。',
+                navFoundation: '邵逸夫奖基金会',
+                navCouncil: '理事会',
+                navBoardOfAdjudicators: '评审会',
+                navSelectionCommittees: '遴选委员会',
+                navAstronomy: '天文学',
+                navComputerScience: '计算机科学',
+                navLifeScienceMedicine: '生命科学与医学',
+                navMathematicalSciences: '数学科学'
             }
         };
 
         const imageMap = {
             en: 'Board of Adjudicators.jpg',
             'zh-Hant': 'Board of Adjudicators T.jpg',
-            cn: 'Board of Adjudicators T.jpg'
+            cn: 'Board of Adjudicators S.jpg'
         };
 
         function updateLanguage(language) {
