@@ -11,7 +11,7 @@
             padding: 0;
         }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, Microsoft YaHei, PingFang SC, NotoSansTC;
             line-height: 1.5;
             color: #333;
             background-color: #0f172a; /* 背景深色襯托 16:9 画框 */
@@ -173,6 +173,13 @@
             display: flex;
             gap: 8px;
         }
+      .profile-navigation {
+          position: absolute;
+          top: 90px;
+          right: 40px;
+          display: flex;
+          gap: 8px;
+      }
         .lang-btn {
             background: #ffffff;
             border: 1px solid #cbd5e1;
@@ -263,39 +270,48 @@
 </head>
 <body>
 
-    <div id="canvas">
-        <div class="container">
-            <!-- 左側選單 -->
-             <nav class="sidebar">
+<div id="canvas">
+    <div class="container">
+        <nav class="sidebar">
             <div class="nav-group">
-                <a href="https://www.shawprize.org/zh/about/organisation/the-shaw-prize-foundation" class="nav-item">邵逸夫獎基金會</a>
-                <a href="https://www.shawprize.org/zh/about/organisation/council" class="nav-item">理事會</a>
-                <a href="https://www.shawprize.org/zh/about/organisation/board-of-adjudicators" class="nav-item">評審委員會</a>
-                <a href="https://www.shawprize.org/zh/about/organisation/astronomy" class="nav-item active">遴選委員會</a>
-                
-                <!-- 遴選委員會子類別 -->
+                <a href="./index.html" class="nav-item" data-i18n="navFoundation">邵逸夫獎基金會</a>
+                <a href="./Council.html" class="nav-item" data-i18n="navCouncil">理事會</a>
+                <a href="./Board%20of%20Adjudicators.html" class="nav-item" data-i18n="navBoardOfAdjudicators">評審委員會</a>
+                <a href="" class="nav-item active" data-i18n="navSelectionCommittees">遴選委員會</a>
+
                 <div class="sub-menu">
-                    <a href="https://www.shawprize.org/zh/about/organisation/astronomy" class="sub-itemAstron">天文學</a>
-                    <a href="https://www.shawprize.org/zh/about/organisation/computer-science" class="sub-itemComput">計算機科學</a>
-                    <a href="https://www.shawprize.org/zh/about/organisation/life-science-medicine" class="sub-item active">生命科學與醫學</a>
-                    <a href="https://www.shawprize.org/zh/about/organisation/mathematical-sciences" class="sub-itemMaths">數學科學</a>
+                    <a href="../../Astronomy/page/Astronomy.html" class="sub-itemAstron" data-i18n="navAstronomy">天文學</a>
+                    <a href="../../ComputerScience/page/CS.html" class="sub-itemComput" data-i18n="navComputerScience">計算機科學</a>
+                    <a href="../page/LM.html" class="sub-item active" data-i18n="navLifeScienceMedicine">生命科學與醫學</a>
+                    <a href="../../MathematicalSciences/page/MS.html" class="sub-itemMaths" data-i18n="navMathematicalSciences">數學科學</a>
                 </div>
             </div>
         </nav>
 
-            <!-- 右側焦點內容 -->
-            <main class="main-content">
-                <!-- 語言切換按鈕 -->
-                <div class="lang-switch">
-                    <button class="lang-btn">ENG</button>
-                    <button class="lang-btn active">繁</button>
-                    <button class="lang-btn">简</button>
-                </div>                
-                
+        <main class="main-content">
+            <div class="lang-switch">
+                <button type="button" class="lang-btn" data-language="en">ENG</button>
+                <button type="button" class="lang-btn active" data-language="zh-Hant">繁</button>
+                <button type="button" class="lang-btn" data-language="cn">简</button>
+            </div>
+            <div class="profile-navigation jsx-caca17b2dbf10bfe flex items-center space-x-2">
+                <button type="button" onclick="window.location.href='./生命科學與醫學 大衛・朱利雅斯教授.html'" aria-label="上一個" class="jsx-caca17b2dbf10bfe w-15 h-15 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+                    <svg  width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8">
+                        <path d="M16.0011 24.0436L16.0011 22.2109L31.732 12L32.9102 13.8327L18.5974 23.1273L32.9102 32.4218L31.732 34.2545L16.0011 24.0436Z" fill="#16161C" class="fill-current">
+                        </path>
+                    </svg>
+                </button>
+                <button type="button" onclick="window.location.href='./生命科學與醫學 邁克爾・豪瑟教授.html'"  aria-label="下一個" class="jsx-caca17b2dbf10bfe w-15 h-15 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+                    <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8">
+                        <path d="M34 22.754L34 24.7304L19.1148 35.7422L18 33.7657L31.5432 23.7422L18 13.7187L19.1148 11.7422L34 22.754Z" fill="#16161C" class="fill-current">
+                        </path>
+                    </svg>
+                </button>
+            </div>
                 <div>
-                    <span class="role-badge">成員</span>
-                    <h1 class="header-title">邁克爾・霍爾教授</h1>
-                    <div class="profile-subtitle">
+                    <span class="role-badge" data-i18n="role">成員</span>
+                    <h1 class="header-title" data-i18n="name">邁克爾・霍爾教授</h1>
+                    <div class="profile-subtitle" data-i18n="subtitle">
                         瑞士巴塞爾大學<br>
                         生物中心教授暨<br>
                         巴塞爾霍夫曼－拉羅氏人類生物學研究所<br>
@@ -306,25 +322,26 @@
                 <!-- 16:9 雙欄展示區域 -->
                 <div class="profile-grid">
                     <div>
-                        <img src="Michael N Hall.jpg" alt="邁克爾・霍爾教授" class="profile-photo">
+                        <img src="../img/Michael%20N%20Hall.jpg" alt="Hall" class="profile-photo">
                         <div class="terms" style="margin-top: 15px;">
-                            <strong>過往任期：</strong><br>
+                            <strong data-i18n="termsLabel">過往任期：</strong><br>
                             <div style="margin-top: 8px;">
                                 <span>2027 年</span>                                
                                 <span>2026 年</span>
                                 <span>2025 年</span>
                                 <span>2024 年</span>                                
                                 <span>2023 年</span>
-                                <span>2022 年</span>                                
+                                <span>2022 年</span>
+                                <span>2021 年</span>
                             </div>
                         </div>
                     </div>
 
                     <div>
-                        <p class="bio-text">
+                        <p class="bio-text" data-i18n="bioOne">
                             邁克爾・霍爾教授於美國哈佛大學取得博士學位，其後於法國巴斯德研究所和美國加州大學舊金山分校任職博士後研究員。他水於1987年加入瑞士巴塞爾大學Biozentrum，現為該校教授和前生物化學系系主任。 他於2023年起擔任巴塞爾霍夫曼－拉羅氏人類生物學研究所傑出科學家。霍爾教授是研究mTOR信號傳導和控制細胞生長的先驅。他和他的團隊於1991年發現mTOR(雷帕黴素的標靶)和闡明mTOR是控制細胞生長和代謝的主要角色。mTOR的發現令到科學家們對細胞生長的看法產生了重大變化。這不是只有結構單元(營養) 可供使用時才會發生的自發過程，而是一個經過高度調節和依賴mTOR信號作為傳導途徑所控制的塑造過程。作為細胞生長和代謝的主要控制者，mTOR在發育、老化和疾病中擔當著關鍵的角色。霍爾教授是美國國家科學院院士，並曾獲得許多獎項，當中包括2014年生命科學突破獎、2015年加拿大蓋爾德納獎、2017年阿爾伯特・拉斯克基礎醫學研究獎及其對生物衰老機制的研究而榮獲2024年巴爾贊獎。
                         </p>                        
-                        <p class="bio-text" style="font-size: 0.9em; color: #64748b; margin-top: 20px;">
+                        <p class="bio-text"  data-i18n="note" style="font-size: 0.9em; color: #64748b; margin-top: 20px;">
                             (註：所有中文譯本，皆以英文本為準)
                         </p>
                     </div>
@@ -349,6 +366,79 @@
 
         window.addEventListener('resize', resizeCanvas);
         window.addEventListener('DOMContentLoaded', resizeCanvas);
+
+        const translations = {
+            en: {
+                navFoundation: 'The Shaw Prize Foundation',
+                navCouncil: 'Council',
+                navBoardOfAdjudicators: 'Board of Adjudicators',
+                navSelectionCommittees: 'Selection Committees',
+                navAstronomy: 'Astronomy',
+                navComputerScience: 'Computer Science',
+                navLifeScienceMedicine: 'Life Science & Medicine',
+                navMathematicalSciences: 'Mathematical Sciences',
+                title: 'Professor Michael N Hall',
+                role: 'Member',
+                name: 'Professor Michael N Hall',
+                subtitle: 'Professor<br>Biozentrum, University of Basel and<br>Distinguished Scientist<br>Institute of Human Biology,<br>Hoffmann-La Roche, Basel<br>Switzerland',
+                termsLabel: 'Previous terms:',
+                bioOne: 'Professor Michael N. Hall received his PhD from Harvard University and was a postdoctoral fellow at the Pasteur Institute (France) and the University of California, San Francisco. He joined the Biozentrum of the University of Basel, Switzerland in 1987 where he is currently Professor and former Chair of Biochemistry. Since 2023, he is also a Distinguished Scientist at the Institute of Human Biology, Hoffmann-La Roche in Basel. Professor Hall is a pioneer in the fields of mTOR signaling and cell growth control. In 1991, Professor Hall and colleagues discovered mTOR (mechanistic Target of Rapamychin) and subsequently elucidated its role as a central controller of cell growth and metabolism. The discovery of mTOR led to a fundamental change in how one thinks of cell growth. It is not a spontaneous process that just happens when building blocks (nutrients) are available, but rather a highly regulated, plastic process controlled by TOR-dependent signaling pathways. As a central controller of cell growth and metabolism, mTOR plays a key role in development, aging, and disease. Professor Hall is a Member of the US National Academy of Sciences and has received numerous awards, including the Breakthrough Prize in Life Sciences (2014), the Canada Gairdner Award for Biomedical Research (2015), the Albert Lasker Award for Basic Medical Research (2017) and the Balzan Prize for Biological Mechanisms of Aging (2024).',
+                bioTwo: '',
+                note: ''
+            },
+            'zh-Hant': {
+                navFoundation: '邵逸夫獎基金會',
+                navCouncil: '理事會',
+                navBoardOfAdjudicators: '評審會',
+                navSelectionCommittees: '遴選委員會',
+                navAstronomy: '天文學',
+                navComputerScience: '電腦科學',
+                navLifeScienceMedicine: '生命科學與醫學',
+                navMathematicalSciences: '數學科學',
+                title: '邁克爾・霍爾教授',
+                role: '成員',
+                name: '邁克爾・霍爾教授',
+                subtitle: '瑞士巴塞爾大學<br>生物中心教授暨<br>巴塞爾霍夫曼－拉羅氏人類生物學研究所<br>傑出科學家',
+                termsLabel: '過往任期：',
+                bioOne: '邁克爾・霍爾教授於美國哈佛大學取得博士學位，其後於法國巴斯德研究所和美國加州大學舊金山分校任職博士後研究員。他水於1987年加入瑞士巴塞爾大學Biozentrum，現為該校教授和前生物化學系系主任。 他於2023年起擔任巴塞爾霍夫曼－拉羅氏人類生物學研究所傑出科學家。霍爾教授是研究mTOR信號傳導和控制細胞生長的先驅。他和他的團隊於1991年發現mTOR(雷帕黴素的標靶)和闡明mTOR是控制細胞生長和代謝的主要角色。mTOR的發現令到科學家們對細胞生長的看法產生了重大變化。這不是只有結構單元(營養) 可供使用時才會發生的自發過程，而是一個經過高度調節和依賴mTOR信號作為傳導途徑所控制的塑造過程。作為細胞生長和代謝的主要控制者，mTOR在發育、老化和疾病中擔當著關鍵的角色。霍爾教授是美國國家科學院院士，並曾獲得許多獎項，當中包括2014年生命科學突破獎、2015年加拿大蓋爾德納獎、2017年阿爾伯特・拉斯克基礎醫學研究獎及其對生物衰老機制的研究而榮獲2024年巴爾贊獎。',
+                bioTwo: '',
+                note: '(註：所有中文譯本，皆以英文本為準)'
+            },
+            cn: {
+                navFoundation: '邵逸夫奖基金会',
+                navCouncil: '理事会',
+                navBoardOfAdjudicators: '评审会',
+                navSelectionCommittees: '遴选委员会',
+                navAstronomy: '天文学',
+                navComputerScience: '计算机科学',
+                navLifeScienceMedicine: '生命科学与医学',
+                navMathematicalSciences: '数学科学',
+                title: '迈克尔・霍尔教授',
+                role: '成员',
+                name: '迈克尔・霍尔教授',
+                subtitle: '瑞士巴塞尔大学<br>生物中心教授暨<br>巴塞尔霍夫曼－拉罗氏人类生物学研究所<br>杰出科学家',
+                termsLabel: '过往任期：',
+                bioOne: '迈克尔・霍尔教授于美国哈佛大学取得博士学位，其后于法国巴斯德研究所和美国加州大学旧金山分校任职博士后研究员。他水于1987年加入瑞士巴塞尔大学Biozentrum，现为该校教授和前生物化学系系主任。 他于2023年起担任巴塞尔霍夫曼－拉罗氏人类生物学研究所杰出科学家。霍尔教授是研究mTOR信号传导和控制细胞生长的先驱。他和他的团队于1991年发现mTOR(雷帕霉素的标靶)和阐明mTOR是控制细胞生长和代谢的主要角色。mTOR的发现令到科学家们对细胞生长的看法产生了重大变化。这不是只有结构单元(营养) 可供使用时才会发生的自发过程，而是一个经过高度调节和依赖mTOR信号作为传导途径所控制的塑造过程。作为细胞生长和代谢的主要控制者，mTOR在发育、老化和疾病中担当着关键的角色。霍尔教授是美国国家科学院院士，并曾获得许多奖项，当中包括2014年生命科学突破奖、2015年加拿大盖尔德纳奖、2017年阿尔伯特・拉斯克基础医学研究奖及其对生物衰老机制的研究而荣获2024年巴尔赞奖。',
+                bioTwo: '',
+                note: '(注：所有中文译本，皆以英文本为准)'
+            }
+        };
+
+        document.querySelectorAll('[data-language]').forEach((button) => {
+            button.addEventListener('click', () => {
+                const language = button.dataset.language;
+                const content = translations[language];
+
+                document.documentElement.lang = language;
+                document.title = content.title;
+                document.querySelectorAll('[data-i18n]').forEach((element) => {
+                    element.innerHTML = content[element.dataset.i18n];
+                });
+                document.querySelectorAll('[data-language]').forEach((item) => {
+                    item.classList.toggle('active', item === button);
+                });
+            });
+        });
     </script>
 </body>
 </html>
