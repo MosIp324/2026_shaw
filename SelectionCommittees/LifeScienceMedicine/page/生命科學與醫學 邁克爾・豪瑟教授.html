@@ -11,7 +11,7 @@
             padding: 0;
         }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, Microsoft YaHei, PingFang SC, NotoSansTC;
             line-height: 1.5;
             color: #333;
             background-color: #0f172a; /* 背景深色襯托 16:9 画框 */
@@ -173,6 +173,13 @@
             display: flex;
             gap: 8px;
         }
+      .profile-navigation {
+          position: absolute;
+          top: 90px;
+          right: 40px;
+          display: flex;
+          gap: 8px;
+      }
         .lang-btn {
             background: #ffffff;
             border: 1px solid #cbd5e1;
@@ -265,63 +272,71 @@
 
     <div id="canvas">
         <div class="container">
-            <!-- 左側選單 -->
-             <nav class="sidebar">
-            <div class="nav-group">
-                <a href="https://www.shawprize.org/zh/about/organisation/the-shaw-prize-foundation" class="nav-item">邵逸夫獎基金會</a>
-                <a href="https://www.shawprize.org/zh/about/organisation/council" class="nav-item">理事會</a>
-                <a href="https://www.shawprize.org/zh/about/organisation/board-of-adjudicators" class="nav-item">評審委員會</a>
-                <a href="https://www.shawprize.org/zh/about/organisation/astronomy" class="nav-item active">遴選委員會</a>
-                
-                <!-- 遴選委員會子類別 -->
-                <div class="sub-menu">
-                    <a href="https://www.shawprize.org/zh/about/organisation/astronomy" class="sub-itemAstron">天文學</a>
-                    <a href="https://www.shawprize.org/zh/about/organisation/computer-science" class="sub-itemComput">計算機科學</a>
-                    <a href="https://www.shawprize.org/zh/about/organisation/life-science-medicine" class="sub-item active">生命科學與醫學</a>
-                    <a href="https://www.shawprize.org/zh/about/organisation/mathematical-sciences" class="sub-itemMaths">數學科學</a>
-                </div>
-            </div>
-        </nav>
+            <nav class="sidebar">
+                <div class="nav-group">
+                    <a href="./index.html" class="nav-item" data-i18n="navFoundation">邵逸夫獎基金會</a>
+                    <a href="./Council.html" class="nav-item" data-i18n="navCouncil">理事會</a>
+                    <a href="./Board%20of%20Adjudicators.html" class="nav-item" data-i18n="navBoardOfAdjudicators">評審委員會</a>
+                    <a href="" class="nav-item active" data-i18n="navSelectionCommittees">遴選委員會</a>
 
-            <!-- 右側焦點內容 -->
+                    <div class="sub-menu">
+                        <a href="../../Astronomy/page/Astronomy.html" class="sub-itemAstron" data-i18n="navAstronomy">天文學</a>
+                        <a href="../../ComputerScience/page/CS.html" class="sub-itemComput" data-i18n="navComputerScience">計算機科學</a>
+                        <a href="../page/LM.html" class="sub-item active" data-i18n="navLifeScienceMedicine">生命科學與醫學</a>
+                        <a href="../../MathematicalSciences/page/MS.html" class="sub-itemMaths" data-i18n="navMathematicalSciences">數學科學</a>
+                    </div>
+                </div>
+            </nav>
+
             <main class="main-content">
-                <!-- 語言切換按鈕 -->
                 <div class="lang-switch">
-                    <button class="lang-btn">ENG</button>
-                    <button class="lang-btn active">繁</button>
-                    <button class="lang-btn">简</button>
-                </div>                
+                    <button type="button" class="lang-btn" data-language="en">ENG</button>
+                    <button type="button" class="lang-btn active" data-language="zh-Hant">繁</button>
+                    <button type="button" class="lang-btn" data-language="cn">简</button>
+                </div>
+                <div class="profile-navigation jsx-caca17b2dbf10bfe flex items-center space-x-2">
+                    <button type="button" onclick="window.location.href='./生命科學與醫學 邁克爾・霍爾教授.html'" aria-label="上一個" class="jsx-caca17b2dbf10bfe w-15 h-15 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <svg  width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8">
+                            <path d="M16.0011 24.0436L16.0011 22.2109L31.732 12L32.9102 13.8327L18.5974 23.1273L32.9102 32.4218L31.732 34.2545L16.0011 24.0436Z" fill="#16161C" class="fill-current">
+                            </path>
+                        </svg>
+                    </button>
+                    <button type="button" onclick="window.location.href='./生命科學與醫學 海倫・霍布斯教授.html'"  aria-label="下一個" class="jsx-caca17b2dbf10bfe w-15 h-15 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8">
+                            <path d="M34 22.754L34 24.7304L19.1148 35.7422L18 33.7657L31.5432 23.7422L18 13.7187L19.1148 11.7422L34 22.754Z" fill="#16161C" class="fill-current">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
                 
                 <div>
-                    <span class="role-badge">成員</span>
-                    <h1 class="header-title">邁克爾・豪瑟教授</h1>
-                    <div class="profile-subtitle">
+                    <span class="role-badge" data-i18n="role">成員</span>
+                    <h1 class="header-title" data-i18n="name">邁克爾・豪瑟教授</h1>
+                    <div class="profile-subtitle" data-i18n="subtitle">
                         香港大學李嘉誠醫學院生物醫學學院長暨<br>
                         神經科學講座教授<br>                        
                     </div>
                 </div>
 
-                <!-- 16:9 雙欄展示區域 -->
                 <div class="profile-grid">
                     <div>
-                        <img src="Michael Hausser.jpg" alt="邁克爾・豪瑟教授" class="profile-photo">
+                        <img src="../img/Michael%20Hausser.jpg" alt="Hausser" class="profile-photo">
                         <div class="terms" style="margin-top: 15px;">
-                            <strong>過往任期：</strong><br>
+                            <strong data-i18n="termsLabel">過往任期：</strong><br>
                             <div style="margin-top: 8px;">
-                                <span>2027 年</span>                          
-                                                               
+                                <span>2027 年</span>
                             </div>
                         </div>
                     </div>
 
                     <div>
-                        <p class="bio-text">
+                        <p class="bio-text" data-i18n="bioOne">
                             邁克爾·豪瑟教授師從朱利安·傑克，於英國牛津大學取得博士學位。他隨後在德國海德堡馬克斯·普朗克醫學研究所與諾貝爾獎得主伯特·薩克曼開展合作研究，並在法國巴黎高等師範學院與菲利普·阿舍爾共事。1997年於英國倫敦大學學院組成了獨立研究團隊，並於2001年成為神經科學教授。最近，他加入了香港大學擔任神經科學講座教授。豪瑟教授是國際腦科學實驗室共同創辦人之一，該實驗室是一項全球性開放科學合作計劃，旨在探究大腦如何做出決策。他的團隊結合成像技術和電生理學方法，以瞭解哺乳動物大腦中神經運算的細胞和迴路基礎，並重點關注樹突計算。
                         </p>
-                        <p class="bio-text">
+                        <p class="bio-text" data-i18n="bioTwo">
                             豪瑟教授是英國皇家學會和英國醫學科學院院士，也是歐洲分子生物學組織、歐洲科學院和德國國家科學院利奧波第那科學院成員。他於2020年榮獲費爾德堡獎。
                         </p>                         
-                        <p class="bio-text" style="font-size: 0.9em; color: #64748b; margin-top: 20px;">
+                        <p class="bio-text" data-i18n="note" style="font-size: 0.9em; color: #64748b; margin-top: 20px;">
                             (註：所有中文譯本，皆以英文本為準)
                         </p>
                     </div>
@@ -346,6 +361,79 @@
 
         window.addEventListener('resize', resizeCanvas);
         window.addEventListener('DOMContentLoaded', resizeCanvas);
+
+        const translations = {
+            en: {
+                navFoundation: 'The Shaw Prize Foundation',
+                navCouncil: 'Council',
+                navBoardOfAdjudicators: 'Board of Adjudicators',
+                navSelectionCommittees: 'Selection Committees',
+                navAstronomy: 'Astronomy',
+                navComputerScience: 'Computer Science',
+                navLifeScienceMedicine: 'Life Science & Medicine',
+                navMathematicalSciences: 'Mathematical Sciences',
+                title: 'Professor Michael Häusser',
+                role: 'Member',
+                name: 'Professor Michael Häusser',
+                subtitle: 'Chair Professor of Neuroscience<br>Director of School of Biomedical Sciences, LKS<br>Faculty of Medicine<br>The University of Hong Kong<br>Hong Kong',
+                termsLabel: 'Previous terms:',
+                bioOne: 'Professor Michael Häusser obtained his PhD from Oxford University under the supervision of Julian Jack. He subsequently worked with Nobel Laureate Bert Sakmann at the Max-Planck-Institute for Medical Research in Heidelberg and with Philippe Ascher at the Ecole Normale Supérieure in Paris. He established his independent group at UCL in 1997, becoming Professor of Neuroscience in 2001, and recently became Chair Professor of Neuroscience at the University of Hong Kong. Häusser co-founded the International Brain Laboratory, a global open-science collaboration which aims to understand how the brain makes decisions. His group uses a combination of imaging and electrophysiological approaches to understand the cellular and circuit basis of neural computations in the mammalian brain, with a strong focus on dendritic computation.',
+                bioTwo: 'Professor Häusser is a Fellow of the Royal Society and the Academy of Medical Sciences, and a member of EMBO, Academia Europaea and the German National Academy of Sciences Leopoldina. He was awarded the Feldberg Prize in 2020.',
+                note: ''
+            },
+            'zh-Hant': {
+                navFoundation: '邵逸夫獎基金會',
+                navCouncil: '理事會',
+                navBoardOfAdjudicators: '評審會',
+                navSelectionCommittees: '遴選委員會',
+                navAstronomy: '天文學',
+                navComputerScience: '電腦科學',
+                navLifeScienceMedicine: '生命科學與醫學',
+                navMathematicalSciences: '數學科學',
+                title: '海倫・霍布斯教授',
+                role: '成員',
+                name: '海倫・霍布斯教授',
+                subtitle: '美國<br>德州大學西南醫學中心<br>內科及分子遺傳學教授',
+                termsLabel: '過往任期：',
+                bioOne: '海倫・霍布斯教授是美國霍華德休斯醫學研究所研究員及德州大學西南醫學中心內科及分子遺傳學教授。她於美國史丹福大學和凱斯西儲大學醫學院畢業後，在美國哥倫比亞長老會醫院和德州大學西南醫學中心接受內科醫學培訓。她與喬納森・科恩(Jonathan Cohen)合作，利用人類遺傳學識別出大幅影響血漿中低密度脂蛋白膽固醇和三酸甘油酯水平的序列變異。她還發現脂肪肝疾病兩個最重要的遺傳風險因素。她以基因識別作為研究的起點，繼而揭示她找出的缺陷基因所影響的途徑和過程。她是美國國家醫學科學院和國家科學院院士，並獲頒2016年生命科學突破獎和2018年哈靈頓醫學創新獎。',
+                bioTwo: '',
+                note: '(註：所有中文譯本，皆以英文本為準)'
+            },
+            cn: {
+                navFoundation: '邵逸夫奖基金会',
+                navCouncil: '理事会',
+                navBoardOfAdjudicators: '评审会',
+                navSelectionCommittees: '遴选委员会',
+                navAstronomy: '天文学',
+                navComputerScience: '计算机科学',
+                navLifeScienceMedicine: '生命科学与医学',
+                navMathematicalSciences: '数学科学',
+                title: '海伦・霍布斯教授',
+                role: '成员',
+                name: '海伦・霍布斯教授',
+                subtitle: '美国<br>德州大学西南医学中心<br>内科及分子遗传学教授',
+                termsLabel: '过往任期：',
+                bioOne: '海伦・霍布斯教授是美国霍华德休斯医学研究所研究员及德州大学西南医学中心内科及分子遗传学教授。她于美国史丹福大学和凯斯西储大学医学院毕业后，在美国哥伦比亚长老会医院和德州大学西南医学中心接受内科医学培训。她与乔纳森・科恩(Jonathan Cohen)合作，利用人类遗传学识别出大幅影响血浆中低密度脂蛋白胆固醇和三酸甘油酯水平的序列变异。她还发现脂肪肝疾病两个最重要的遗传风险因素。她以基因识别作为研究的起点，继而揭示她找出的缺陷基因所影响的途径和过程。她是美国国家医学科学院和国家科学院院士，并获颁2016年生命科学突破奖和2018年哈灵顿医学创新奖。',
+                bioTwo: '',
+                note: '(注：所有中文译本，皆以英文本为准)'
+            }
+        };
+
+        document.querySelectorAll('[data-language]').forEach((button) => {
+            button.addEventListener('click', () => {
+                const language = button.dataset.language;
+                const content = translations[language];
+
+                document.documentElement.lang = language;
+                document.title = content.title;
+                document.querySelectorAll('[data-i18n]').forEach((element) => {
+                    element.innerHTML = content[element.dataset.i18n];
+                });
+                document.querySelectorAll('[data-language]').forEach((item) => {
+                    item.classList.toggle('active', item === button);
+                });
+            });
+        });
     </script>
 </body>
 </html>

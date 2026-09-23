@@ -20,7 +20,7 @@ Technical details:
 Outcome:
 - Deployed date:
 - Number of displays:
-- Number of pages / interaction flows: 
-- Testing completed:
+- Number of pages / interaction flows:  **30pages**
+- Testing completed: **next , back 3 lang switch button**, connet 30pages
 - Handover recipient:
 - Known issues resolved:

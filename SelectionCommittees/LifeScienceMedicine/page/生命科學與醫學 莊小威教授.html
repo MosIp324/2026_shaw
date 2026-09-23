@@ -11,7 +11,7 @@
             padding: 0;
         }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, Microsoft YaHei, PingFang SC, NotoSansTC;
             line-height: 1.5;
             color: #333;
             background-color: #0f172a; /* 背景深色襯托 16:9 画框 */
@@ -173,6 +173,13 @@
             display: flex;
             gap: 8px;
         }
+      .profile-navigation {
+          position: absolute;
+          top: 90px;
+          right: 40px;
+          display: flex;
+          gap: 8px;
+      }
         .lang-btn {
             background: #ffffff;
             border: 1px solid #cbd5e1;
@@ -265,37 +272,47 @@
 
     <div id="canvas">
         <div class="container">
-            <!-- 左側選單 -->
-             <nav class="sidebar">
-            <div class="nav-group">
-                <a href="https://www.shawprize.org/zh/about/organisation/the-shaw-prize-foundation" class="nav-item">邵逸夫獎基金會</a>
-                <a href="https://www.shawprize.org/zh/about/organisation/council" class="nav-item">理事會</a>
-                <a href="https://www.shawprize.org/zh/about/organisation/board-of-adjudicators" class="nav-item">評審委員會</a>
-                <a href="https://www.shawprize.org/zh/about/organisation/astronomy" class="nav-item active">遴選委員會</a>
-                
-                <!-- 遴選委員會子類別 -->
-                <div class="sub-menu">
-                    <a href="https://www.shawprize.org/zh/about/organisation/astronomy" class="sub-itemAstron">天文學</a>
-                    <a href="https://www.shawprize.org/zh/about/organisation/computer-science" class="sub-itemComput">計算機科學</a>
-                    <a href="https://www.shawprize.org/zh/about/organisation/life-science-medicine" class="sub-item active">生命科學與醫學</a>
-                    <a href="https://www.shawprize.org/zh/about/organisation/mathematical-sciences" class="sub-itemMaths">數學科學</a>
-                </div>
-            </div>
-        </nav>
+            <nav class="sidebar">
+                <div class="nav-group">
+                    <a href="./index.html" class="nav-item" data-i18n="navFoundation">邵逸夫獎基金會</a>
+                    <a href="./Council.html" class="nav-item" data-i18n="navCouncil">理事會</a>
+                    <a href="./Board%20of%20Adjudicators.html" class="nav-item" data-i18n="navBoardOfAdjudicators">評審委員會</a>
+                    <a href="" class="nav-item active" data-i18n="navSelectionCommittees">遴選委員會</a>
 
-            <!-- 右側焦點內容 -->
+                    <div class="sub-menu">
+                        <a href="../../Astronomy/page/Astronomy.html" class="sub-itemAstron" data-i18n="navAstronomy">天文學</a>
+                        <a href="../../ComputerScience/page/CS.html" class="sub-itemComput" data-i18n="navComputerScience">計算機科學</a>
+                        <a href="../page/LM.html" class="sub-item active" data-i18n="navLifeScienceMedicine">生命科學與醫學</a>
+                        <a href="../../MathematicalSciences/page/MS.html" class="sub-itemMaths" data-i18n="navMathematicalSciences">數學科學</a>
+                    </div>
+                </div>
+            </nav>
+
             <main class="main-content">
-                <!-- 語言切換按鈕 -->
                 <div class="lang-switch">
-                    <button class="lang-btn">ENG</button>
-                    <button class="lang-btn active">繁</button>
-                    <button class="lang-btn">简</button>
-                </div>                
+                    <button type="button" class="lang-btn" data-language="en">ENG</button>
+                    <button type="button" class="lang-btn active" data-language="zh-Hant">繁</button>
+                    <button type="button" class="lang-btn" data-language="cn">简</button>
+                </div>
+                <div class="profile-navigation jsx-caca17b2dbf10bfe flex items-center space-x-2">
+                    <button type="button" onclick="window.location.href='./生命科學與醫學 黛安・馬西斯教授.html'" aria-label="上一個" class="jsx-caca17b2dbf10bfe w-15 h-15 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <svg  width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8">
+                            <path d="M16.0011 24.0436L16.0011 22.2109L31.732 12L32.9102 13.8327L18.5974 23.1273L32.9102 32.4218L31.732 34.2545L16.0011 24.0436Z" fill="#16161C" class="fill-current">
+                            </path>
+                        </svg>
+                    </button>
+                    <button disabled=""  aria-label="下一個" class="jsx-caca17b2dbf10bfe w-15 h-15 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8">
+                            <path d="M34 22.754L34 24.7304L19.1148 35.7422L18 33.7657L31.5432 23.7422L18 13.7187L19.1148 11.7422L34 22.754Z" fill="#16161C" class="fill-current">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
                 
                 <div>
-                    <span class="role-badge">成員</span>
-                    <h1 class="header-title">莊小威教授</h1>
-                    <div class="profile-subtitle">
+                    <span class="role-badge" data-i18n="role">成員</span>
+                    <h1 class="header-title" data-i18n="name">莊小威教授</h1>
+                    <div class="profile-subtitle" data-i18n="subtitle">
                         美國<br>
                         哈佛大學<br>
                         化學與化學生物學系<br>
@@ -306,24 +323,23 @@
                 <!-- 16:9 雙欄展示區域 -->
                 <div class="profile-grid">
                     <div>
-                        <img src="Xiaowei Zhuang.jpg" alt="莊小威教授" class="profile-photo">
+                        <img src="../img/Xiaowei%20Zhuang.jpg" alt="小威" class="profile-photo">
                         <div class="terms" style="margin-top: 15px;">
-                            <strong>過往任期：</strong><br>
+                            <strong data-i18n="termsLabel">過往任期：</strong><br>
                             <div style="margin-top: 8px;">
-                                <span>2027 年</span>                               
-                                                              
+                                <span>2027 年</span>
                             </div>
                         </div>
                     </div>
 
                     <div>
-                        <p class="bio-text">
+                        <p class="bio-text" data-i18n="bioOne">
                             莊小威教授是美國霍華德休斯醫學研究所研究員及哈佛大學大衛・阿諾德科學講座教授。她是超解析度成像和基因組規模成像技術的先驅。她發明了超解析度成像方法STORM，並利用STORM發現了細胞中的新型分子結構。她亦發明了基因組規模成像方法MERFISH，該方法實現空間分辨的單細胞轉錄組學、表觀基因組學、三維基因組學和功能基因組學研究。透過MERFISH，她發現了複雜組織中細胞的新型分子特徵、空間組織結構和功能。
                         </p> 
-                        <p class="bio-text">
+                        <p class="bio-text" data-i18n="bioTwo">
                             莊小威是美國國家科學院院士、美國國家醫學院院士、美國人文與科學學院院士，以及中國科學院外籍院士。她獲得的獎項包括：歐內斯特·索爾維獎、迪克森醫學獎、美國國家發明家名人堂、德雷福斯化學科學獎、 生命科學突破獎、海因里希·威蘭獎、海尼根生物化學與生物物理學獎、盧里生物醫學科學獎、維爾切克生物醫學科學獎等。
                         </p>                         
-                        <p class="bio-text" style="font-size: 0.9em; color: #64748b; margin-top: 20px;">
+                        <p class="bio-text" data-i18n="note" style="font-size: 0.9em; color: #64748b; margin-top: 20px;">
                             (註：所有中文譯本，皆以英文本為準)
                         </p>
                     </div>
@@ -348,6 +364,78 @@
 
         window.addEventListener('resize', resizeCanvas);
         window.addEventListener('DOMContentLoaded', resizeCanvas);
+        const translations = {
+            en: {
+                navFoundation: 'The Shaw Prize Foundation',
+                navCouncil: 'Council',
+                navBoardOfAdjudicators: 'Board of Adjudicators',
+                navSelectionCommittees: 'Selection Committees',
+                navAstronomy: 'Astronomy',
+                navComputerScience: 'Computer Science',
+                navLifeScienceMedicine: 'Life Science & Medicine',
+                navMathematicalSciences: 'Mathematical Sciences',
+                title: 'Professor Xiaowei Zhuang',
+                role: 'Member',
+                name: 'Professor Xiaowei Zhuang',
+                subtitle: 'David B. Arnold, Jr. Professor of Science<br>Department of Chemistry & Chemical Biology<br>Harvard University<br>USA',
+                termsLabel: 'Previous terms:',
+                bioOne: 'Professor Xiaowei Zhuang is an investigator of the Howard Hughes Medical Institute and the David B. Arnold Professor of Science at Harvard University. She pioneered super-resolution and genome-scale imaging technologies. She invented a super-resolution imaging method, STORM, and discovered novel molecular structures in cells using STORM. She invented a genome-scale imaging method, MERFISH, which enabled spatially resolved single-cell transcriptomics, epigenomics, 3D genomics, and functional genomics. Using MERFISH, she discovered novel molecular signatures, spatial organization, and functions of cells in complex tissues.',
+                bioTwo: 'Zhuang is a member of the National Academy of Sciences, National Academy of Medicine, American Academy of Arts and Sciences, and a foreign member of the Chinese Academy of Sciences. Her awards include the Ernest Solvay Prize, Dickson Prize in Medicine, National Inventors Hall of Fame, Dreyfus Prize in Chemical Sciences, Breakthrough Prize in Life Sciences, Heinrich Wieland Prize, Heineken Prize for Biochemistry and Biophysics, Lurie Prize in Biomedical Sciences, Vilcek Prize in Biomedical Science, etc.',
+                note: ''
+            },
+            'zh-Hant': {
+                navFoundation: '邵逸夫獎基金會',
+                navCouncil: '理事會',
+                navBoardOfAdjudicators: '評審會',
+                navSelectionCommittees: '遴選委員會',
+                navAstronomy: '天文學',
+                navComputerScience: '電腦科學',
+                navLifeScienceMedicine: '生命科學與醫學',
+                navMathematicalSciences: '數學科學',
+                title: '莊小威教授',
+                role: '成員',
+                name: '莊小威教授',
+                subtitle: '美國<br>哈佛大學<br>化學與化學生物學系<br>大衛・阿諾德科學講座教授',
+                termsLabel: '過往任期：',
+                bioOne: '莊小威教授是美國霍華德休斯醫學研究所研究員及哈佛大學大衛・阿諾德科學講座教授。她是超解析度成像和基因組規模成像技術的先驅。她發明了超解析度成像方法STORM，並利用STORM發現了細胞中的新型分子結構。她亦發明了基因組規模成像方法MERFISH，該方法實現空間分辨的單細胞轉錄組學、表觀基因組學、三維基因組學和功能基因組學研究。透過MERFISH，她發現了複雜組織中細胞的新型分子特徵、空間組織結構和功能。',
+                bioTwo: '莊小威是美國國家科學院院士、美國國家醫學院院士、美國人文與科學學院院士，以及中國科學院外籍院士。她獲得的獎項包括：歐內斯特·索爾維獎、迪克森醫學獎、美國國家發明家名人堂、德雷福斯化學科學獎、 生命科學突破獎、海因里希·威蘭獎、海尼根生物化學與生物物理學獎、盧里生物醫學科學獎、維爾切克生物醫學科學獎等。',
+                note: '(註：所有中文譯本，皆以英文本為準)'
+            },
+            cn: {
+                navFoundation: '邵逸夫奖基金会',
+                navCouncil: '理事会',
+                navBoardOfAdjudicators: '评审会',
+                navSelectionCommittees: '遴选委员会',
+                navAstronomy: '天文学',
+                navComputerScience: '计算机科学',
+                navLifeScienceMedicine: '生命科学与医学',
+                navMathematicalSciences: '数学科学',
+                title: '庄小威教授',
+                role: '成员',
+                name: '庄小威教授',
+                subtitle: '美国<br>哈佛大学<br>化学与化学生物学系<br>大卫・阿诺德科学讲座教授',
+                termsLabel: '过往任期：',
+                bioOne: '庄小威教授是美国霍华德休斯医学研究所研究员及哈佛大学大卫‧阿诺德科学讲座教授。她是超解析度成像和基因组规模成像技术的先驱。她发明了超解析度成像方法STORM，并利用STORM发现了细胞中的新型分子结构。她亦发明了基因组规模成像方法MERFISH，该方法实现空间分辨的单细胞转录组学、表观基因组学、三维基因组学和功能基因组学研究。透过MERFISH，她发现了复杂组织中细胞的新型分子特征、空间组织结构和功能。',
+                bioTwo: '庄小威是美国国家科学院院士、美国国家医学院院士、美国人文与科学学院院士，以及中国科学院外籍院士。她获得的奖项包括：欧内斯特·索尔维奖、迪克森医学奖、美国国家发明家名人堂、德雷福斯化学科学奖、 生命科学突破奖、海因里希·威兰奖、海尼根生物化学与生物物理学奖、卢里生物医学科学奖、维尔切克生物医学科学奖等。',
+                note: '(注：所有中文译本，皆以英文本为准)'
+            }
+        };
+
+        document.querySelectorAll('[data-language]').forEach((button) => {
+            button.addEventListener('click', () => {
+                const language = button.dataset.language;
+                const content = translations[language];
+
+                document.documentElement.lang = language;
+                document.title = content.title;
+                document.querySelectorAll('[data-i18n]').forEach((element) => {
+                    element.innerHTML = content[element.dataset.i18n];
+                });
+                document.querySelectorAll('[data-language]').forEach((item) => {
+                    item.classList.toggle('active', item === button);
+                });
+            });
+        });
     </script>
 </body>
 </html>
