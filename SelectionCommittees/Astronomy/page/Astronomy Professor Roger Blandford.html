@@ -280,10 +280,10 @@
                     <a href="" class="nav-item active" data-i18n="navSelectionCommittees">Selection Committees</a>
 
                     <div class="sub-menu">
-                        <a href="../.././SelectionCommittees/Astronomy/page/Astronomy.html" class="sub-item active" data-i18n="navAstronomy">Astronomy</a>
-                        <a href="https://www.shawprize.org/zh/about/organisation/computer-science" class="sub-itemComput" data-i18n="navComputerScience">Computer Science</a>
-                        <a href="https://www.shawprize.org/zh/about/organisation/life-science-medicine" class="sub-itemLife" data-i18n="navLifeScienceMedicine">Life Science & Medicine</a>
-                        <a href="https://www.shawprize.org/zh/about/organisation/mathematical-sciences" class="sub-itemMaths" data-i18n="navMathematicalSciences">Mathematical Sciences</a>
+                        <a href="../../Astronomy/page/Astronomy.html" class="sub-item active" data-i18n="navAstronomy">Astronomy</a>
+                        <a href="../../ComputerScience/page/CS.html" class="sub-itemComput" data-i18n="navComputerScience">Computer Science</a>
+                        <a href="../../LifeScienceMedicine/page/LM.html" class="sub-itemLife" data-i18n="navLifeScienceMedicine">Life Science & Medicine</a>
+                        <a href="../../MathematicalSciences/page/MS.html" class="sub-itemMaths" data-i18n="navMathematicalSciences">Mathematical Sciences</a>
                     </div>
                 </div>
             </nav>
@@ -359,6 +359,14 @@
 
         window.addEventListener('resize', resizeCanvas);
         window.addEventListener('DOMContentLoaded', resizeCanvas);
+        const defaultLanguage = 'zh-Hant';
+        window.addEventListener('DOMContentLoaded', () => {
+            resizeCanvas();
+            const defaultButton = document.querySelector('[data-language="zh-Hant"]');
+            if (defaultButton) {
+                defaultButton.click();
+            }
+        });
 
         const translations = {
             en: {
@@ -425,7 +433,13 @@
                 document.documentElement.lang = language;
                 document.title = content.title;
                 document.querySelectorAll('[data-i18n]').forEach((element) => {
-                    element.innerHTML = content[element.dataset.i18n];
+                    const key = element.dataset.i18n;
+                    const value = content[key];
+
+                    if (Object.prototype.hasOwnProperty.call(content, key)) {
+                        element.innerHTML = value ?? '';
+                        element.style.display = value ? '' : 'none';
+                    }
                 });
                 document.querySelectorAll('[data-language]').forEach((item) => {
                     item.classList.toggle('active', item === button);

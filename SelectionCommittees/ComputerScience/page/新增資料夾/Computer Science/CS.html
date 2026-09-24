@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Shaw Prize</title>
+    <style>
+      * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont,"Microsoft YaHei", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.5;
+            color: #333;
+            background-color: #0f172a; /* 背景深色襯托 16:9 画框 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* 16:9 画框容器 */
+        #canvas {
+            width: 1920px;
+            height: 1080px;
+            background-color: #f8fafc;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            padding: 40px 60px;
+        }
+
+        /* 主佈局容器：16:9 比例下採用橫向兩欄 */
+        .container {
+            display: flex;
+            gap: 40px;
+            height: 100%;
+            margin-top: 0px;
+        }
+
+        /* 左側導航欄樣式 */
+        .sidebar {
+            width: 310px;
+            flex-shrink: 0;
+            background: #ffffff;
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            height: fit-content;
+        }
+        .nav-group {
+            margin-bottom: 15px;
+        }
+        .nav-item {
+            display: block;
+            padding: 12px 16px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .nav-item:hover {
+            background-color: #f3ecde;
+            color: #c39f5b;
+        }
+        .nav-item.active {
+            background-color: #c39f5b;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .sub-menu {
+            margin-left: 15px;
+            margin-top: 8px;
+            border-left: 3px solid #cbd5e1;
+            padding-left: 12px;
+        }
+        .sub-item {
+            display: block;
+            padding: 8px 12px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .sub-itemAstron{
+            display: block;
+            padding: 8px 12px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .sub-itemComput {
+            display: block;
+            padding: 8px 12px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .sub-itemLife {
+            display: block;
+            padding: 8px 12px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .sub-itemMaths {
+            display: block;
+            padding: 8px 12px;
+            color: #c39f5b;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .sub-item:hover {
+            color: #0f172a;
+            background-color: #f1f5f9;
+        }
+        .sub-itemAstron:hover {
+            color: #fafbfb;
+            font-weight: bold;
+            background-color: #919abc;
+        }
+        .sub-itemComput:hover {
+            color: #fafbfb;
+            font-weight: bold;
+            background-color: #b599bf;
+        }
+        .sub-itemLife:hover {
+            color: #fafbfb;
+            font-weight: bold;
+            background-color: #93aca3;
+        }
+        .sub-itemMaths:hover {
+            color: #fafbfb;
+            font-weight: bold;
+            background-color: #bc939b;
+        }
+        .sub-item.active {
+            color: #fafbfb;
+            font-weight: bold;
+            background-color: #723a85;
+        }
+
+        /* 右側主內容區樣式 */
+        .main-content {
+            flex-grow: 1;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 語言切換按鈕 */
+        .lang-switch {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            display: flex;
+            gap: 8px;
+        }
+        .lang-btn {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            color: #475569;
+            padding: 6px 14px;
+            font-size: 0.95rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .lang-btn:hover {
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+        .lang-btn.active {
+            background: #1e293b;
+            color: #ffffff;
+            border-color: #1e293b;
+        }
+
+        .breadcrumb {
+            font-size: 1rem;
+            color: #64748b;
+            margin-bottom: 20px;
+        }
+        .role-badge {
+            display: inline-block;
+            background-color: #b599bf;
+            color: #411452;
+            font-weight: bold;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+        .header-title {
+            font-size: 2.5rem;
+            color: #0f172a;
+            margin-bottom: 12px;
+        }
+        .header-title2 {
+            font-size: 1.5rem;
+            color: #0f172a;            
+        }
+        .profile-subtitle {
+            font-size: 1.1rem;
+            color: #475569;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        /* 16:9 下特有的雙欄內容展示區 */
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 1350px 1fr;
+            gap: 35px;
+            margin-top: 10px;
+        }
+
+        .profile-photo {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        .bio-text {
+            color: #334155;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+        .terms {
+            font-size: 0.95rem;
+            color: #64748b;
+            background: #f8fafc;
+            padding: 12px 18px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 20px;
+        }
+        .terms span {
+            display: inline-block;
+            background: #e2e8f0;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-right: 6px;
+            color: #334155;
+        }
+
+    /* 超連結：絕對定位，可以隨意放在圖片的任何位置 */
+    .hotspot {
+      position: absolute;
+      display: block;
+      text-decoration: none;
+
+      /* 可選：加半透明背景方便測試，正式用可改成 transparent */
+      background-color: rgba(38, 38, 38, 0.491);
+       /*border: 2px dashed rgba(255, 255, 255, 0.8); */
+      border-radius: 8px;
+
+      /* 讓 hover 時有視覺回饋 */
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      z-index: 2;
+    }
+
+    .hotspot:hover {
+      background-color: rgba(255, 255, 255, 0.35);
+      transform: scale(1.05);
+      border-color: #fff;
+    }
+
+    /* 每個熱區用 top / left / width / height 定位 (百分比，隨圖片縮放) */
+    .hotspot-1 {
+      top: 0%;      /* 距離頂部 15% */
+      left: 0%;     /* 距離左邊 10% */
+      width: 100%;    /* 寬度佔圖片 25% */
+      height: 62%;   /* 高度佔圖片 20% */
+    }
+    .hotspot-2-1 {
+      top: 64%;      /* 距離頂部 15% */
+      left: 0%;     /* 距離左邊 10% */
+      width: 24%;    /* 寬度佔圖片 25% */
+      height: 17%;   /* 高度佔圖片 20% */
+    }
+    .hotspot-2-2 {
+      top: 64%;      /* 距離頂部 15% */
+      left: 25%;     /* 距離左邊 10% */
+      width: 24%;    /* 寬度佔圖片 25% */
+      height: 17%;   /* 高度佔圖片 20% */
+    }
+    .hotspot-2-3 {
+      top: 64%;
+      left: 50%;
+      width: 24%;
+      height: 17%;
+    }
+     .hotspot-2-4 {
+      top: 64%;
+      left: 75%;
+      width: 24%;
+      height: 17%;
+    }
+    .hotspot-3-1 {
+      top: 82%;
+      left: 0%;
+      width: 26%;
+      height: 17%;
+    }
+    .hotspot-3-2 {
+      top: 82%;
+      left: 34%;
+      width: 27%;
+      height: 17%;
+    }
+    .hotspot-3-3 {
+      top: 82%;
+      left: 65%;
+      width: 27%;
+      height: 17%;
+    }    
+
+    /* 如果想用文字連結，可以加樣式 */
+    .hotspot-text {
+      position: absolute;
+      top: 40%;
+      left: 30%;
+      padding: 8px 16px;
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+
+    .hotspot-text:hover {
+      background: rgba(0, 0, 0, 0.85);
+    }
+
+    .image-wrapper {
+    position: relative;
+    display: block;
+    width: 100%;
+    }
+
+    .image-wrapper .profile-photo {
+    display: block;
+    width: 100%;
+    height: auto;
+    }
+    </style>
+</head>
+<body>
+    <div id="canvas">
+    <div class="container">
+            <nav class="sidebar">
+                <div class="nav-group">
+                    <a href="../../../Main/Foundation/index.html" class="nav-item" data-i18n="navFoundation">The Shaw Prize Foundation</a>
+                    <a href="../../../Main/Foundation/Council.html" class="nav-item" data-i18n="navCouncil">Council</a>
+                    <a href="../../../Main/Foundation/Board%20of%20Adjudicators.html" class="nav-item" data-i18n="navBoardOfAdjudicators">Board of Adjudicators</a>
+                    <a href="" class="nav-item active" data-i18n="navSelectionCommittees">Selection Committees</a>
+
+                <!-- 遴選委員會子類別 -->
+                <div class="sub-menu">
+                    <a href="../../Astronomy/page/Astronomy.html" class="sub-itemAstron" data-i18n="navAstronomy">Astronomy</a>
+                    <a href="../../ComputerScience/page/CS.html" class="sub-item active" data-i18n="navComputerScience">Computer Science</a>
+                    <a href="../../LifeScienceMedicine/page/LM.html" class="sub-itemLife" data-i18n="navLifeScienceMedicine">Life Science & Medicine</a>
+                    <a href="MS.html" class="sub-itemMaths" data-i18n="navMathematicalSciences">Mathematical Sciences</a>
+                </div>
+            </div>
+        </nav>
+
+            <main class="main-content">
+                <div class="lang-switch">
+                    <button type="button" class="lang-btn" data-language="en">ENG</button>
+                    <button type="button" class="lang-btn active" data-language="zh-Hant">繁</button>
+                    <button type="button" class="lang-btn" data-language="cn">简</button>
+                </div>
+
+                <div>
+                    <h1 class="header-title2" data-i18n="name2">Selection Committees</h1>
+                    <h1 class="header-title" data-i18n="name">2026 - 2027 Mathematical Sciences</h1>
+                    <div class="profile-subtitle" data-i18n="subtitle">
+                        The Shaw Prize Selection Committees, one for each of the prize categories, evaluate nominations submitted by invited nominators worldwide. They carefully review nominations, propose awardees to the Board of Adjudicators for approval, and the Council for final confirmation. Additionally, the Selection Committees advise on the selection of qualified nominators to maintain a diverse and high-calibre nomination pool.
+                    </div>
+                </div>
+
+                <!-- 16:9 雙欄展示區域 -->
+                <div class="profile-grid">
+                    <!-- 包裹圖片與熱區的相對定位容器 -->
+                        <div class="image-wrapper">
+                        <img id="adjudicators-image" src="../../../page/新增資料夾/Computer%20Science/CST.jpg" alt="Computer Science" class="profile-photo">
+                        
+                    
+                    
+                    <!-- 熱區 1：空白透明連結 (點擊整個區塊) -->
+                    <a href="https://example.com" class="hotspot hotspot-1" 
+                    target="_blank" rel="noopener" 
+                    title="前往範例網站"></a>
+
+                    <a href="https://example.com" class="hotspot hotspot-2-1" 
+                    target="_blank" rel="noopener" 
+                    title="前往範例網站"></a>
+
+                    <a href="https://example.com" class="hotspot hotspot-2-2" 
+                    target="_blank" rel="noopener" 
+                    title="前往範例網站"></a>
+
+                    <a href="https://example.com" class="hotspot hotspot-2-3" 
+                    target="_blank" rel="noopener" 
+                    title="前往範例網站"></a>
+
+                    <a href="https://example.com" class="hotspot hotspot-2-4" 
+                    target="_blank" rel="noopener" 
+                    title="前往範例網站"></a>
+
+                    <!-- 熱區 2：另一個位置 -->
+                    <a href="https://developer.mozilla.org" class="hotspot hotspot-3-1"
+                    target="_blank" rel="noopener"
+                    title="MDN 開發者文件"></a>
+
+                    <a href="https://developer.mozilla.org" class="hotspot hotspot-3-2"
+                    target="_blank" rel="noopener"
+                    title="MDN 開發者文件"></a>
+
+                    <a href="https://developer.mozilla.org" class="hotspot hotspot-3-3"
+                    target="_blank" rel="noopener"
+                    title="MDN 開發者文件"></a> 
+                    </div>  
+                        
+                </div>
+
+            </main>
+
+                          
+        </div>
+        
+    </div>
+     <script>
+        // 自動依照視窗大小保持 16:9 比例縮放
+        function resizeCanvas() {
+            const canvas = document.getElementById('canvas');
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+            
+            const scaleX = windowWidth / 1920;
+            const scaleY = windowHeight / 1080;
+            const scale = Math.min(scaleX, scaleY);
+
+            canvas.style.transform = `scale(${scale})`;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        window.addEventListener('DOMContentLoaded', () => {
+            resizeCanvas();
+            updateLanguage('zh-Hant');
+        });
+
+        const translations = {
+            en: {
+                name2: 'Selection Committees',
+                name: '2026 - 2027 Mathematical Sciences',
+                subtitle: 'Computer science has undergone a revolutionary transformation over the last few decades, shaping the very fabric of our modern world. From the advent of internet to the proliferation of artificial intelligence, computer science has become the keystone of innovation and progress. Breakthroughs in algorithms, machine learning, cybersecurity, computational theory and more have redefined how humans interact with technology and paved the way for unprecedented advancements in the fields as diverse as communications, finance, and healthcare. The deep intellectual questions in computer science challenge and expand the limits of human thoughts, and lie at the base of its wide applications. As it continues to evolve, computer science will stand as a defining force guiding the creation of new paradigms for understanding and progress, fundamentally shaping the next era of scientific and societal advancement.',
+                navFoundation: 'The Shaw Prize Foundation',
+                navCouncil: 'Council',
+                navBoardOfAdjudicators: 'Board of Adjudicators',
+                navSelectionCommittees: 'Selection Committees',
+                navAstronomy: 'Astronomy',
+                navComputerScience: 'Computer Science',
+                navLifeScienceMedicine: 'Life Science & Medicine',
+                navMathematicalSciences: 'Mathematical Sciences'
+            },
+            'zh-Hant': {
+                name2: '遴選委員會',
+                name: '2026 - 2027 計算機科學',
+                subtitle: '計算機科學在過去數十年經歷了一場翻天覆地的變革，重塑了現代社會根基。從互聯網的興起到人工智能的普及，計算機科學已成為科技創新和社會進步的關鍵。算法、機器學習、網絡安全及計算理論等領域的突破性發展，徹底改變人類與科技互動的模式，並推動通訊、金融及醫療等諸多領域的空前發展。計算機科學的深層次智識問題， 不斷挑戰並拓展人類思維的極限，同時構成其廣泛應用的基礎。隨著計算機科學的發展及演變，這門學科將成為重要的推動力量，建立一套人類認知及進步的新模式，引領下一階段科學與社會的發展方向。邵逸夫獎每個獎項類別設有獨立遴選委員會，負責評審全球受邀提名人提交的提名名單。<br>遴選委員會嚴格審核提名材料，向評審會推薦獲獎人選以供審議，並由理事會作最終確認。此外，遴選委員會亦負責推薦合資格提名人，以確保提名庫的多元性與高水平。',
+                navFoundation: '邵逸夫獎基金會',                            
+                navCouncil: '理事會',
+                navBoardOfAdjudicators: '評審會',
+                navSelectionCommittees: '遴選委員會',
+                navAstronomy: '天文學',
+                navComputerScience: '電腦科學',
+                navLifeScienceMedicine: '生命科學與醫學',
+                navMathematicalSciences: '數學科學',
+            },
+            cn: {
+                name2: '遴选委员会',
+                name: '2026 - 2027 计算机科学',
+                subtitle: '计算机科学在过去数十年经历了一场翻天覆地的变革，重塑了现代社会根基。从互联网的兴起到人工智能的普及，计算机科学已成为科技创新和社会进步的关键。算法、机器学习、网络安全及计算理论等领域的突破性发展，彻底改变人类与科技互动的模式，并推动通讯、金融及医疗等诸多领域的空前发展。计算机科学的深层次智识问题， 不断挑战并拓展人类思维的极限，同时构成其广泛应用的基础。随著计算机科学的发展及演变，这门学科将成为重要的推动力量，建立一套人类认知及进步的新模式，引领下一阶段科学与社会的发展方向。邵逸夫奖每个奖项类别设有独立遴选委员会，负责评审全球受邀提名人提交的提名名单。<br>遴选委员会严格审核提名材料，向评审会推荐获奖人选以供审议，并由理事会作最终确认。此外，遴选委员会亦负责推荐合资格提名人，以确保提名库的多元性与高水平',
+                navFoundation: '邵逸夫奖基金会',
+                navCouncil: '理事会',
+                navBoardOfAdjudicators: '评审会',
+                navSelectionCommittees: '遴选委员会',
+                navAstronomy: '天文学',
+                navComputerScience: '计算机科学',
+                navLifeScienceMedicine: '生命科学与医学',
+                navMathematicalSciences: '数学科学',
+            }
+        };
+
+        const imageMap = {
+            en:'../img/CS.jpg',
+            'zh-Hant':'../img/CST.jpg',
+            cn:'../img/CSS.jpg'
+        };
+
+        function updateLanguage(language) {
+            const content = translations[language];
+            const image = document.getElementById('adjudicators-image');
+
+            document.documentElement.lang = language;
+            document.title = content.title;
+
+            document.querySelectorAll('[data-i18n]').forEach((element) => {
+                if (content[element.dataset.i18n]) {
+                    element.innerHTML = content[element.dataset.i18n];
+                }
+            });
+
+            if (image && imageMap[language]) {
+                image.src = imageMap[language];
+                image.alt = content.name;
+            }
+
+            document.querySelectorAll('[data-language]').forEach((item) => {
+                item.classList.toggle('active', item === document.querySelector(`[data-language="${language}"]`));
+            });
+        }
+
+        document.querySelectorAll('[data-language]').forEach((button) => {
+            button.addEventListener('click', () => {
+                updateLanguage(button.dataset.language);
+            });
+        });
+    </script>
+
+</body>
+</html>
+
+
+   

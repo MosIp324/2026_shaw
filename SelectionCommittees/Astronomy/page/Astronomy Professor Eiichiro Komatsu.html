@@ -11,7 +11,7 @@
             padding: 0;
         }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, Microsoft YaHei, PingFang SC, NotoSansTC;
             line-height: 1.5;
             color: #333;
             background-color: #0f172a; /* 背景深色襯托 16:9 画框 */
@@ -173,6 +173,13 @@
             display: flex;
             gap: 8px;
         }
+        .profile-navigation {
+            position: absolute;
+            top: 90px;
+            right: 40px;
+            display: flex;
+            gap: 8px;
+        }
         .lang-btn {
             background: #ffffff;
             border: 1px solid #cbd5e1;
@@ -265,70 +272,77 @@
 
     <div id="canvas">
         <div class="container">
-            <!-- 左側選單 -->
             <nav class="sidebar">
-            <div class="nav-group">
-                <a href="https://www.shawprize.org/zh/about/organisation/the-shaw-prize-foundation" class="nav-item">The Shaw Prize Foundation</a>
-                <a href="https://www.shawprize.org/zh/about/organisation/council" class="nav-item">Council</a>
-                <a href="https://www.shawprize.org/zh/about/organisation/board-of-adjudicators" class="nav-item">Board of Adjudicators</a>
-                <a href="https://www.shawprize.org/zh/about/organisation/astronomy" class="nav-item active">Selection Committees</a>
-                
-                <!-- 遴選委員會子類別 -->
-                <div class="sub-menu">
-                    <a href="https://www.shawprize.org/zh/about/organisation/astronomy" class="sub-item active">Astronomy</a>
-                    <a href="https://www.shawprize.org/zh/about/organisation/computer-science" class="sub-itemComput">Computer Science</a>
-                    <a href="https://www.shawprize.org/zh/about/organisation/life-science-medicine" class="sub-itemLife">Life Science & Medicine</a>
-                    <a href="https://www.shawprize.org/zh/about/organisation/mathematical-sciences" class="sub-itemMaths">Mathematical Sciences</a>
-                </div>
+                <div class="nav-group">
+                    <a href="../../../Main/Foundation/index.html" class="nav-item" data-i18n="navFoundation">The Shaw Prize Foundation</a>
+                    <a href="../../../Main/Foundation/Council.html" class="nav-item" data-i18n="navCouncil">Council</a>
+                    <a href="../../../Main/Foundation/Board%20of%20Adjudicators.html" class="nav-item" data-i18n="navBoardOfAdjudicators">Board of Adjudicators</a>
+                    <a href="" class="nav-item active" data-i18n="navSelectionCommittees">Selection Committees</a>
+
+                    <div class="sub-menu">
+                        <a href="../../Astronomy/page/Astronomy.html" class="sub-item active" data-i18n="navAstronomy">Astronomy</a>
+                        <a href="../../ComputerScience/page/CS.html" class="sub-itemComput" data-i18n="navComputerScience">Computer Science</a>
+                        <a href="../../LifeScienceMedicine/page/LM.html" class="sub-itemLife" data-i18n="navLifeScienceMedicine">Life Science & Medicine</a>
+                        <a href="../../MathematicalSciences/page/MS.html" class="sub-itemMaths" data-i18n="navMathematicalSciences">Mathematical Sciences</a>
+                    </div>
             </div>
         </nav>
 
-            <!-- 右側焦點內容 -->
             <main class="main-content">
-                <!-- 語言切換按鈕 -->
                 <div class="lang-switch">
-                    <button class="lang-btn active">ENG</button>
-                    <button class="lang-btn">繁</button>
-                    <button class="lang-btn">简</button>
+                    <button type="button" class="lang-btn" data-language="en">ENG</button>
+                    <button type="button" class="lang-btn active" data-language="zh-Hant">繁</button>
+                    <button type="button" class="lang-btn" data-language="cn">简</button>
                 </div>
-
-               
-                
+                <div class="profile-navigation jsx-caca17b2dbf10bfe flex items-center space-x-2">
+                    <button type="button" onclick="window.location.href='./Astronomy Professor You-Hua Chu.html'" aria-label="上一個" class="jsx-caca17b2dbf10bfe w-15 h-15 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <svg  width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8">
+                            <path d="M16.0011 24.0436L16.0011 22.2109L31.732 12L32.9102 13.8327L18.5974 23.1273L32.9102 32.4218L31.732 34.2545L16.0011 24.0436Z" fill="#16161C" class="fill-current">
+                            </path>
+                        </svg>
+                    </button>
+                    <button disabled=""  aria-label="下一個" class="jsx-caca17b2dbf10bfe w-15 h-15 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8">
+                            <path d="M34 22.754L34 24.7304L19.1148 35.7422L18 33.7657L31.5432 23.7422L18 13.7187L19.1148 11.7422L34 22.754Z" fill="#16161C" class="fill-current">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
                 <div>
-                    <span class="role-badge">Member</span>
-                    <h1 class="header-title">Professor Eiichiro Komatsu</h1>
-                    <div class="profile-subtitle">
-                        Director, Department of Physical Cosmology<br>
-                        Max Planck Institute for Astrophysics<br>
-                        Germany
+                    <span class="role-badge" data-i18n="role">成員</span>
+                    <h1 class="header-title" data-i18n="name">小松 英一郎教授</h1>
+                    <div class="profile-subtitle" data-i18n="subtitle">
+                        德國馬克斯普朗克天體物理研究所<br>
+                        物理宇宙學所長
                     </div>
                 </div>
 
                 <!-- 16:9 雙欄展示區域 -->
                 <div class="profile-grid">
                     <div>
-                        <img src="komatsu.jpg" alt="Professor Eiichiro Komatsu" class="profile-photo">
+                        <img src="../img/komatsu.jpg" alt="komatsu" class="profile-photo">
                         <div class="terms" style="margin-top: 15px;">
-                            <strong>Previous Terms：</strong><br>
+                            <strong data-i18n="termsLabel">Previous Terms：</strong><br>
                             <div style="margin-top: 8px;">                                
-                                <span>YEAR 2026 </span>
-                                <span>YEAR 2025 </span>
-                                <span>YEAR 2024 </span>
-                                <span>YEAR 2023</span>                                
+                                <span> 2026 年</span>
+                                <span> 2025 年</span>
+                                <span> 2024 年</span>
+                                <span> 2023 年</span>
                             </div>
                         </div>
                     </div>
 
                     <div>
-                        <p class="bio-text">
-                            Professor Eiichiro Komatsu uses theoretical physics and observational data to study the origin, evolution, and constituents of our Universe. He has been Director of the Department of Physical Cosmology at the Max Planck Institute for Astrophysics in Garching, Germany, since 2012. Prior to this he was a postdoctoral fellow at Princeton University and a professor in the Department of Astronomy and Director of Texas Cosmology Center at the University of Texas at Austin. He obtained his PhD from Tohoku University in Sendai, Japan, in 2001.
+                        <p class="bio-text" data-i18n="bioOne">
+                            小松 英一郎教授利用理論物理和觀測數據研究宇宙的起源、演化和組成。他自 2012 年起擔任德國馬克斯普朗克天體物理研究所物理宇宙學所長。擔任此職位前，他曾是美國普林斯頓大學博士後研究員，以及美國德克薩斯大學奧斯汀分校天文系教授和德克薩斯宇宙學中心主管。他於 2001 年在日本仙台東北大學取得博士學位。
                         </p>
-                        <p class="bio-text">
-                            He is a Fellow of American Physical Society. He received awards for his work including Alfred P Sloan Fellow, the Nishinomiya-Yukawa Memorial Prize, the Gruber Cosmology Prize, the Lancelot M Berkeley Prize of the American Astronomical Society, the Chushiro Hayashi Prize of the Astronomical Society of Japan, the Breakthrough Prize in Fundamental Physics, the Inoue Prize for Science and the Nishina Memorial Prize.
+                        <p class="bio-text" data-i18n="bioTwo">
+                            他是美國物理學會院士，曾獲眾多獎項，包括阿爾弗雷德·斯隆研究獎、西宮湯川記念賞、格魯伯宇宙學獎、美國天文學會蘭斯洛特·伯克利獎、日本天文學會林忠四郎獎、基礎物理學突破獎、井上春成科學獎以及仁科紀念獎。<br>
+                            他的科學成就包括對被稱為「宇宙暴脹」的早期宇宙進行最嚴格的物理學測試、以創新方法探索宇宙學中的暗物質、暗能量和中微子，以及星系團的天體物理學。
                         </p>
-                        <p class="bio-text">
-                            His scientific achievements include the most stringent test of the physics of the very early Universe known as “cosmic inflation”, innovative explorations of dark matter, dark energy and neutrinos in cosmology, and astrophysics of galaxy clusters.
-                        </p>                        
+                        <p class="bio-text"data-i18n="note">
+                            (註：所有中文譯本，皆以英文本為準)
+                        </p>
                     </div>
                 </div>
             </main>
@@ -351,6 +365,93 @@
 
         window.addEventListener('resize', resizeCanvas);
         window.addEventListener('DOMContentLoaded', resizeCanvas);
+        const defaultLanguage = 'zh-Hant';
+        window.addEventListener('DOMContentLoaded', () => {
+            resizeCanvas();
+            const defaultButton = document.querySelector('[data-language="zh-Hant"]');
+            if (defaultButton) {
+                defaultButton.click();
+            }
+        });
+
+        const translations = {
+            en: {
+                title: 'Professor Eiichiro Komatsu',
+                navFoundation: 'The Shaw Prize Foundation',
+                navCouncil: 'Council',
+                navBoardOfAdjudicators: 'Board of Adjudicators',
+                navSelectionCommittees: 'Selection Committees',
+                navAstronomy: 'Astronomy',
+                navComputerScience: 'Computer Science',
+                navLifeScienceMedicine: 'Life Science & Medicine',
+                navMathematicalSciences: 'Mathematical Sciences',
+                role: 'Member',
+                name: 'Professor Eiichiro Komatsu',
+                subtitle: 'Director, Department of Physical Cosmology<br>Max Planck Institute for Astrophysics<br>Germany',
+                termsLabel: 'Previous terms:',
+                bioOne: 'Professor Eiichiro Komatsu uses theoretical physics and observational data to study the origin, evolution, and constituents of our Universe. He has been Director of the Department of Physical Cosmology at the Max Planck Institute for Astrophysics in Garching, Germany, since 2012. Prior to this he was a postdoctoral fellow at Princeton University and a professor in the Department of Astronomy and Director of Texas Cosmology Center at the University of Texas at Austin. He obtained his PhD from Tohoku University in Sendai, Japan, in 2001.',
+                bioTwo: 'He is a Fellow of American Physical Society. He received awards for his work including Alfred P Sloan Fellow, the Nishinomiya-Yukawa Memorial Prize, the Gruber Cosmology Prize, the Lancelot M Berkeley Prize of the American Astronomical Society, the Chushiro Hayashi Prize of the Astronomical Society of Japan, the Breakthrough Prize in Fundamental Physics, the Inoue Prize for Science and the Nishina Memorial Prize.<br>His scientific achievements include the most stringent test of the physics of the very early Universe known as “cosmic inflation”, innovative explorations of dark matter, dark energy and neutrinos in cosmology, and astrophysics of galaxy clusters.',
+                note: ''
+            },
+            'zh-Hant': {
+                title: '小松 英一郎教授',
+                navFoundation: '邵逸夫獎基金會',
+                navCouncil: '理事會',
+                navBoardOfAdjudicators: '評審會',
+                navSelectionCommittees: '遴選委員會',
+                navAstronomy: '天文學',
+                navComputerScience: '電腦科學',
+                navLifeScienceMedicine: '生命科學與醫學',
+                navMathematicalSciences: '數學科學',
+                role: '成員',
+                name: '小松 英一郎教授',
+                subtitle: '德國馬克斯普朗克天體物理研究所<br>物理宇宙學所長',
+                termsLabel: '過往任期：',
+                bioOne: '小松 英一郎教授利用理論物理和觀測數據研究宇宙的起源、演化和組成。他自 2012 年起擔任德國馬克斯普朗克天體物理研究所物理宇宙學所長。擔任此職位前，他曾是美國普林斯頓大學博士後研究員，以及美國德克薩斯大學奧斯汀分校天文系教授和德克薩斯宇宙學中心主管。他於 2001 年在日本仙台東北大學取得博士學位。',
+                bioTwo: '他是美國物理學會院士，曾獲眾多獎項，包括阿爾弗雷德·斯隆研究獎、西宮湯川記念賞、格魯伯宇宙學獎、美國天文學會蘭斯洛特·伯克利獎、日本天文學會林忠四郎獎、基礎物理學突破獎、井上春成科學獎以及仁科紀念獎。<br>他的科學成就包括對被稱為「宇宙暴脹」的早期宇宙進行最嚴格的物理學測試、以創新方法探索宇宙學中的暗物質、暗能量和中微子，以及星系團的天體物理學。',
+                note: '(註：所有中文譯本，皆以英文本為準)'
+            },
+            cn: {
+                title: '小松 英一郎教授',
+                navFoundation: '邵逸夫奖基金会',
+                navCouncil: '理事会',
+                navBoardOfAdjudicators: '评审会',
+                navSelectionCommittees: '遴选委员会',
+                navAstronomy: '天文学',
+                navComputerScience: '计算机科学',
+                navLifeScienceMedicine: '生命科学与医学',
+                navMathematicalSciences: '数学科学',
+                role: '成员',
+                name: '小松 英一郎教授',
+                subtitle: '德国<br>马克斯普朗克天体物理研究所<br>物理宇宙学所长',
+                termsLabel: '过往任期：',
+                bioOne: '小松 英一郎教授利用理论物理和观测数据研究宇宙的起源、演化和组成。他自 2012 年起担任德国马克斯普朗克天体物理研究所物理宇宙学所长。担任此职位前，他曾是美国普林斯顿大学博士后研究员，以及美国德克萨斯大学奥斯汀分校天文系教授和德克萨斯宇宙学中心主管。他於 2001 年在日本仙台东北大学取得博士学位。',
+                bioTwo: '他是美国物理学会院士，曾获众多奖项，包括阿尔弗雷德·斯隆研究奖、西宫汤川记念赏、格鲁伯宇宙学奖、美国天文学会兰斯洛特·伯克利奖、日本天文学会林忠四郎奖、基础物理学突破奖、井上春成科学奖以及仁科纪念奖。<br>他的科学成就包括对被称为「宇宙暴胀」的早期宇宙进行最严格的物理学测试、以创新方法探索宇宙学中的暗物质、暗能量和中微子，以及星系团的天体物理学。',
+                note: '(注：所有中文译本，皆以英文本为准)'
+            }
+        };
+
+        document.querySelectorAll('[data-language]').forEach((button) => {
+            button.addEventListener('click', () => {
+                const language = button.dataset.language;
+                const content = translations[language];
+
+                document.documentElement.lang = language;
+                document.title = content.title;
+                document.querySelectorAll('[data-i18n]').forEach((element) => {
+                    const key = element.dataset.i18n;
+                    const value = content[key];
+
+                    if (Object.prototype.hasOwnProperty.call(content, key)) {
+                        element.innerHTML = value ?? '';
+                        element.style.display = value ? '' : 'none';
+                    }
+                });
+                document.querySelectorAll('[data-language]').forEach((item) => {
+                    item.classList.toggle('active', item === button);
+                });
+            });
+        });
     </script>
 </body>
 </html>

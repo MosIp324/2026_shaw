@@ -280,10 +280,10 @@
                     <a href="" class="nav-item active" data-i18n="navSelectionCommittees">Selection Committees</a>
 
                     <div class="sub-menu">
-                        <a href="../.././SelectionCommittees/Astronomy/page/Astronomy.html" class="sub-item active" data-i18n="navAstronomy">Astronomy</a>
-                        <a href="https://www.shawprize.org/zh/about/organisation/computer-science" class="sub-itemComput" data-i18n="navComputerScience">Computer Science</a>
-                        <a href="https://www.shawprize.org/zh/about/organisation/life-science-medicine" class="sub-itemLife" data-i18n="navLifeScienceMedicine">Life Science & Medicine</a>
-                        <a href="https://www.shawprize.org/zh/about/organisation/mathematical-sciences" class="sub-itemMaths" data-i18n="navMathematicalSciences">Mathematical Sciences</a>
+                        <a href="../../Astronomy/page/Astronomy.html" class="sub-item active" data-i18n="navAstronomy">Astronomy</a>
+                        <a href="../../ComputerScience/page/CS.html" class="sub-itemComput" data-i18n="navComputerScience">Computer Science</a>
+                        <a href="../../LifeScienceMedicine/page/LM.html" class="sub-itemLife" data-i18n="navLifeScienceMedicine">Life Science & Medicine</a>
+                        <a href="../../MathematicalSciences/page/MS.html" class="sub-itemMaths" data-i18n="navMathematicalSciences">Mathematical Sciences</a>
                     </div>
                 </div>
             </nav>
@@ -309,12 +309,11 @@
                     </button>
                 </div>
                 <div>
-                    <span class="role-badge" data-i18n="role">Member</span>
-                    <h1 class="header-title" data-i18n="name">Professor You-Hua Chu</h1>
+                    <span class="role-badge" data-i18n="role">成員</span>
+                    <h1 class="header-title" data-i18n="name">朱有花教授</h1>
                     <div class="profile-subtitle" data-i18n="subtitle">
-                        Professor Emerita, Department of Astronomy<br>
-                        University of Illinois at Urbana-Champaign<br>
-                        USA
+                        美國<br>
+                        伊利諾伊大學榮休教授
                     </div>
                 </div>
 
@@ -323,7 +322,7 @@
                         <img src="../img/You-Hua_Chu.jpg" alt="Hua_Chu" class="profile-photo">
                         <div class="terms" style="margin-top: 15px;">
                             <strong data-i18n="termsLabel">Previous Terms：</strong><br>
-                            <div style="margin-top: 8px;">                                
+                            <div style="margin-top: 8px;">
                                 <span> 2026 年</span>
                                 <span> 2025 年</span>
                                 <span> 2024 年</span>
@@ -333,13 +332,13 @@
 
                     <div>
                         <p class="bio-text" data-i18n="bioOne">
-                            Professor You-Hua Chu received her PhD in Astronomy from the University of California at Berkeley, USA. She was a Professor in the Astronomy Department of the University of Illinois, USA, and was the Department Chair in 2005-2011. In 2014, she moved to Taiwan and was the Director of the Institute of Astronomy and Astrophysics, Academia Sinica (ASIAA) until 2020. She is currently a Chair Research Fellow of the National Sun Yat-sen University, a Distinguished Visiting Scholar at ASIAA and a Professor Emerita of the University of Illinois.
+                            朱有花教授在美國加州大學伯克萊分校取得天文學博士學位。她曾於美國伊利諾伊大學任職天文學系教授，並於2005 年至2011年擔任系主任。 她於2014移居台灣，擔任中央研究院天文及天文物理研究所所長直至2020年。她現為國立中山大學講座研究員、中央研究院天文及天文物理研究所傑出訪問學者和伊利諾伊大學榮休教授。
                         </p>
                         <p class="bio-text" data-i18n="bioTwo">
-                            She was the President of IAU Division VI (2009–2012), the President of the Astronomical Society of the Republic of China (ASROC, 2014–2020). She is a Fellow of the American Astronomical Society, and a Fellow of the Physical Society of Taiwan. She received the Heaven Quest Award from the ASROC in 2021, NAOJ Director General's Award in Engineering and Development Category in 2021, and R M Petrie Prize from the Canadian Astronomical Society in 2023.
+                            她曾擔任國際天文學聯合會第六分部主席(2009–2012)、台灣中華民國天文學會主席(2014–2020)。她是美國天文學會會士及台灣物理學會會士。她於2021年獲得台灣中華民國天文學會頒發的天問獎，2021年獲頒日本國立天文台總幹事獎(工程與開發類別)，並於2023年榮獲加拿大天文學會皮特里獎。<br> 她的研究主要是以大麥哲倫星雲為研究對象，利用多波長觀測恆星能量的反饋以及與星際介質的相互作用。
                         </p>
                         <p class="bio-text" data-i18n="note">
-                            Her research is in multi-wavelength observations of stellar energy feedback and interactions with the interstellar medium, using the Magellanic Clouds as an astrophysical laboratory.
+                            (註：所有中文譯本，皆以英文本為準)
                         </p>                                               
                     </div>
                 </div>
@@ -362,7 +361,14 @@
         }
 
         window.addEventListener('resize', resizeCanvas);
-        window.addEventListener('DOMContentLoaded', resizeCanvas);
+        const defaultLanguage = 'zh-Hant';
+        window.addEventListener('DOMContentLoaded', () => {
+            resizeCanvas();
+            const defaultButton = document.querySelector('[data-language="zh-Hant"]');
+            if (defaultButton) {
+                defaultButton.click();
+            }
+        });
 
         const translations = {
             en: {
@@ -377,14 +383,14 @@
                 navMathematicalSciences: 'Mathematical Sciences',
                 role: 'Member',
                 name: 'Professor You-Hua Chu',
-                subtitle: 'Luke Blossom Professor, School of Humanities and Sciences and<br>Sciences and<br>Professor of Physics and of Particle Physics and<br>Astrophysics<br>Stanford University<br>USA',
+                subtitle: 'Professor Emerita, Department of Astronomy<br>University of Illinois at Urbana-Champaign<br>USA',
                 termsLabel: 'Previous terms:',
-                bioOne: 'Professor Roger Blandford took his BA, MA and PhD degrees at Cambridge University. Following postdoctoral research at Cambridge, Princeton and Berkeley he took up a faculty position at Caltech in 1976 becoming the Tolman Professor in 1989. In 2003, he became the first Director of the Kavli Institute for Particle Astrophysics and Cosmology at Stanford and is currently the Director of the Simons Collaboration on Extreme Electrodynamics of Compact Sources. With Kip Thorne he co-authored Modern Classical Physics. His research interests include compact sources, cosmic rays, cosmology, and astrobiology. He is a Fellow of the Royal Society, the American Academy of Arts and Sciences, the American Physical Society and a Member of the National Academy of Sciences. He chaired the 2010 Decadal Survey of Astronomy and Astrophysics. He was awarded the 1998 AAS Heineman Prize, the 2013 RAS Gold Medal, the 2016 Crafoord Prize for Astronomy and the 2020 Shaw Prize for Astronomy.',
-                bioTwo: '',
+                bioOne: 'Professor You-Hua Chu received her PhD in Astronomy from the University of California at Berkeley, USA. She was a Professor in the Astronomy Department of the University of Illinois, USA, and was the Department Chair in 2005-2011. In 2014, she moved to Taiwan and was the Director of the Institute of Astronomy and Astrophysics, Academia Sinica (ASIAA) until 2020. She is currently a Chair Research Fellow of the National Sun Yat-sen University, a Distinguished Visiting Scholar at ASIAA and a Professor Emerita of the University of Illinois.',
+                bioTwo: 'She was the President of IAU Division VI (2009–2012), the President of the Astronomical Society of the Republic of China (ASROC, 2014–2020). She is a Fellow of the American Astronomical Society, and a Fellow of the Physical Society of Taiwan. She received the Heaven Quest Award from the ASROC in 2021, NAOJ Director General\'s Award in Engineering and Development Category in 2021, and R M Petrie Prize from the Canadian Astronomical Society in 2023.<br>Her research is in multi-wavelength observations of stellar energy feedback and interactions with the interstellar medium, using the Magellanic Clouds as an astrophysical laboratory.',
                 note: ''
             },
             'zh-Hant': {
-                title: '羅傑・布蘭福德教授',
+                title: '朱有花教授',
                 navFoundation: '邵逸夫獎基金會',
                 navCouncil: '理事會',
                 navBoardOfAdjudicators: '評審會',
@@ -394,15 +400,15 @@
                 navLifeScienceMedicine: '生命科學與醫學',
                 navMathematicalSciences: '數學科學',
                 role: '成員',
-                name: '羅傑・布蘭福德教授',
-                subtitle: '美國<br>史丹福大學<br>文理學院盧克・布魯森講座教授及<br>物理學教授暨粒子物理學及天體物理學教授',
+                name: '朱有花教授',
+                subtitle: '美國<br>伊利諾伊大學榮休教授',
                 termsLabel: '過往任期：',
-                bioOne: '羅傑・布蘭福德教授於英國劍橋大學取得學士、碩士和博士學位。他在劍橋大學、美國普林斯頓大學和加州大學柏克萊分校完成博士後研究後，於1976 年加入美國加州理工學院擔任教職，並於1989 年成為理查德・切斯・托爾曼理論天文物理學教授。他在2003年於美國史丹福大學出任科維理粒子天體物理學與宇宙學研究所首任所長，現為西蒙斯基金會緻密源極端電動力學合作組織主任。他與基普・索恩共同撰寫《現代經典物理學》。他的研究興趣包括緻密源、宇宙射線、宇宙學和天體生物學。他是英國倫敦皇家學會、美國人文與科學院、美國物理學會和美國國家科學院院士。他於2010 年擔任美國天文及天體物理學十年調查主席，獲頒的獎項包括1998年美國天文學會海涅曼獎、2013年英國皇家天文學會金章、2016年克拉福德天文學獎及2020年邵逸夫天文學獎。',
-                bioTwo: '',
+                bioOne: '朱有花教授在美國加州大學伯克萊分校取得天文學博士學位。她曾於美國伊利諾伊大學任職天文學系教授，並於2005 年至2011年擔任系主任。 她於2014移居台灣，擔任中央研究院天文及天文物理研究所所長直至2020年。她現為國立中山大學講座研究員、中央研究院天文及天文物理研究所傑出訪問學者和伊利諾伊大學榮休教授。',
+                bioTwo: '她曾擔任國際天文學聯合會第六分部主席(2009–2012)、台灣中華民國天文學會主席(2014–2020)。她是美國天文學會會士及台灣物理學會會士。她於2021年獲得台灣中華民國天文學會頒發的天問獎，2021年獲頒日本國立天文台總幹事獎(工程與開發類別)，並於2023年榮獲加拿大天文學會皮特里獎。<br>她的研究主要是以大麥哲倫星雲為研究對象，利用多波長觀測恆星能量的反饋以及與星際介質的相互作用。',
                 note: '(註：所有中文譯本，皆以英文本為準)'
             },
             cn: {
-                title: '罗杰・布兰福德教授',
+                title: '朱有花教授',
                 navFoundation: '邵逸夫奖基金会',
                 navCouncil: '理事会',
                 navBoardOfAdjudicators: '评审会',
@@ -412,11 +418,11 @@
                 navLifeScienceMedicine: '生命科学与医学',
                 navMathematicalSciences: '数学科学',
                 role: '成员',
-                name: '罗杰・布兰福德教授',
-                subtitle: '美国<br>史丹福大学<br>文理学院卢克・布鲁森讲座教授及<br>物理学教授暨粒子物理学及天体物理学教授',
+                name: '朱有花教授',
+                subtitle: '美国<br>伊利诺伊大学荣休教授',
                 termsLabel: '过往任期：',
-                bioOne: '罗杰・布兰福德教授于英国剑桥大学取得学士、硕士和博士学位。他在剑桥大学、美国普林斯顿大学和加州大学柏克莱分校完成博士后研究后，于1976 年加入美国加州理工学院担任教职，并于1989 年成为理查德・切斯・托尔曼理论天文物理学教授。他在2003年于美国史丹福大学出任科维理粒子天体物理学与宇宙学研究所首任所长，现为西蒙斯基金会緻密源极端电动力学合作组织主任。他与基普・索恩共同撰写《现代经典物理学》。他的研究兴趣包括緻密源、宇宙射线、宇宙学和天体生物学。他是英国伦敦皇家学会、美国人文与科学院、美国物理学会和美国国家科学院院士。他于2010 年担任美国天文及天体物理学十年调查主席，获颁的奖项包括1998年美国天文学会海涅曼奖、2013年英国皇家天文学会金章、2016年克拉福德天文学奖及2020年邵逸夫天文学奖。',
-                bioTwo: '',
+                bioOne: '朱有花教授在美国加州大学伯克莱分校取得天文学博士学位。她曾於美国伊利诺伊大学任职天文学系教授，并於2005 年至2011年担任系主任。 她於2014移居台湾，担任中央研究院天文及天文物理研究所所长直至2020年。她现为国立中山大学讲座研究员、中央研究院天文及天文物理研究所杰出访问学者和伊利诺伊大学荣休教授。',
+                bioTwo: '她曾担任国际天文学联合会第六分部主席(2009–2012)、台湾中华民国天文学会主席(2014–2020)。她是美国天文学会会士及台湾物理学会会士。她於2021年获得台湾中华民国天文学会颁发的天问奖，2021年获颁日本国立天文台总干事奖(工程与开发类别)，并於2023年荣获加拿大天文学会皮特里奖。<br>她的研究主要是以大麦哲伦星云为研究对象，利用多波长观测恒星能量的反馈以及与星际介质的相互作用。',
                 note: '(注：所有中文译本，皆以英文本为准)'
             }
         };
@@ -429,7 +435,9 @@
                 document.documentElement.lang = language;
                 document.title = content.title;
                 document.querySelectorAll('[data-i18n]').forEach((element) => {
-                    element.innerHTML = content[element.dataset.i18n];
+                    if (content[element.dataset.i18n]) {
+                        element.innerHTML = content[element.dataset.i18n];
+                    }
                 });
                 document.querySelectorAll('[data-language]').forEach((item) => {
                     item.classList.toggle('active', item === button);
